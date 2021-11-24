@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commodities
   resources :shops
   resources :categories
   resources :admins

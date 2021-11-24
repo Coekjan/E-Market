@@ -11,9 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :account_id %>
-    <%= form.text_field :account_id %>
+  <div>
+    <%= form.collection_select(:account_id, Account.all, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.collection_select(:role_id, Role.all, :id, :role_type) %>
   </div>
 
   <div class="actions">

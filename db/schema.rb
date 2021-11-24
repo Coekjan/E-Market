@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_021547) do
+ActiveRecord::Schema.define(version: 2021_11_24_030653) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 2021_11_24_021547) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role_type"
   end
 
   create_table "sections", force: :cascade do |t|

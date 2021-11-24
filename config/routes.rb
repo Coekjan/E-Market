@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :records
+  resources :sections
+  resources :comments
+  resources :orders
   resources :commodities
   resources :shops
   resources :categories

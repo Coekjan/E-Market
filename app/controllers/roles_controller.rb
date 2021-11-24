@@ -64,6 +64,6 @@ class RolesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def role_params
-      params.require(:role).permit(:type)
+      params.require(:role).permit(:role_type)
     end
 end

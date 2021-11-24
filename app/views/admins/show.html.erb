@@ -2,7 +2,12 @@
 
 <p>
   <strong>Account:</strong>
-  <%= @admin.account %>
+  <%= @admin.account.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin.account.name %>
 </p>
 
 <%= link_to 'Edit', edit_admin_path(@admin) %> |

@@ -15,10 +15,6 @@
     <%= form.collection_select(:account_id, Account.all, :id, :name) %>
   </div>
 
-  <div>
-    <%= form.collection_select(:role_id, Role.all, :id, :role_type) %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

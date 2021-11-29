@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
   root :to => 'commodities#index'
 
-  resources :commodities do
-    resources :sections do
-      resources :comments
-    end
-  end
-
   resources :sellers do
-    resources :shops
+    resources :shops do
+      resources :commodities do
+        resources :sections do
+          resources :comments
+        end
+      end
+    end
   end
 
   resources :categories
   resources :admins
-  resources :sellers
   resources :customers do
     resources :orders
     resources :records

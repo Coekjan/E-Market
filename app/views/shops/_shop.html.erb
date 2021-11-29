@@ -1,0 +1,8 @@
+<div id="shop_<%= shop.id %>">
+  <p>
+    Name: <strong><%= shop.name %></strong><br/>
+    Introduction: <%= shop.introduction %>
+  </p>
+  <%= link_to 'Details', seller_shop_url(@seller, shop) %> |
+  <%= link_to 'Destroy', seller_shop_url(@seller, shop), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

@@ -25,6 +25,7 @@ class SellersController < ApplicationController
 
     respond_to do |format|
       if @seller.save
+        Account.find(@seller.account_id).role_id = Role.find_by_role_type 'Seller'
         format.html { redirect_to @seller, notice: "Seller was successfully created." }
         format.json { render :show, status: :created, location: @seller }
       else

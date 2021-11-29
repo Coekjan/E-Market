@@ -25,6 +25,7 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
+        Account.find(@admin.account_id).role_id = Role.find_by_role_type 'Admin'
         format.html { redirect_to @admin, notice: "Admin was successfully created." }
         format.json { render :show, status: :created, location: @admin }
       else

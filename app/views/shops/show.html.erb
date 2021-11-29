@@ -12,8 +12,8 @@
 
 <p>
   <strong>Seller:</strong>
-  <%= @shop.seller %>
+  <%= @shop.seller.account.name %> | ID: <%= @shop.seller.account.id %>
 </p>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+<%= link_to 'Edit', edit_seller_shop_path(@shop.seller) %> |
+<%= link_to 'Back', seller_path(@shop.seller) %>

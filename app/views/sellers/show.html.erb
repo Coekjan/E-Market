@@ -1,9 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Account:</strong>
-  <%= @seller.account %>
+  <strong>Account-ID:</strong>
+  <%= @seller.account.id %>
 </p>
+
+<p>
+  <strong>Name</strong>
+  <%= @seller.account.name %>
+</p>
+
+<!-- TODO: show this seller's shops -->
 
 <%= link_to 'Edit', edit_seller_path(@seller) %> |
 <%= link_to 'Back', sellers_path %>
+
+<h2>Shops</h2>
+<div id="shops">
+  <%= render :partial => @seller.shops %>
+</div>
+
+<!-- TODO: if current-user is this seller show "create shop" -->
+<h2>Create Shop</h2>
+<%= form_for [@seller, Shop.new] do |f| %>
+  <p>
+    <%= f.label :name, "Name" %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :introduction, "Introduction" %>
+    <%= f.text_area :introduction, :row => 5 %>
+  </p>
+  <div class="field">
+    <!-- TODO: Backend verification -->
+    <%= f.hidden_field :seller_id, :value => @seller.id %>
+  </div>
+  <p>
+    <%= f.submit "Create My Shop" %>
+  </p>
+<% end %>

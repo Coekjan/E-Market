@@ -22,9 +22,24 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
+    role = Role.find(@account.role_id).role_type
+    check_role = /^(Admin|Seller|Customer)$/ === role
 
     respond_to do |format|
-      if @account.save
+      if @account.save && check_role
+        if role == "Admin"
+          admin = Admin.new
+          admin.account_id = @account.id
+          admin.save
+        elsif role == "Seller"
+          seller = Seller.new
+          seller.account_id = @account.id
+          seller.save
+        else role == "Customer"
+          customer = Customer.new
+          customer.account_id = @account.id
+          customer.save
+        end
         format.html { redirect_to @account, notice: "Account was successfully created." }
         format.json { render :show, status: :created, location: @account }
       else

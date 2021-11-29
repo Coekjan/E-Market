@@ -1,4 +1,4 @@
-<%= form_with(model: shop, local: true) do |form| %>
+<%= form_with(model: shop, url: url, local: true) do |form| %>
   <% if shop.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
@@ -19,11 +19,6 @@
   <div class="field">
     <%= form.label :introduction %>
     <%= form.text_area :introduction %>
-  </div>
-
-  <div class="field">
-    <%= form.label :seller_id %>
-    <%= form.text_field :seller_id %>
   </div>
 
   <div class="actions">

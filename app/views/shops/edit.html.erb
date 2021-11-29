@@ -1,6 +1,5 @@
 <h1>Editing Shop</h1>
 
-<%= render 'form', shop: @shop %>
+<%= render 'form', shop: @shop, url: seller_shop_url(@shop.seller) %>
 
-<%= link_to 'Show', @shop %> |
-<%= link_to 'Back', shops_path %>
+<%= link_to 'Back', seller_shop_path(@shop.seller) %>

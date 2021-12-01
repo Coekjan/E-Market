@@ -1,4 +1,4 @@
-<%= form_with(model: commodity, local: true) do |form| %>
+<%= form_with(model: commodity, url: url, local: true) do |form| %>
   <% if commodity.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(commodity.errors.count, "error") %> prohibited this commodity from being saved:</h2>
@@ -23,17 +23,11 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.number_field :price %>
   </div>
 
-  <div class="field">
-    <%= form.label :shop_id %>
-    <%= form.text_field :shop_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :categories_id %>
-    <%= form.text_field :categories_id %>
+  <div>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
   </div>
 
   <div class="actions">

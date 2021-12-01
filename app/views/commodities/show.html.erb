@@ -17,13 +17,14 @@
 
 <p>
   <strong>Shop:</strong>
-  <%= @commodity.shop %>
+  <%= @commodity.shop.name %>
 </p>
 
 <p>
   <strong>Categories:</strong>
-  <%= @commodity.categories %>
+  <%= @commodity.categories.map { |c| c.name }.reduce { |x, y| x + ", " + y } if @commodity.categories %>
 </p>
 
-<%= link_to 'Edit', edit_commodity_path(@commodity) %> |
-<%= link_to 'Back', commodities_path %>
+
+<%= link_to 'Edit', edit_seller_shop_commodity_path(@commodity.shop.seller, @commodity.shop, @commodity) %> |
+<%= link_to 'Back', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>

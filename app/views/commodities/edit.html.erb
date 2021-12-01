@@ -1,6 +1,5 @@
 <h1>Editing Commodity</h1>
 
-<%= render 'form', commodity: @commodity %>
+<%= render 'form', commodity: @commodity, url: seller_shop_commodity_url(@commodity.shop.seller, @commodity.shop) %>
 
-<%= link_to 'Show', @commodity %> |
-<%= link_to 'Back', commodities_path %>
+<%= link_to 'Back', seller_shop_commodity_path(@commodity.shop.seller, @commodity.shop) %>

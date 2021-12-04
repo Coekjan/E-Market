@@ -66,6 +66,6 @@ class CommoditiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commodity_params
-      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, :category_ids)
+      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, category_ids: [])
     end
 end

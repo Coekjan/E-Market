@@ -5,5 +5,10 @@
   <%= @category.name %>
 </p>
 
+<div>
+  <strong>Commodities of the categories:</strong><br/>
+  <%= (@category.commodities.collect { |c| c.name }).join{", "} %>
+</div>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

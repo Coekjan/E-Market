@@ -26,5 +26,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_seller_shop_commodity_path(@commodity.shop.seller, @commodity.shop, @commodity) %> |
-<%= link_to 'Back', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
+<%= link_to 'Edit', edit_commodity_url(@commodity) %> |
+<%= link_to 'Back', commodities_path %> |
+<%= link_to 'Visit Its Shop', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>

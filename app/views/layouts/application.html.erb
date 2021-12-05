@@ -9,6 +9,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div>
+    <% if current_account %>
+      <%= current_account.name %> Logged in.<br/>
+      <%= link_to 'Logout', logout_accounts_path %>
+    <% else %>
+      Please <%= link_to 'Login', login_accounts_path %>
+    <% end %>
+  </div>
+
   <body>
     <%= yield %>
   </body>

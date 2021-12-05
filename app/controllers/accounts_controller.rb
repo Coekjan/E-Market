@@ -1,6 +1,24 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
 
+  def login
+  end
+
+  def do_login
+    account = Account.where(id: params[:id], name: params[:name], password: params[:password]).first
+    if account
+      session[:current_account_id] = account.id
+      redirect_to commodities_url, notice: "Account Login Successfully."
+    else
+      redirect_to login_accounts_url, alert: "Wrong account name or password!"
+    end
+  end
+
+  def logout
+    session.delete(:current_account_id)
+    redirect_to login_accounts_url, alert: "Account logout successfully!"
+  end
+
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all

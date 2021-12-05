@@ -1,4 +1,4 @@
-<%= form_with(model: commodity, url: url, local: true) do |form| %>
+<%= form_with(model: commodity, local: true) do |form| %>
   <% if commodity.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(commodity.errors.count, "error") %> prohibited this commodity from being saved:</h2>

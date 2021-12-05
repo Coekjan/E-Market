@@ -25,11 +25,10 @@ class CommoditiesController < ApplicationController
 
     respond_to do |format|
       if @commodity.save
-        format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop),
-                                  notice: "Commodity was successfully created." }
+        format.html { redirect_to @commodity, notice: "Commodity was successfully created." }
         format.json { render :show, status: :created, location: @commodity }
       else
-        format.html { render seller_shop_url(@commodity.shop.seller, @commodity.shop), status: :unprocessable_entity }
+        format.html { render @commodity, status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end
@@ -39,11 +38,10 @@ class CommoditiesController < ApplicationController
   def update
     respond_to do |format|
       if @commodity.update(commodity_params)
-        format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop),
-                                  notice: "Commodity was successfully updated." }
+        format.html { redirect_to @commodity, notice: "Commodity was successfully updated." }
         format.json { render :show, status: :ok, location: @commodity }
       else
-        format.html { render seller_shop_url(@commodity.shop.seller, @commodity.shop), status: :unprocessable_entity }
+        format.html { render @commodity, status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end

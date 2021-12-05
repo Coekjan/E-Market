@@ -24,7 +24,7 @@
 </div>
 
 <h2>Add Commodities</h2>
-<%= form_for [@shop.seller, @shop, Commodity.new] do |f| %>
+<%= form_for Commodity.new, url: commodities_url do |f| %>
   <p>
     <%= f.label :name, "Name" %>
     <%= f.text_area :name %>

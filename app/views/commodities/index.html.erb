@@ -20,8 +20,8 @@
         <td><%= commodity.name %></td>
         <td><%= commodity.introduction %></td>
         <td><%= commodity.price %></td>
-        <td><%= commodity.shop %></td>
-        <td><%= commodity.categories %></td>
+        <td><%= commodity.shop.name %></td>
+        <td><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></td>
         <td><%= link_to 'Show', commodity %></td>
         <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
         <td><%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %></td>

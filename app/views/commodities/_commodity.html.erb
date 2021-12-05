@@ -1,0 +1,9 @@
+<div id="commodity_<%= commodity.id %>">
+  <p>
+    Name: <strong><%= commodity.name %></strong><br/>
+    Introduction: <%= commodity.introduction %><br/>
+    Price: <%= commodity.price %>
+  </p>
+  <%= link_to 'Details', commodity %> |
+  <%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

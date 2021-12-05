@@ -44,7 +44,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to @seller, notice: "Shop was successfully updated." }
         format.json { render :show, status: :ok, location: @shop }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render "sellers/show", status: :unprocessable_entity }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end

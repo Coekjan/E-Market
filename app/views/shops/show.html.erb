@@ -17,3 +17,31 @@
 
 <%= link_to 'Edit', edit_seller_shop_path(@shop.seller) %> |
 <%= link_to 'Back', seller_path(@shop.seller) %>
+
+<h2>Commodities</h2>
+<div id="commodities">
+  <%= render :partial => @shop.commodities %>
+</div>
+
+<h2>Add Commodities</h2>
+<%= form_for Commodity.new, url: commodities_url do |f| %>
+  <p>
+    <%= f.label :name, "Name" %>
+    <%= f.text_area :name %>
+  </p>
+  <p>
+    <%= f.label :introduction, "Introduction" %>
+    <%= f.text_field :introduction %>
+  </p>
+  <p>
+    <%= f.label :price, "Price" %>
+    <%= f.number_field :price %>
+  </p>
+  <div>
+    <!-- TODO: Backend verification -->
+    <%= f.hidden_field :shop_id, :value => @shop.id %>
+  </div>
+  <p>
+    <%= f.submit "Add new commodities" %>
+  </p>
+<% end %>

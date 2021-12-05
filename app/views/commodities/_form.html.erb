@@ -23,17 +23,14 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.number_field :price %>
   </div>
 
-  <div class="field">
-    <%= form.label :shop_id %>
-    <%= form.text_field :shop_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :categories_id %>
-    <%= form.text_field :categories_id %>
+  <h4>Choose Categories</h4>
+  <div>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
+    <% end %>
   </div>
 
   <div class="actions">

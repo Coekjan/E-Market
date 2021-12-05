@@ -28,7 +28,7 @@ class CommoditiesController < ApplicationController
         format.html { redirect_to @commodity, notice: "Commodity was successfully created." }
         format.json { render :show, status: :created, location: @commodity }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render @commodity, status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +41,7 @@ class CommoditiesController < ApplicationController
         format.html { redirect_to @commodity, notice: "Commodity was successfully updated." }
         format.json { render :show, status: :ok, location: @commodity }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render @commodity, status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +51,7 @@ class CommoditiesController < ApplicationController
   def destroy
     @commodity.destroy
     respond_to do |format|
-      format.html { redirect_to commodities_url, notice: "Commodity was successfully destroyed." }
+      format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop), notice: "Commodity was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +64,6 @@ class CommoditiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commodity_params
-      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, :categories_id)
+      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, category_ids: [])
     end
 end

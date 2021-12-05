@@ -23,13 +23,18 @@
         <td><%= commodity.shop.name %></td>
         <td><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></td>
         <td><%= link_to 'Show', commodity %></td>
-        <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
-        <td><%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_account && current_account.id == commodity.shop.seller.account.id %>
+          <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
+          <td><%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td>---</td>
+          <td>---</td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Commodity', new_commodity_path %>
+<% if current_account && current_account.role.role_type == "Seller" %>
+  <%= link_to 'My Shop', seller_url(Seller.where(:account_id => current_account.id).first.id) %>
+<% end %>

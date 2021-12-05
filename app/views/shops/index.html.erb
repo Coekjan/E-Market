@@ -17,15 +17,13 @@
       <tr>
         <td><%= shop.name %></td>
         <td><%= shop.introduction %></td>
-        <td><%= shop.seller %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= shop.seller.account.name %></td>
+        <td><%= link_to 'Show', seller_shop_url(shop.seller, shop) %></td>
+        <% if current_account && current_account.id == shop.seller.account.id %>
+          <td><%= link_to 'Edit', edit_seller_shop_url(shop.seller, shop) %></td>
+          <td><%= link_to 'Destroy', seller_shop_url(shop.seller, shop), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Shop', new_shop_path %>

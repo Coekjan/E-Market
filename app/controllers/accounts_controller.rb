@@ -1,5 +1,11 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
+  before_action :authenticate, except: [:login, :do_login, :logout]
+
+  def authenticate
+    redirect_to login_accounts_url, alert: "Must Be ADMIN && Login!" unless current_account &&
+      current_account.role.id == 1
+  end
 
   def login
   end

@@ -5,5 +5,7 @@
     Price: <%= commodity.price %>
   </p>
   <%= link_to 'Details', commodity %> |
-  <%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if current_account && current_account.id == commodity.shop.seller.account.id %>
+    <%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </div>

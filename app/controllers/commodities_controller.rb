@@ -1,5 +1,13 @@
 class CommoditiesController < ApplicationController
   before_action :set_commodity, only: %i[ show edit update destroy ]
+  before_action :authenticate, except: [:index, :show]
+
+  def authenticate
+    redirect_to login_accounts_url, alert: 'Must Login as this commodity\'s owner!' unless current_account &&
+      current_account.id == (params[:commodity] && params[:commodity][:shop_id] ?
+                               Shop.find(params[:commodity][:shop_id]).seller.account.id :
+                               @commodity.shop.seller.account.id)
+  end
 
   # GET /commodities or /commodities.json
   def index

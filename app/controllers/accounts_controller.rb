@@ -11,12 +11,12 @@ class AccountsController < ApplicationController
   end
 
   def do_login
-    account = Account.where(id: params[:id], name: params[:name], password: params[:password]).first
+    account = Account.where(id: params[:id], password: params[:password]).first
     if account
       session[:current_account_id] = account.id
       redirect_to commodities_url, notice: "Account Login Successfully."
     else
-      redirect_to login_accounts_url, alert: "Wrong account name or password!"
+      redirect_to login_accounts_url, alert: "Wrong account id or password!"
     end
   end
 

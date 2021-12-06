@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :admins
   resources :customers do
-    resources :orders
+    resources :orders do
+      post 'purchase'
+    end
     resources :records
   end
   resources :accounts do

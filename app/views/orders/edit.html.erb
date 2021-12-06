@@ -1,6 +1,6 @@
 <h1>Editing Order</h1>
 
-<%= render 'form', order: @order %>
+<%= render 'form', order: @order, url: customer_order_path(@order.customer, @order) %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Show', customer_order_url(@order.customer, @order) %> |
+<%= link_to 'Back', customer_orders_path(@order.customer) %>

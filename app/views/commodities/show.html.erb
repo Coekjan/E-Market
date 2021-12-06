@@ -28,6 +28,26 @@
 
 <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
   <%= link_to 'Edit', edit_commodity_url(@commodity) %> |
+<% elsif current_account && current_account.role.role_type == "Customer" %>
+  <h3>Add Me to your Shopping cart!</h3>
+  <%= form_for Order.new, url: customer_orders_url(current_account.customer) do |f| %>
+    <div class="field">
+      <%= f.label :count %>
+      <%= f.number_field :count %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :done, :value => false %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :commodity_id, :value => @commodity.id %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :customer_id, :value => current_account.customer.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>
 <%= link_to 'Back', commodities_path %> |
 <%= link_to 'Visit Its Shop', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>

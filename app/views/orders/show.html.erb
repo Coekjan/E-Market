@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <p>
   <strong>Count:</strong>
@@ -17,13 +18,19 @@
 
 <p>
   <strong>Commodity:</strong>
-  <%= @order.commodity %>
+  <%= @order.commodity.name %>
 </p>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @order.seller %>
-</p>
+<% unless @order.done %>
+  <h2>Purchase Now!</h2>
+  <%= form_with url: customer_order_purchase_url(@order.customer, @order) do %>
+  <% submit_tag 'PURCHASE!' %>
+  <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<br/>
+
+<% unless @order.done %>
+  <%= link_to 'Edit', edit_customer_order_path(@order.customer, @order) %> |
+<% end %>
+<%= link_to 'Back', customer_orders_path(@order) %>

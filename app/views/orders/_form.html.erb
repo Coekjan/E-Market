@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :count %>
-    <%= form.number_field :count %>
+    <%= form.number_field :count, in: 1..10000000000, step: 1 %>
   </div>
 
   <div class="actions">

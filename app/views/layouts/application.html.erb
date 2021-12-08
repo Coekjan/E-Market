@@ -12,15 +12,17 @@
   <div>
     <%= link_to 'HOME', root_url %><br/>
     <% if current_account %>
-      <%= current_account.name %> Logged in.<br/>
+      <%= current_account.name %> Logged in |
+      Balance: <%= current_account.balance %>￥ |
+      <%= link_to 'Top Up!', account_top_up_url(current_account) %><br/>
       <%= link_to 'Logout', logout_accounts_path %><br/>
-      <% if current_account.role.role_type == "Customer" %>
+      <% if current_account.role == "Customer" %>
         <%= link_to 'My Shopping Cart', customer_orders_url(current_account.customer) %> |
-        Balance: <%= current_account.balance %> ￥
-      <% elsif current_account.role.role_type == "Admin" %>
-        <%= link_to 'All Accounts', accounts_url %>
+        <%= link_to 'My Shopping Records', customer_records_url(current_account.customer) %>
+      <% elsif current_account.role == "Admin" %>
+        <%= link_to 'All Accounts', accounts_url %> | <%= link_to 'All Categories', categories_url %>
       <% end %>
-    <% else %>
+    <% elsif request.original_url != login_accounts_url %>
       Please <%= link_to 'Login', login_accounts_path %>
     <% end %>
   </div>

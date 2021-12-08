@@ -1,5 +1,17 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[ show edit update destroy ]
+  before_action :authenticate, only: [:update, :destroy]
+  before_action :show_authenticate, only: [:show]
+
+  def authenticate
+    redirect_to login_accounts_url, alert: "Must be seller | admin!" unless current_admin? ||
+      (current_seller? && current_account.seller.shops.exists? { |s| s == @shop })
+  end
+
+  def show_authenticate
+    redirect_to login_accounts_url, alert: "Must be this shop's owner" unless current_seller? &&
+      current_account.seller.shops.exists? { |s| s == @shop }
+  end
 
   # GET /shops or /shops.json
   def index

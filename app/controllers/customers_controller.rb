@@ -1,5 +1,10 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :authenticate
+
+  def authenticate
+    redirect_to login_accounts_url, alert: "Must BE ADMIN & Login" unless current_admin?
+  end
 
   # GET /customers or /customers.json
   def index

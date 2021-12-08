@@ -1,14 +1,18 @@
-<h1>Please Login</h1>
+<h2><%= notice %></h2>
 <h2><%= alert %></h2>
-<%= form_with url: do_login_accounts_path do %>
-  <p>
-    Account-ID: <%= number_field_tag :id %>
-  </p>
-  <p>
-    Username: <%= text_field_tag :name %>
-  </p>
-  <p>
-    Password: <%= password_field_tag :password %>
-  </p>
-  <%= submit_tag 'LOGIN' %>
+<% unless current_account %>
+  <h1>Please Login</h1>
+  <%= form_with url: do_login_accounts_path do %>
+    <p>
+      Account-ID: <%= text_field_tag :id %>
+    </p>
+    <p>
+      Password: <%= password_field_tag :password %>
+    </p>
+    <%= submit_tag 'LOGIN' %>
+  <% end %>
 <% end %>
+
+<br/>
+
+<%= link_to 'Register a new account', register_accounts_url %>

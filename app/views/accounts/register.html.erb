@@ -1,0 +1,16 @@
+<h1>Please Register</h1>
+<h2><%= alert %></h2>
+<% unless current_account %>
+  <%= form_with url: do_register_accounts_path do %>
+    <p>
+      Username: <%= text_field_tag :name %>
+    </p>
+    <p>
+      Role: <%= collection_select(nil, :role, roles, :to_s, :to_s) %>
+    </p>
+    <p>
+      Password: <%= password_field_tag :password %>
+    </p>
+    <%= submit_tag 'Register' %>
+  <% end %>
+<% end %>

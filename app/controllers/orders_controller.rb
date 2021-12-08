@@ -3,15 +3,21 @@ class OrdersController < ApplicationController
   before_action :set_order_for_purchase, only: [:purchase]
   before_action :create_authenticate, only: [:create]
   before_action :edit_authenticate, only: [:edit, :update, :destroy]
+  before_action :show_authenticate, only: [:show, :index]
 
   def create_authenticate
-    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_account &&
-      current_account.role.role_type == "Customer" && current_account.customer.id == params[:order][:customer_id]
+    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_customer? &&
+      current_account.customer.id == params[:customer_id].to_i
   end
 
   def edit_authenticate
-    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_account &&
-      current_account.role.role_type == "Customer" && current_account.customer.id == @order.customer.id
+    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_customer? &&
+      current_account.customer.id == @order.customer.id
+  end
+
+  def show_authenticate
+    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_customer? &&
+      current_account.customer == Customer.find(params[:customer_id])
   end
 
   # GET /orders or /orders.json
@@ -79,8 +85,12 @@ class OrdersController < ApplicationController
     @customer = @order.customer
     if @customer.account.balance >= @order.price
       @order.update_attribute(:done, true)
+      @record = Record.new
+      @record.order = @order
+      @record.save
       @customer.account.update_attribute(:balance, @customer.account.balance - @order.price)
-      @order.commodity.shop.seller.account.update_attribute(:balance, @order.commodity.shop.seller.account.balance + @order.price)
+      @order.commodity.shop.seller.account
+            .update_attribute(:balance, @order.commodity.shop.seller.account.balance + @order.price)
       redirect_to customer_order_url(@customer, @order), notice: "Successfully!"
     else
       redirect_to customer_order_url(@customer, @order), alert: "Balance not enough!"

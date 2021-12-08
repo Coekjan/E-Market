@@ -6,7 +6,11 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="3"></th>
+      <% if current_admin? %>
+        <th colspan="1"></th>
+      <%  else  %>
+        <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -15,8 +19,10 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_admin? %>
+          <td><%= link_to 'Edit', edit_category_path(category) %></td>
+          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

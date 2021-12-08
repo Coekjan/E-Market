@@ -24,7 +24,7 @@
 <% unless @order.done %>
   <h2>Purchase Now!</h2>
   <%= form_with url: customer_order_purchase_url(@order.customer, @order) do %>
-  <% submit_tag 'PURCHASE!' %>
+    <%= submit_tag 'PURCHASE!' %>
   <% end %>
 <% end %>
 

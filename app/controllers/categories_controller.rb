@@ -1,5 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :authenticate, except: [:show, :index]
+
+  def authenticate
+    redirect_to login_accounts_url, alert: "Must Be ADMIN && Login!" unless current_admin?
+  end
 
   # GET /categories or /categories.json
   def index

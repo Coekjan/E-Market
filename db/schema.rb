@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_012821) do
+ActiveRecord::Schema.define(version: 2021_12_07_121627) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "password"
-    t.integer "role_id"
     t.decimal "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_accounts_on_role_id"
+    t.string "role"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -35,9 +34,9 @@ ActiveRecord::Schema.define(version: 2021_11_29_012821) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories_commodities", force: :cascade do |t|
-    t.integer "category_id"
+  create_table "categories_commodities", id: false, force: :cascade do |t|
     t.integer "commodity_id"
+    t.integer "category_id"
     t.index ["category_id"], name: "index_categories_commodities_on_category_id"
     t.index ["commodity_id"], name: "index_categories_commodities_on_commodity_id"
   end
@@ -48,8 +47,10 @@ ActiveRecord::Schema.define(version: 2021_11_29_012821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comment_id"
+    t.integer "section_id"
     t.index ["account_id"], name: "index_comments_on_account_id"
     t.index ["comment_id"], name: "index_comments_on_comment_id"
+    t.index ["section_id"], name: "index_comments_on_section_id"
   end
 
   create_table "commodities", force: :cascade do |t|
@@ -76,11 +77,11 @@ ActiveRecord::Schema.define(version: 2021_11_29_012821) do
     t.decimal "price"
     t.boolean "done"
     t.integer "commodity_id"
-    t.integer "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id"
     t.index ["commodity_id"], name: "index_orders_on_commodity_id"
-    t.index ["seller_id"], name: "index_orders_on_seller_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -92,16 +93,12 @@ ActiveRecord::Schema.define(version: 2021_11_29_012821) do
     t.index ["section_id"], name: "index_records_on_section_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "role_type"
-  end
-
   create_table "sections", force: :cascade do |t|
     t.integer "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "record_id"
+    t.index ["record_id"], name: "index_sections_on_record_id"
   end
 
   create_table "sellers", force: :cascade do |t|

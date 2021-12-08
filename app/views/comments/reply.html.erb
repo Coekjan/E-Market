@@ -1,0 +1,17 @@
+<h2><%= notice %></h2>
+<h2><%= alert %></h2>
+
+<% def show(comment, depth) %>
+  <%= '>' * depth %><%= comment.account.name %>: <%= comment.content %><br/>
+  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
+    <% show(c, depth + 1) %>
+  <% end %>
+<% end %>
+
+<% show(@comment, 0) %>
+
+<h3>Add Comment Here!</h3>
+<%= form_with url: commodity_section_comment_do_reply_url(@commodity, @section, @comment) do %>
+  <%= text_area_tag :content %>
+  <%= submit_tag 'Submit' %>
+<% end %>

@@ -22,8 +22,7 @@
   </div>
 
   <div>
-    <!-- TODO: need verification -->
-    <%= form.collection_select(:role_id, Role.all, :id, :role_type) %>
+    <%= form.collection_select(:role, roles, :to_s, :to_s) %>
   </div>
 
   <div class="field">

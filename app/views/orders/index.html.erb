@@ -1,35 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Orders</h1>
+<h1>My Orders</h1>
 
 <table>
   <thead>
     <tr>
       <th>Count</th>
       <th>Price</th>
-      <th>Done</th>
       <th>Commodity</th>
-      <th>Seller</th>
+      <th>Created At</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+    <% current_account.customer.orders.filter { |o| not o.done }.each do |order| %>
       <tr>
         <td><%= order.count %></td>
         <td><%= order.price %></td>
-        <td><%= order.done %></td>
-        <td><%= order.commodity %></td>
-        <td><%= order.seller %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= order.commodity.name %></td>
+        <td><%= order.created_at %></td>
+        <td><%= link_to 'Show', customer_order_url(order.customer, order) %></td>
+        <% if order.done %>
+          <td>---</td>
+        <% else %>
+          <td><%= link_to 'Edit', edit_customer_order_path(order.customer, order) %></td>
+        <% end %>
+        <td><%= link_to 'Destroy', customer_order_url(order.customer, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>

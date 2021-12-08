@@ -1,5 +1,10 @@
 class SellersController < ApplicationController
   before_action :set_seller, only: %i[ show edit update destroy ]
+  before_action :authenticate, except: [:show]
+
+  def authenticate
+    redirect_to login_accounts_url, alert: "Must Be ADMIN & Login" unless current_admin?
+  end
 
   # GET /sellers or /sellers.json
   def index
@@ -25,7 +30,6 @@ class SellersController < ApplicationController
 
     respond_to do |format|
       if @seller.save
-        Account.find(@seller.account_id).role_id = Role.find_by_role_type 'Seller'
         format.html { redirect_to @seller, notice: "Seller was successfully created." }
         format.json { render :show, status: :created, location: @seller }
       else

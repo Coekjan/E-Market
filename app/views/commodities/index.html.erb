@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <h1>Commodities</h1>
 
@@ -35,6 +36,6 @@
   </tbody>
 </table>
 
-<% if current_account && current_account.role.role_type == "Seller" %>
-  <%= link_to 'My Shop', seller_url(Seller.where(:account_id => current_account.id).first.id) %>
+<% if current_account && current_account.role == "Seller" %>
+  <%= link_to 'My Shop', seller_url(current_account.seller) %>
 <% end %>

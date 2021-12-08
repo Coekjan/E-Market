@@ -1,5 +1,16 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[ show edit update destroy ]
+  before_action :show_authenticate
+  before_action :modify_authenticate, only: [:update, :destroy, :edit]
+
+  def show_authenticate
+    redirect_to login_accounts_url, alert: "Illegal Behavior" unless current_customer? &&
+      current_account.customer == Customer.find(params[:customer_id])
+  end
+
+  def modify_authenticate
+    redirect_to login_accounts_url, alert: "Must Be ADMIN && Login" unless current_admin?
+  end
 
   # GET /records or /records.json
   def index
@@ -49,9 +60,10 @@ class RecordsController < ApplicationController
 
   # DELETE /records/1 or /records/1.json
   def destroy
+    customer = @record.order.customer
     @record.destroy
     respond_to do |format|
-      format.html { redirect_to records_url, notice: "Record was successfully destroyed." }
+      format.html { redirect_to customer_records_url(customer), notice: "Record was successfully destroyed." }
       format.json { head :no_content }
     end
   end

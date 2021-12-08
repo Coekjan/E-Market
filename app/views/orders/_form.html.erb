@@ -1,4 +1,4 @@
-<%= form_with(model: order, local: true) do |form| %>
+<%= form_with(model: order, url: url, local: true) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -13,27 +13,7 @@
 
   <div class="field">
     <%= form.label :count %>
-    <%= form.number_field :count %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :done %>
-    <%= form.check_box :done %>
-  </div>
-
-  <div class="field">
-    <%= form.label :commodity_id %>
-    <%= form.text_field :commodity_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :seller_id %>
-    <%= form.text_field :seller_id %>
+    <%= form.number_field :count, in: 1..10000000000, step: 1 %>
   </div>
 
   <div class="actions">

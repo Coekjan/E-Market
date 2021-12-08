@@ -1,5 +1,16 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment_for_reply, only: [:reply, :do_reply]
+  before_action :reply_authenticate, only: [:reply, :do_reply]
+  before_action :modify_authenticate, except: [:reply, :do_reply, :show, :index, :create]
+
+  def reply_authenticate
+    redirect_to login_accounts_url, alert: "Must login first!" unless current_account
+  end
+
+  def modify_authenticate
+    redirect_to login_accounts_url, alert: "Must Be ADMIN && Login!" unless current_admin?
+  end
 
   # GET /comments or /comments.json
   def index
@@ -19,16 +30,33 @@ class CommentsController < ApplicationController
   def edit
   end
 
+  def reply
+  end
+
+  def do_reply
+    @new_comment = Comment.new
+    @new_comment.comment = @comment
+    @new_comment.content = params[:content]
+    @new_comment.account = current_account
+    @new_comment.section = @section
+    if @new_comment.save
+      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), notice: "Add new comment"
+    else
+      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), alert: "Failed to add new comment"
+    end
+  end
+
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.comment = @comment
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: "Comment was successfully created." }
+        format.html { redirect_to @comment.section.commodity, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render @comment.section.record, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -49,9 +77,12 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
+    commodity = @comment.section.commodity
+    section = @comment.section
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
+      format.html { redirect_to commodity_section_comments_url(commodity, section),
+                                notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -62,8 +93,14 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
+    def set_comment_for_reply
+      @commodity = Commodity.find(params[:commodity_id])
+      @section = Section.find(params[:section_id])
+      @comment = Comment.find(params[:comment_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:content, :account_id)
+      params.require(:comment).permit(:content, :account_id, :section_id)
     end
 end

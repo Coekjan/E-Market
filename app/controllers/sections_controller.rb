@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: %i[ show edit update destroy ]
   before_action :create_authenticate, only: [:create]
-  before_action :ban, only: [:index]
+  before_action :ban, only: [:new, :index, :update]
 
   def create_authenticate
     redirect_to commodity_url(Commodity.find(params[:commodity_id])), alert: "Buy it first" unless current_customer? &&
@@ -34,14 +34,18 @@ class SectionsController < ApplicationController
   # POST /sections or /sections.json
   def create
     @section = Section.new(section_params)
-
+    unless @section.grade in 1..5
+      redirect_to customer_record_url(@section.record.order.customer, @section.record),
+                  alert: "Illegal grade"
+    end
     respond_to do |format|
       if @section.save
         format.html { redirect_to commodity_section_url(@section.record.order.commodity, @section),
                                   notice: "Section was successfully created." }
         format.json { render :show, status: :created, location: @section }
       else
-        format.html { render customer_record_url, status: :unprocessable_entity }
+        format.html { render customer_record_url(@section.record.order.customer, @section.record),
+                             status: :unprocessable_entity }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end

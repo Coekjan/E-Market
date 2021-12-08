@@ -41,6 +41,9 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(create_order_params)
+    if @order.count <= 0
+      redirect_to commodity_url(@order.commodity), alert: "Illegal Count"
+    end
     @commodity = Commodity.find(params[:order][:commodity_id])
     @order.price = @commodity.price * params[:order][:count].to_i
     respond_to do |format|

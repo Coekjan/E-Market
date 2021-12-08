@@ -2,9 +2,9 @@
 <h2><%= alert %></h2>
 
 <h1>Add Balance Here!</h1>
-<%= form_with url: account_do_top_up_url(@account) do %>
+<%= form_with url: account_do_top_up_path(@account) do %>
   <p>
-    Top Up: <%= number_field_tag :balance_add, in: 0.1..10000, step: 0.1 %>
+    Top Up: <%= number_field_tag :balance_add, nil, min: 0.1, step: 0.1 %>
   </p>
   <%= submit_tag 'Do It' %>
 <% end %>

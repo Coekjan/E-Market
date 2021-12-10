@@ -1,3 +1,108 @@
 // Place all the styles related to the commodities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+    font-size: 62.5%;
+    /*10 ÷ 16 × 100% = 62.5%*/
+    font-weight: lighter;
+}
+
+h1 {
+    font-size: 2.4rem;
+    /*2.4em × 10 = 24px */
+}
+
+p {
+    font-size: 0.88rem;
+    /*1.4em × 10 = 14px */
+}
+
+li {
+    font-size: 0.88rem;
+    /*1.4 × ? = 14px ? */
+}
+
+.proRow {
+	display: flex;
+    flex-wrap: wrap;
+}
+
+.proBig {
+    width: 235px;
+    margin: 15px 15px;
+    position: relative;
+}
+
+.pro {
+    border: 1px solid #ccc;
+    height: 360px;
+}
+
+.proImg {
+    width: 235px;
+    height: 196px;
+    text-align: center;
+}
+
+.proImg img {
+    height: 196px;
+}
+
+.proText {
+    margin: 10px 10px;
+    height: 120px;
+}
+
+h5 {
+    font-size: 1rem;
+    margin: 0 auto;
+    font-weight: initial;
+}
+
+.proSize {
+    font-size: 0.6rem;
+    color: #95989A;
+    margin: 3px auto;
+}
+
+.proPrice span {
+    font-size: 1.2rem;
+    font-weight: initial;
+    font-style: italic;
+}
+
+.proFrom {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.proBtn {
+    width: 235px;
+    height: 362px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    box-sizing: border-box;
+    padding-top: 80px;
+    margin-top: -362px;
+    display: none;
+}
+
+.proBig:hover .proBtn {
+    display: block;
+}
+
+.btn {
+    width: 167px;
+    height: 50px;
+    margin: 10px auto;
+    background-color: #FCDD00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    border: 1px solid #66503B;
+}

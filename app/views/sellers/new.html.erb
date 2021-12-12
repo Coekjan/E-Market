@@ -1,5 +1,47 @@
 <h1>New Seller</h1>
 
+<nav class="navbar navbar-expand-lg bg-light">
+  <a class="navbar-brand mb-0 h1">Flying YouGou</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-expand-lg navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar bg-light">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+</nav>
+<br>
+
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Navbar</span>
+</nav>
+
 <%= render 'form', seller: @seller %>
 
 <%= link_to 'Back', sellers_path %>

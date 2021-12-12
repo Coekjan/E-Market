@@ -34,7 +34,7 @@ class SectionsController < ApplicationController
   # POST /sections or /sections.json
   def create
     @section = Section.new(section_params)
-    unless @section.grade in 1..5
+    unless @section.grade >= 1 && @section.grade <= 5
       redirect_to customer_record_url(@section.record.order.customer, @section.record),
                   alert: "Illegal grade"
     end

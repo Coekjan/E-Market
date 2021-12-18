@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success" role="alert" style="left: auto">
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Account-ID:</strong>
+<p class="label" style="text-align: right">
+  <strong>账户ID：</strong>
   <%= @seller.account.id %>
 </p>
+<div class="card">
+  <div class="card-header">个人信息</div>
+  <div class="card-body">
+    <p>
+      <strong>Name</strong>
+      <%= @seller.account.name %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Name</strong>
-  <%= @seller.account.name %>
-</p>
 
 <!-- TODO: show this seller's shops -->
 

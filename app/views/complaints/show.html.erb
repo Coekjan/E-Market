@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @complaint.customer.account.name %>
+</p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= @complaint.seller.account.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @complaint.content %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= @complaint.admin.account.name if @complaint.admin %>
+</p>
+
+<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
+<%= link_to 'Back', complaints_path %>

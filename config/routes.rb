@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :complaints do
+    get 'handle'
+    post 'do_handle'
+  end
   root :to => 'commodities#index'
 
   resources :sellers do

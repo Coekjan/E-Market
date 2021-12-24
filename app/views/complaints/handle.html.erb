@@ -1,0 +1,9 @@
+<h2><%= notice %></h2>
+<h2><%= alert %></h2>
+
+<%= form_with url: complaint_do_handle_url(@complaint) do %>
+  <%= fields_for :complaint do |c| %>
+    <%= c.hidden_field :admin_id, :value => current_account.admin.id %>
+  <% end %>
+  <%= submit_tag 'Do it' %>
+<% end %>

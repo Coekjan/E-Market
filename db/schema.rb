@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_121627) do
+ActiveRecord::Schema.define(version: 2021_12_23_032954) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 2021_12_07_121627) do
     t.index ["shop_id"], name: "index_commodities_on_shop_id"
   end
 
+  create_table "complaints", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "seller_id"
+    t.text "content"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_complaints_on_admin_id"
+    t.index ["customer_id"], name: "index_complaints_on_customer_id"
+    t.index ["seller_id"], name: "index_complaints_on_seller_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.integer "account_id"
     t.datetime "created_at", null: false
@@ -88,9 +100,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_121627) do
     t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "section_id"
     t.index ["order_id"], name: "index_records_on_order_id"
-    t.index ["section_id"], name: "index_records_on_section_id"
   end
 
   create_table "sections", force: :cascade do |t|

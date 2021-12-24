@@ -1,10 +1,24 @@
-<h2><%= notice %></h2>
-<h2><%= alert %></h2>
-
-<h1>Add Balance Here!</h1>
-<%= form_with url: account_do_top_up_path(@account) do %>
-  <p>
-    Top Up: <%= number_field_tag :balance_add, nil, min: 0.1, step: 0.1 %>
-  </p>
-  <%= submit_tag 'Do It' %>
+<% if notice %>
+  <div class="alert alert-success" role="alert" style="left: auto">
+    <%= notice %>
+  </div>
 <% end %>
+
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
+<% end %>
+
+<h1>开始充值</h1>
+<div class="card">
+  <div class="card-header">充值信息</div>
+  <div class="card-body">
+    <%= form_with url: account_do_top_up_path(@account) do %>
+      <p>
+        充值金额: <%= number_field_tag :balance_add, min: 0.1, step: 0.1, required:"" %>
+      </p>
+      <%= submit_tag '确认' %>
+    <% end %>
+  </div>
+</div>

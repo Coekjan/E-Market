@@ -57,9 +57,9 @@ class AccountsController < ApplicationController
     delta = top_up_account_params.to_i
     if delta > 0
       @account.update_attribute(:balance, @account.balance + delta)
-      redirect_to account_top_up_url(@account), notice: "Top up successfully!"
+        redirect_to account_top_up_url(@account), alert: {id: "充值成功！", type: "alert alert-success", role: 'alert'}
     else
-      redirect_to account_top_up_url(@account), alert: "Illegal Top-Up!"
+        redirect_to account_top_up_url(@account), alert: {id: "非法充值！", type: "alert alert-danger", role: 'alert'}
     end
   end
 

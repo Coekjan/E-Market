@@ -1,24 +1,32 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success" role="alert" style="left: auto">
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @account.name %>
-</p>
+<div class="card">
+  <div class="card-header">个人信息</div>
+  <div class="card-body">
+    <p>
+      <strong>姓名：</strong>
+      <%= @account.name %>
+    </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @account.password %>
-</p>
+    <p>
+      <strong>密码：</strong>
+      <%= @account.password %>
+    </p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @account.role %>
-</p>
+    <p>
+      <strong>角色：</strong>
+      <%= @account.role %>
+    </p>
 
-<p>
-  <strong>Balance:</strong>
-  <%= @account.balance %>
-</p>
+    <p>
+      <strong>余额：</strong>
+      <%= @account.balance %>
+    </p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to '修改信息', edit_account_path(@account), class: "btn btn-primary", style: ""%> <%= link_to '返回', accounts_path, class: "btn btn-primary", style: "" %>

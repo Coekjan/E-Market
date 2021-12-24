@@ -20,15 +20,15 @@ class AccountsController < ApplicationController
     account = Account.where(id: params[:id], password: params[:password]).first
     if account
       session[:current_account_id] = account.id
-      redirect_to commodities_url, notice: "Account Login Successfully."
+      redirect_to commodities_url, alert: {id: "用户登陆成功！", type: "alert alert-success", role: 'alert'}
     else
-      redirect_to login_accounts_url, alert: "Wrong account id or password!"
+      redirect_to login_accounts_url, alert: {id: "账户错误或密码错误！", type: "alert alert-danger", role: 'alert'}
     end
   end
 
   def logout
     session.delete(:current_account_id)
-    redirect_to login_accounts_url, alert: "Account logout successfully!"
+    redirect_to login_accounts_url, alert: {id: "用户注销成功！", type: "alert alert-success", role: 'alert'}
   end
 
   def register
@@ -106,7 +106,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(edit_account_params)
-        format.html { redirect_to @account, notice: "Account was successfully updated." }
+        format.html { redirect_to @account, notice: "用户信息成功更新" }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit, status: :unprocessable_entity }

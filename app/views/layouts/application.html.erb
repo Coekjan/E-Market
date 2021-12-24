@@ -10,21 +10,73 @@
   </head>
 
   <div>
-    <%= link_to 'HOME', root_url %><br/>
+    <!--change HOME to an image-->
+<!--    <%#= link_to 'HOME', root_url %><br/>-->
     <% if current_account %>
-      <%= current_account.name %> Logged in |
-      Balance: <%= current_account.balance %>￥ |
-      <%= link_to 'Top Up!', account_top_up_url(current_account) %><br/>
-      <%= link_to 'Logout', logout_accounts_path %><br/>
-      <% if current_account.role == "Customer" %>
-        <%= link_to 'My Shopping Cart', customer_orders_url(current_account.customer) %> |
-        <%= link_to 'My Shopping Records', customer_records_url(current_account.customer) %>
-      <% elsif current_account.role == "Admin" %>
-        <%= link_to 'All Accounts', accounts_url %> | <%= link_to 'All Categories', categories_url %>
-      <% end %>
-    <% elsif request.original_url != login_accounts_url %>
+      <nav class="navbar navbar-expand-lg"style="background-color: #e3f2fd;">
+        <span class="navbar-brand mb-0 h1">Flying YouGou</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <%= link_to '主页', root_url, class: "nav-link" %><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">欢迎：<%= current_account.name %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">余额：<%= current_account.balance %>￥</a>
+            </li>
+            <li class="nav-item active">
+              <%= link_to '充值', account_top_up_url(current_account), class: "nav-link" %><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <%= link_to '登出', logout_accounts_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+            </li>
+            <% if current_account.role == "Customer" %>
+              <li class="nav-item active">
+                <%= link_to '购物车', customer_orders_url(current_account.customer), class: "nav-link" %><span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <%= link_to '购物记录', customer_records_url(current_account.customer), class: "nav-link" %><span class="sr-only">(current)</span></a>
+              </li>
+            <% elsif current_account.role == "Admin" %>
+              <li class="nav-item active">
+                <%= link_to '所有账户', accounts_url, class: "nav-link" %><span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <%= link_to '所有分类', categories_url, class: "nav-link" %><span class="sr-only">(current)</span></a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+      <li class="dropdown-divider "></li>
+
+  <% elsif request.original_url != login_accounts_url %>
+      <nav class="navbar navbar-expand-lg"style="background-color: #e3f2fd;">
+        <span class="navbar-brand mb-0 h1">Flying YouGou</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <%= link_to '主页', root_url, class: "nav-link" %><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <%= link_to '登陆', login_accounts_path, class: "nav-link" %><span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <li class="dropdown-divider "></li>
+
       Please <%= link_to 'Login', login_accounts_path %>
     <% end %>
+
   </div>
 
   <body>

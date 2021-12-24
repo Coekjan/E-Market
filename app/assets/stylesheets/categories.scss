@@ -1,29 +1,3 @@
-// Place all the styles related to the commodities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-    font-size: 62.5%;
-    /*10 ÷ 16 × 100% = 62.5%*/
-    font-weight: lighter;
-    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fbackgd%2Fcover%2F00%2F22%2F73%2F5b9c890ba5820.jpg%21%2Ffw%2F780%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641698224&t=5a91f0f8d2c52a50d2a0b03141511166"); 
-    background-size: 100% 100%;
-    /*background-image: url("http://pic.616pic.com/bg_w1180/00/06/90/HyJy99S3LL.jpg!/fw/1120");*/
-}
-
-h1 {
-    font-size: 2.4rem;
-    /*2.4em × 10 = 24px */
-}
-
-p {
-    font-size: 0.88rem;
-    /*1.4em × 10 = 14px */
-}
-
-li {
-    font-size: 0.88rem;
-    /*1.4 × ? = 14px ? */
-}
 
 .proRow {
     display: flex;
@@ -79,11 +53,11 @@ li {
     height: 120px;
 }
 
-h1 {
+.h1Category {
 	text-align: center;
 }
 
-h5 {
+.h5Category {
     font-size: 1rem;
     margin: 0 auto;
     font-weight: initial;
@@ -123,7 +97,7 @@ h5 {
     display: block;
 }
 
-.btn {
+.btnCategory {
     width: 167px;
     height: 50px;
     margin: 10px auto;
@@ -137,3 +111,4 @@ h5 {
 .btn:hover {
     border: 1px solid #66503B;
 }
+

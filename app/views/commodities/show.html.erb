@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="commodity_show.scss">
+
 <p id="notice"><%= notice %></p>
 <% if alert %>
   <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
@@ -5,279 +7,21 @@
   </div>
 <% end %>
 
-<style>
-div.img {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 180px;
-}
-
-div.img:hover {
-    border: 1px solid #777;
-}
-
-div.img img {
-    width: 100%;
-    height: auto;
-}
-
-div.desc {
-    padding: 15px;
-    text-align: center;
-    font-weight: bold;
-}
-</style>
-
-
-
 <div align = "center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_origin_min_pic%2F19%2F10%2F22%2Fa8e3ff878cb8b2156f0fee5691cb6951.jpg%21%2Ffw%2F750%2Fquality%2F99%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641694198&t=f0de01aa6da293f70dcd607d6f42e4c1" width=60% height=10% ></div>
 <div>
-	<h5 align = "center" font-weight = "bold"><%= @commodity.name %></h5>
-    <p align = "center"><%= @commodity.introduction %></p>
-    <p align = "center"><%= @commodity.price %> RMB</p>
-    <p align = "center"><%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+	<h5 align="center" font-weight = "bold"><%= @commodity.name %></h5>
+    <p align="center"><%= @commodity.introduction %></p>
+    <p align="center"><%= @commodity.price %> RMB</p>
+    <p align="center"><%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
 </div>
 
-
-<style>
-body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {
-	margin:0;
-	padding:0;
-	border:none;
-	outline:none;
-}
-h1,h2,h3,h4,h5,h6 {
-	font-size:100%;
-}
-address,cite,dfn,em,var {
-	font-style:normal;
-}
-code,kbd,pre,samp {
-	font-family:courier new,courier,monospace;
-}
-ul,ol {
-	list-style:none;
-}
-a {
-	text-decoration:none;
-}
-a:hover,a:visited,a:link,a:active {
-	text-decoration:none;
-}
-sup {
-	vertical-align:text-top;
-}
-sub {
-	vertical-align:text-bottom;
-}
-legend {
-	color:#000;
-}
-fieldset,img {
-	border:0;
-}
-button,input,select,textarea {
-	font-size:100%;
-}
-table {
-	border-collapse:collapse;
-	border-spacing:0;
-}
-.clear {
-	clear:both;
-	float:none;
-	height:0;
-	overflow:hidden;
-}
-body {
-	color:#333;
-	font:12px/1.3 'Arial','Microsoft YaHei';
-}
-#pn {
-	width: 550px;
-	height:auto;
-	background:#fff;
-	margin:0 auto;
-	padding:20px;
-}
-.list0 {
-	padding:20px 0;
-	position:relative;
-	border-top:1px solid #eee;
-}
-.head {
-	width:60px;
-	float:left;
-}
-.head img {
-	width:60px;
-	height:60px;
-}
-.close {
-	width:20px;
-	height:20px;
-	position:absolute;
-	top:0;
-	right:0;
-	color:#696e78;
-	font-size:14px;
-	text-align:center;
-	line-height:20px;
-}
-.close:hover {
-	color:#eb7350;
-}
-.content {
-	width:450px;
-	line-height:20px;
-	font-size:14px;
-	margin-left:70px;
-}
-.name {
-	color:#eb7350;
-}
-.pic {
-	margin:5px 0;
-}
-.good:after {
-	clear:both;
-	content:'';
-	display:block;
-	width:0;
-	height:0;
-	visibility:hidden;
-}
-.good {
-	*zoom:1;
-}
-.date {
-	float:left;
-	color:#808080;
-}
-.good a {
-	float:right;
-	color:#808080;
-}
-.people {
-	background:#F7F7F7;
-	height:28px;
-	line-height:28px;
-	padding-left:10px;
-	margin:5px 0;
-}
-.comment:after {
-	clear:both;
-	content:'';
-	display:block;
-	width:0;
-	height:0;
-	visibility:hidden;
-}
-.comment {
-	*zoom:1;
-	padding:10px 0;
-	border-top:1px solid #eee;
-}
-.comment-left {
-	width:30px;
-	float:left;
-	display:inline;
-	margin-right:10px;
-}
-.comment-left img {
-	width:30px;
-	height:30px;
-}
-.comment-right {
-	float:left;
-	width:410px;
-}
-.comment-text {
-	line-height:18px;
-}
-.comment-text span {
-	color:#eb7350;
-}
-.comment-date {
-	font-size:12px;
-	line-height:14px;
-	color:#ccc;
-	position:relative;
-}
-.comment-zan {
-	position:absolute;
-	right:40px;
-	bottom:0;
-	color:#808080;
-}
-.comment-dele {
-	position:absolute;
-	right:0;
-	bottom:0;
-	color:#808080;
-}
-.hf:after {
-	clear:both;
-	content:'';
-	display:block;
-	width:0;
-	height:0;
-	visibility:hidden;
-}
-.hf {
-	*zoom:1;
-}
-.hf-text {
-	border:1px solid #eee;
-	display:block;
-	height:15px;
-	width:438px;
-	padding:5px;
-	resize:none;
-	color:#ccc;
-	font-size:12px;
-}
-.hf-on .hf-text {
-	height:60px;
-	color:#333;
-	border:1px solid #ff8140;
-}
-.hf-btn {
-	float:right;
-	width:65px;
-	height:26px;
-	background:#f7f7f7;
-	color:#ccc;
-	font-size:12px;
-	display:none;
-}
-.hf-btn-on {
-	background:#ff8140;
-	color:#fff;
-}
-.hf-nub {
-	float:right;
-	padding:3px 5px;
-	color:#666;
-	display:none;
-}
-.hf-on .hf-btn {
-	display:inline;
-}
-.hf-on .hf-nub {
-	display:inline;
-}
-
-</style>
-
-
 <!--评论模块-->
+<body class="bodyCommodityShow">
 <% unless @commodity.sections.empty? %>
 <ul id="pn">
     <li class="list0" > <a class="close">X</a>
         <div class="head"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
-        <div class="content">
+        <div class="contentCommodityShow">
             <p class="text"><span class="name">Coekjan：</span>哈哈哈哈哈</p>
             <div class="good"><span class="date">02-14 23:01</span><a class="dzan">赞</a></div>
             <div class="people" total="2980">1人觉得很赞</div>
@@ -305,16 +49,7 @@ body {
     </li>
 </ul>
 <% end %>
-
-
-
-
-
-
-
-
-
-
+</body>
 
 <% unless @commodity.sections.empty? %>
   <h2>Comment Section</h2>

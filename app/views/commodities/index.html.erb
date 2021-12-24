@@ -12,18 +12,27 @@
               <div class="pro">
                   <div class="proImg"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_origin_min_pic%2F19%2F10%2F22%2Fa8e3ff878cb8b2156f0fee5691cb6951.jpg%21%2Ffw%2F750%2Fquality%2F99%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641694198&t=f0de01aa6da293f70dcd607d6f42e4c1" width="235"></div>
                   <div class="proText">
-                      <h5>Name: <%= commodity.name %></h5>
-                      <h5>Intro: <%= commodity.introduction %><h5>
-                      <h5>Price: <%= commodity.price %></h5>
-                      <h5>From: <%= commodity.shop.name %></h5>
-                      <h5>Tag: <%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></h5>
+                      <h5><%= commodity.name %></h5>
+                      <p class = "proIntro"><%= commodity.introduction %></p>
+                      <p class = "proPrice"><%= commodity.price %> RMB</p>
+                      <p class = "proFrom"><%= commodity.shop.name %></p>
+                      <p class = "proCatagory"><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
                   </div>
               </div>
               <a href="#">
                   <div class="proBtn">
                       <div class="btn">
-                          <%= link_to 'Show', commodity %>
+                        <%= link_to 'Show', commodity %>
                       </div>
+                      <% if current_account && current_account.id == commodity.shop.seller.account.id %>
+                        <div class="btn">
+                          <%= link_to 'Edit', edit_commodity_path(commodity) %>
+                        </div>
+                        <div class="btn">
+                          <%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </div>
+                      <% else %>
+                      <% end %>
                   </div>
               </a>
           </div>

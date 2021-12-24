@@ -5,6 +5,9 @@ body {
     font-size: 62.5%;
     /*10 ÷ 16 × 100% = 62.5%*/
     font-weight: lighter;
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fbackgd%2Fcover%2F00%2F22%2F73%2F5b9c890ba5820.jpg%21%2Ffw%2F780%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641698224&t=5a91f0f8d2c52a50d2a0b03141511166"); 
+    background-size: 100% 100%;
+    /*background-image: url("http://pic.616pic.com/bg_w1180/00/06/90/HyJy99S3LL.jpg!/fw/1120");*/
 }
 
 h1 {
@@ -23,7 +26,7 @@ li {
 }
 
 .proRow {
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
 }
 
@@ -32,6 +35,15 @@ li {
     margin: 15px 15px;
     position: relative;
 }
+
+.proIntro {
+	font-weight: bold;
+}
+
+.proCatagory {
+	font-weight: bold;
+}
+
 
 .pro {
     border: 1px solid #ccc;
@@ -46,6 +58,20 @@ li {
 
 .proImg img {
     height: 196px;
+}
+
+.singleProImg {
+	width: 500px;
+	height: 390px;
+	text-align: center;
+}
+
+.proName {
+
+}
+
+.singleProName {
+	
 }
 
 .proText {
@@ -74,6 +100,7 @@ h5 {
 .proFrom {
     text-align: right;
     margin-right: 10px;
+    font-weight: bold;
 }
 
 .proBtn {

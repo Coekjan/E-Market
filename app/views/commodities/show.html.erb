@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
+<% end %>
 
 <style>
 div.img {

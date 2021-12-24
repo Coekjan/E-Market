@@ -3,7 +3,12 @@
   <link rel="stylesheet" type="text/css" href="commodities.scss">
 </head>
 <p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
+
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
+<% end %>
 
 <div class="content">  
   <div class="proRow">
@@ -36,53 +41,11 @@
                   </div>
               </a>
           </div>
-          <% end %>
-      </div>
-  </div>
-
-<!--
-<div class="container">
-  <h1 class="h1">TODO: shop's name</h1>
-  <h1 class="h1">Commodities</h1>
-
-  <table class="table table-bordered table-hover table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Introduction</th>
-        <th>Price</th>
-        <th>Shop</th>
-        <th>Categories</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @commodities.each do |commodity| %>
-        <tr>
-          <td><%= commodity.name %></td>
-          <%# <td><img width="20%" height="20%" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1a.nipic.com%2F2008-08-21%2F200882117351857_2.jpg&refer=http%3A%2F%2Fpic1a.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641554936&t=dd0f6f574224737e84fbe00b2096480f"> </td> %>
-          <td>NULL</td>
-          <td><%= commodity.introduction %></td>
-          <td><%= commodity.price %></td>
-          <td><%= commodity.shop.name %></td>
-          <td><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></td>
-          <td><%= link_to 'Show', commodity %></td>
-          <% if current_account && current_account.id == commodity.shop.seller.account.id %>
-            <td><%= link_to 'Edit', edit_commodity_path(commodity) %></td>
-            <td><%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% else %>
-            <td>---</td>
-            <td>---</td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <% if current_account && current_account.role == "Seller" %>
-    <%= link_to 'My Shop', seller_url(current_account.seller) %>
-  <% end %>
+        <% end %>
+    </div>
 </div>
--->
+
+<% if current_account && current_account.role == "Seller" %>
+  <%= link_to 'My Shop', seller_url(current_account.seller) %>
+<% end %>
+

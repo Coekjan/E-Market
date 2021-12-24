@@ -6,7 +6,7 @@
 
 <%= form_with url: do_login_accounts_path do %>
   <img class="mb-4" src="https://v4.bootcss.com/docs/4.6/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <h1 class="h3 mb-3 font-weight-normal">欢迎来到天上优购</h1>
   <label for="inputAccount" class="sr-only">Account ID</label>
   <label for="id"></label>
   <input type="text" name="id" id="id" class="form-control" placeholder="Account Id" required autofocus size="5" style="width: 20%; margin:1% auto">
@@ -14,7 +14,8 @@
   <label for="password"></label>
   <input type="password" name="password" id="password" class="form-control" placeholder="Password" required style="width: 20%; margin:1% auto">
 
-  <button type="submit" name="commit" value="LOGIN" data-disable-with="LOGIN" class="btn btn-lg btn-primary btn-block" style="width: 20%; margin:1% auto">Sign in</button>
+  <button type="submit" name="commit" value="LOGIN" data-disable-with="LOGIN" class="btn btn-lg btn-primary btn-block" style="width: 20%; margin:1% auto">登陆</button>
+  <%= link_to '注册', register_accounts_url, class:'btn btn-lg btn-primary btn-block', style:"width: 20%; margin:1% auto"%>
 <% end %>
 
 

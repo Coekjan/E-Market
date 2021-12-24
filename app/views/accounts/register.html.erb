@@ -1,16 +1,26 @@
-<h1>Please Register</h1>
-<h2><%= alert %></h2>
-<% unless current_account %>
-  <%= form_with url: do_register_accounts_path do %>
-    <p>
-      Username: <%= text_field_tag :name %>
-    </p>
-    <p>
-      Role: <%= collection_select(nil, :role, roles, :to_s, :to_s) %>
-    </p>
-    <p>
-      Password: <%= password_field_tag :password %>
-    </p>
-    <%= submit_tag 'Register' %>
-  <% end %>
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
 <% end %>
+<h1>注册用户</h1>
+
+<div class="card">
+  <div class="card-header">用户信息</div>
+  <div class="card-body">
+  <% unless current_account %>
+    <%= form_with url: do_register_accounts_path do %>
+      <p>
+        Username: <%= text_field_tag :name %>
+      </p>
+      <p>
+        Role: <%= collection_select(nil, :role, roles, :to_s, :to_s) %>
+      </p>
+      <p>
+        Password: <%= password_field_tag :password %>
+      </p>
+      <%= submit_tag 'Register' , class: "btn btn-primary"%>
+    <% end %>
+  <% end %>
+  </div>
+</div>

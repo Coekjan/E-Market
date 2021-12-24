@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_account, :roles, :current_admin?, :current_seller?, :current_customer?
+  helper_method :current_account, :roles, :all_roles, :current_admin?, :current_seller?, :current_customer?
 
   def current_account
     @current_account ||= Account.find(session[:current_account_id]) if session[:current_account_id]
@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   def roles
     %w[Seller Customer]
+  end
+
+  def all_roles
+    %w[Seller Customer Admin]
   end
 
   def current_admin?

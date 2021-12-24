@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="text-dark">当前账户： <%= @account.name %></div>
+  <div class="text-dark">当前账户： <%= current_account.name %></div>
   <li class="dropdown-divider "></li>
 
   <div class="field" style="margin: 1%auto">
@@ -23,7 +23,7 @@
   </div>
 
   <div class="field" style="margin: 1%auto">
-    <div class="text-dark">身份： <%= form.collection_select(:role, roles, :to_s, :to_s) %></div>
+    <div class="text-dark">身份： <%= form.collection_select(:role, all_roles, :to_s, :to_s) %></div>
   </div>
 
   <div class="field" style="margin: 1%auto">
@@ -31,6 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "", value: "更新信息"%> <%= link_to '查看信息', @account ,class: "btn btn-primary", style: ""%> <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "" %>
+    <%= form.submit class: "btn btn-primary", style: "", value: "更新信息"%>
+    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "" %>
   </div>
 <% end %>

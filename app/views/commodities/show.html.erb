@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="commodity_show.scss">
+<link rel="stylesheet" type="text/css" href="commodities.scss">
 
 <p id="notice"><%= notice %></p>
 <% if alert %>
@@ -19,12 +20,16 @@
 <body class="bodyCommodityShow">
 <% unless @commodity.sections.empty? %>
 <ul id="pn">
-    <li class="list0" > <a class="close">X</a>
-        <div class="head"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
+	<% @commodity.sections.reject { |s| s.comments.empty?  }.each do |s| %>
+    <li class="list0" >
         <div class="contentCommodityShow">
-            <p class="text"><span class="name">Coekjan：</span>哈哈哈哈哈</p>
-            <div class="good"><span class="date">02-14 23:01</span><a class="dzan">赞</a></div>
-            <div class="people" total="2980">1人觉得很赞</div>
+        	<!-- TODO: 缺少评论者的名字和评论时间,有可能的话也可以存一个头像 -->
+        	<br>
+            <p class="text"><span class="name">Coekjan：</span><%= s.comments.first.content %></p>
+            <div>
+            	<%= link_to '查看评论组', commodity_section_url(@commodity, s) %>
+            </div>
+<!--            <div class="good"><span class="date">02-14 23:01</span><a class="dzan">赞</a></div>
             <div class="comment-list">
                 <div class="comment" user="self">
                     <div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
@@ -44,45 +49,46 @@
             <div class="hf">
                 <textarea type="text" class="hf-text" autocomplete="off" maxlength="100">评论…</textarea>
                 <button class="hf-btn">回复</button>
-                <span class="hf-nub">0/100</span> </div>
+                <span class="hf-nub">0/100</span> </div> -->
         </div>
     </li>
+    <% end %>
 </ul>
 <% end %>
 </body>
 
-<% unless @commodity.sections.empty? %>
-  <h2>Comment Section</h2>
-  <% @commodity.sections.reject { |s| s.comments.empty?  }.each do |s| %>
-    <div>
-      Grade: <%= s.grade %> | First Comment: <%= s.comments.first.content %> |
-      <%= link_to 'Go to comment-section', commodity_section_url(@commodity, s) %>
-    </div>
-  <% end %>
-<% end %>
 
+<!-- 编辑商品 -->
 <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
   <%= link_to 'Edit', edit_commodity_url(@commodity) %> |
 <% elsif current_customer? %>
-  <h2>Add Me to your Shopping cart!</h2>
-  <%= form_for Order.new, url: customer_orders_url(current_account.customer) do |f| %>
-    <div class="field">
-      <%= f.label :count %>
-      <%= f.number_field :count, in: 1..10000000000, step: 1 %>
-    </div>
-    <div class="field">
-      <%= f.hidden_field :done, :value => false %>
-    </div>
-    <div class="field">
-      <%= f.hidden_field :commodity_id, :value => @commodity.id %>
-    </div>
-    <div class="field">
-      <%= f.hidden_field :customer_id, :value => current_account.customer.id %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+  <!-- 客户加入购物车 -->
+  	<div style="text-align: center">
+		<%= form_for Order.new, url: customer_orders_url(current_account.customer) do |f| %>
+		<div class="field">
+		  <%= f.label :商品数量 %>
+		  <%= f.number_field :count, in: 1..10000000000, step: 1 %>
+		</div>
+		<div class="field">
+		  <%= f.hidden_field :done, :value => false %>
+		</div>
+		<div class="field">
+		  <%= f.hidden_field :commodity_id, :value => @commodity.id %>
+		</div>
+		<div class="field">
+		  <%= f.hidden_field :customer_id, :value => current_account.customer.id %>
+		</div>
+		<div class="actions">
+		  <%= f.submit %>
+		</div>
+	</div>
   <% end %>
 <% end %>
-<%= link_to 'Back', commodities_path %> |
-<%= link_to 'Visit Its Shop', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
+
+<div class="btn btnCommodity">
+	<%= link_to '返回', commodities_path %> 
+</div>
+
+<div class="btn btnCommodity">
+	<%= link_to '去我的店', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
+</div>

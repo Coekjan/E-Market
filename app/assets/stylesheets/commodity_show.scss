@@ -1,23 +1,38 @@
+#pn {
+	width: 550px;
+	height:auto;
+	background:#fff;
+	margin:0 auto;
+	padding:20px;
+}
 
-	div.img {
-		margin: 5px;
-		border: 1px solid #ccc;
-		float: left;
-		width: 180px;
-	}
+.proIntroBox {
+	width: 60%;
+	height:auto;
+	background:#fff;
+	margin:0 auto;
+	padding:20px;
+}
 
-	div.img:hover {
-		border: 1px solid #777;
-	}
+div.img {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 180px;
+}
 
-	div.img img {
-		width: 100%;
-		height: auto;
-	}
+div.img:hover {
+	border: 1px solid #777;
+}
 
-	div.desc {
-		padding: 15px;
-		text-align: center;
-		font-weight: bold;
-	}
+div.img img {
+	width: 100%;
+	height: auto;
+}
+
+div.desc {
+	padding: 15px;
+	text-align: center;
+	font-weight: bold;
+}
 

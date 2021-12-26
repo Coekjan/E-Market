@@ -40,9 +40,9 @@ class CommentsController < ApplicationController
     @new_comment.account = current_account
     @new_comment.section = @section
     if @new_comment.save
-      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), notice: "Add new comment"
+      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), notice: "增加新的评论"
     else
-      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), alert: "Failed to add new comment"
+      redirect_to commodity_section_comment_reply_path(@commodity, @section, @comment), alert: {id: "评论增加失败！", type: "alert alert-danger", role: 'alert'}
     end
   end
 
@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment.section.commodity, notice: "Comment was successfully created." }
+        format.html { redirect_to @comment.section.commodity, notice: "评论被成功创建！" }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render @comment.section.record, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: "Comment was successfully updated." }
+        format.html { redirect_to @comment, notice: "评论被成功更新！" }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -82,7 +82,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to commodity_section_comments_url(commodity, section),
-                                notice: "Comment was successfully destroyed." }
+                                notice: "评论被成功销毁！" }
       format.json { head :no_content }
     end
   end

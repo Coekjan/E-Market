@@ -1,4 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+    <div class="toast-header">
+      <strong class="mr-auto">提醒</strong>
+      <small>
+        <button id="notice1" type="button" class="ml-2 mb-1 toastButton" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </small>
+    </div>
+    <div class="toast-body">
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
 
 <p>
   <strong>Grade:</strong>

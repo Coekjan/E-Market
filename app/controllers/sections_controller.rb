@@ -41,7 +41,7 @@ class SectionsController < ApplicationController
     respond_to do |format|
       if @section.save
         format.html { redirect_to commodity_section_url(@section.record.order.commodity, @section),
-                                  notice: "Section was successfully created." }
+                                  notice: "成功创建评论区！" }
         format.json { render :show, status: :created, location: @section }
       else
         format.html { render customer_record_url(@section.record.order.customer, @section.record),
@@ -55,7 +55,7 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: "Section was successfully updated." }
+        format.html { redirect_to @section, notice: "成功更新评论区！" }
         format.json { render :show, status: :ok, location: @section }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,7 +68,7 @@ class SectionsController < ApplicationController
   def destroy
     @section.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: "Section was successfully destroyed." }
+      format.html { redirect_to root_url, notice: "成功删除评论区！" }
       format.json { head :no_content }
     end
   end

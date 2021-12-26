@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: "Record was successfully created." }
+        format.html { redirect_to @record, notice: "成功创建购买记录！" }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: "Record was successfully updated." }
+        format.html { redirect_to @record, notice: "成功更新购买记录！" }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class RecordsController < ApplicationController
     customer = @record.order.customer
     @record.destroy
     respond_to do |format|
-      format.html { redirect_to customer_records_url(customer), notice: "Record was successfully destroyed." }
+      format.html { redirect_to customer_records_url(customer), notice: "成功删除购买记录！" }
       format.json { head :no_content }
     end
   end

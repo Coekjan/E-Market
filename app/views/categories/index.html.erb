@@ -1,18 +1,22 @@
 <li class="dropdown-divider "></li>
 
-<head>
-  <link rel="stylesheet" type="text/css" href="bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="categories.scss">
-</head>
-
 <% if notice %>
-  <div class="alert alert-success" role="alert" style="left: auto">
-    <%= notice %>
+  <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+    <div class="toast-header">
+      <strong class="mr-auto">提醒</strong>
+      <small>
+        <button id="notice1" type="button" class="ml-2 mb-1 toastButton" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </small>
+    </div>
+    <div class="toast-body">
+      <%= notice %>
+    </div>
   </div>
 <% end %>
 
 <h1 class="h1Category">已有商品类别</h1>
-
 
 <div class="content">  
   <div class="proRow">

@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     @order.price = @commodity.price * params[:order][:count].to_i
     respond_to do |format|
       if @order.save
-        format.html { redirect_to customer_orders_url(@order.customer), notice: "Order was successfully created." }
+        format.html { redirect_to customer_orders_url(@order.customer), notice: "成功创建订单！" }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render seller_shop_url(@commodity.shop.seller, @commodity.shop), status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.update(update_order_params)
         @order.update_attribute(:price, params[:order][:count].to_i * @order.commodity.price)
-        format.html { redirect_to customer_order_url(@order.customer, @order), notice: "Order was successfully updated." }
+        format.html { redirect_to customer_order_url(@order.customer, @order), notice: "成功更新订单！" }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render edit_customer_order_url(@order.customer, @order), status: :unprocessable_entity }
@@ -76,14 +76,14 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to customer_orders_url, notice: "Order was successfully destroyed." }
+      format.html { redirect_to customer_orders_url, notice: "成功销毁订单！" }
       format.json { head :no_content }
     end
   end
 
   def purchase
     if @order.done
-      redirect_to customer_order_url(@customer, @order), alert: "This order was done!"
+      redirect_to customer_order_url(@customer, @order), alert: {id: "当前订单已完成！", type: "alert alert-danger", role: 'alert'}
     end
     @customer = @order.customer
     if @customer.account.balance >= @order.price
@@ -94,9 +94,9 @@ class OrdersController < ApplicationController
       @customer.account.update_attribute(:balance, @customer.account.balance - @order.price)
       @order.commodity.shop.seller.account
             .update_attribute(:balance, @order.commodity.shop.seller.account.balance + @order.price)
-      redirect_to customer_order_url(@customer, @order), notice: "Successfully!"
+      redirect_to customer_order_url(@customer, @order), notice: "订单完成!"
     else
-      redirect_to customer_order_url(@customer, @order), alert: "Balance not enough!"
+      redirect_to customer_order_url(@customer, @order), alert: {id: "余额不足！", type: "alert alert-danger", role: 'alert'}
     end
   end
 

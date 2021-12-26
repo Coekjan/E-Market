@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+.toastButton {
+    background:transparent;
+    border-width:0;
+    outline:none;
+}

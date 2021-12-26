@@ -96,7 +96,7 @@ class AccountsController < ApplicationController
         t = eval(role).new
         t.account_id = @account.id
         t.save
-        format.html { redirect_to @account, notice: "Account was successfully created." }
+        format.html { redirect_to @account, notice: "账户创建成功！" }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -109,7 +109,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(edit_account_params)
-        format.html { redirect_to @account, notice: "用户信息成功更新" }
+        format.html { redirect_to @account, notice: "用户信息更新成功！" }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -43,10 +43,9 @@ class AccountsController < ApplicationController
       t.account_id = @account.id
       @account.update_attribute(:balance, 0)
       t.save
-      redirect_to login_accounts_url, notice: ("Account created successfully! Your ID is " + @account.id.to_s +
-        ". Please REMEMBER this ID for login!")
+      redirect_to login_accounts_url, alert: {id: "用户注册成功！你的账户ID是" + @account.id.to_s + ".请记住您的ID用于登陆", type: "alert alert-success", role: 'alert'}
     else
-      redirect_to register_accounts_url, alert: "Failed to create account!"
+      redirect_to register_accounts_url, {id: "创建用户失败！", type: "alert alert-danger", role: 'alert'}
     end
   end
 
@@ -55,11 +54,15 @@ class AccountsController < ApplicationController
 
   def do_top_up
     delta = top_up_account_params.to_i
-    if delta > 0
-      @account.update_attribute(:balance, @account.balance + delta)
-        redirect_to account_top_up_url(@account), alert: {id: "充值成功！", type: "alert alert-success", role: 'alert'}
-    else
-        redirect_to account_top_up_url(@account), alert: {id: "非法充值！", type: "alert alert-danger", role: 'alert'}
+    respond_to do |format|
+      if delta > 0
+        @account.update_attribute(:balance, @account.balance + delta)
+        format.html { redirect_to account_top_up_url(@account), alert: {id: "充值成功！", type: "alert alert-success", role: 'alert'} }
+        format.json { render :top_up, status: :created, location: account_top_up_url(@account) }
+      else
+        format.html { render account_top_up_url(@account), alert: { id: "非法充值！", type: "alert alert-danger", role: 'alert' } }
+        format.json { render :top_up, status: :unprocessable_entity }
+      end
     end
   end
 

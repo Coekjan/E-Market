@@ -5,8 +5,17 @@
 <% end %>
 
 <% if alert %>
-  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
-    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+    <div class="toast-header">
+      <strong class="mr-auto">提醒</strong>
+      <small></small>
+      <button id="notice1" type="button" class="ml-2 mb-1 close toastButton" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      <%= alert["id"] %>
+    </div>
   </div>
 <% end %>
 

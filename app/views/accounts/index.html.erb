@@ -40,16 +40,16 @@
         <td><%= account.password %></td>
         <td><%= account.role %></td>
         <td><%= account.balance %></td>
-        <td><%= link_to '查看详情', account %></td>
-        <td><%= link_to '编辑', edit_account_path(account) %></td>
-        <td><%= link_to '删除用户', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '查看详情', account, style: "color: #1b1e21; background-color: transparent;"%></td>
+        <td><%= link_to '编辑', edit_account_path(account), style: "color: #1b1e21; background-color: transparent;"%></td>
+        <td><%= link_to '删除用户', accounts_url, method: :delete, data: { confirm: 'Are you sure?' }, style: "color: #1b1e21; background-color: transparent;"%></td>
       </tr>
     <% end %>
   </tbody>
 
 </table>
 
-  <%= link_to '新建用户', new_account_path, class: "btn btn-primary", style: ""%>
+  <%= link_to '新建用户', new_account_path, class: "btn btn-primary", style: "color: gainsboro"%>
 </div>
 </div>
 

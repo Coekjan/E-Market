@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <%= link_to '主页', root_url, class: "nav-link" %><span class="sr-only">(current)</span>
+              <%= link_to '主页', root_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;"%><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled">欢迎：<%= current_account.name %></a>
@@ -29,24 +29,24 @@
               <a class="nav-link disabled">余额：<%= current_account.balance %>￥</a>
             </li>
             <li class="nav-item active">
-              <%= link_to '充值', account_top_up_url(current_account), class: "nav-link" %><span class="sr-only">(current)</span>
+              <%= link_to '充值', account_top_up_url(current_account), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item active">
-              <%= link_to '登出', logout_accounts_path, class: "nav-link" %><span class="sr-only">(current)</span>
+              <%= link_to '登出', logout_accounts_path, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
             </li>
             <% if current_account.role == "Customer" %>
               <li class="nav-item active">
-                <%= link_to '购物车', customer_orders_url(current_account.customer), class: "nav-link" %><span class="sr-only">(current)</span>
+                <%= link_to '购物车', customer_orders_url(current_account.customer), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
               <li class="nav-item active">
-                <%= link_to '购物记录', customer_records_url(current_account.customer), class: "nav-link" %><span class="sr-only">(current)</span>
+                <%= link_to '购物记录', customer_records_url(current_account.customer), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
             <% elsif current_account.role == "Admin" %>
               <li class="nav-item active">
-                <%= link_to '所有账户', accounts_url, class: "nav-link" %><span class="sr-only">(current)</span>
+                <%= link_to '所有账户', accounts_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
               <li class="nav-item active">
-                <%= link_to '所有分类', categories_url, class: "nav-link" %><span class="sr-only">(current)</span>
+                <%= link_to '所有分类', categories_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
             <% end %>
           </ul>
@@ -63,10 +63,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <%= link_to '主页', root_url, class: "nav-link" %><span class="sr-only">(current)</span>
+              <%= link_to '主页', root_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item active">
-              <%= link_to '登陆', login_accounts_path, class: "nav-link" %><span class="sr-only">(current)</span>
+              <%= link_to '登陆', login_accounts_path, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
             </li>
           </ul>
         </div>

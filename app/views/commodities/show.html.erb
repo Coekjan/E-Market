@@ -1,7 +1,22 @@
 <link rel="stylesheet" type="text/css" href="commodity_show.scss">
 <link rel="stylesheet" type="text/css" href="commodities.scss">
 
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+    <div class="toast-header">
+      <strong class="mr-auto">提醒</strong>
+      <small>
+        <button id="notice1" type="button" class="ml-2 mb-1 toastButton" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </small>
+    </div>
+    <div class="toast-body">
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
+
 <% if alert %>
   <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>

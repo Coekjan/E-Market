@@ -33,7 +33,7 @@ class CommoditiesController < ApplicationController
 
     respond_to do |format|
       if @commodity.save
-        format.html { redirect_to @commodity, notice: "Commodity was successfully created." }
+        format.html { redirect_to @commodity, notice: "成功创建商品！" }
         format.json { render :show, status: :created, location: @commodity }
       else
         format.html { render @commodity, status: :unprocessable_entity }
@@ -46,7 +46,7 @@ class CommoditiesController < ApplicationController
   def update
     respond_to do |format|
       if @commodity.update(commodity_params)
-        format.html { redirect_to @commodity, notice: "Commodity was successfully updated." }
+        format.html { redirect_to @commodity, notice: "成功更新商品！" }
         format.json { render :show, status: :ok, location: @commodity }
       else
         format.html { render @commodity, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class CommoditiesController < ApplicationController
   def destroy
     @commodity.destroy
     respond_to do |format|
-      format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop), notice: "Commodity was successfully destroyed." }
+      format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop), notice: "成功删除商品！" }
       format.json { head :no_content }
     end
   end

@@ -14,39 +14,68 @@
   </div>
 <% end %>
 
+<!--
 <p>
   <strong>Grade:</strong>
   <%= @section.grade %>
 </p>
+-->
 
-<h2>所有评论</h2>
+<h2 class="headPosition">所有评论</h2>
 
-<% def show(comment, depth) %>
-  <%= '>' * depth %><%= comment.account.name %>: <%= comment.content %> |
-  <%= link_to 'Reply', commodity_section_comment_reply_path(comment.section.commodity, comment.section, comment) %><br/>
-  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
-    <% show(c, depth + 1) %>
-  <% end %>
-<% end %>
-<% if @section.comments.empty? %>
-  No comments yet
-<% else %>
-  <% @section.comments.filter { |c| c.comment == c }.each do |c| %>
-    <% show(c, 0) %><br/>
-  <% end %>
-<% end %>
+
+<div class="commentBody">
+	<% def show(comment, depth) %>
+	  <% if depth == 0 %>
+	  	<HR align=center width=700 color=#987cb9 SIZE=1>
+	  <% end %>
+	  
+
+	  
+	<li class="list1" >
+        <div class="contentCommodityShow">
+            <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span>
+		        <div style="font-weight: bold">
+		        	<%= comment.content %>
+		       	</div>
+            </p>
+            <%= link_to '回复', commodity_section_comment_reply_path(comment.section.commodity, comment.section, comment), class: 'btn btn-primary btnReply', style: "color: gainsboro" %>
+        </div>
+    </li>
+	  
+	  
+	  <% if depth == 0 %>
+  	    <HR align=center width=700 color=#987cb9 SIZE=5>
+      <% end %>
+      
+	  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
+		<% show(c, depth + 1) %>
+	  <% end %>
+	<% end %>
+	<% if @section.comments.empty? %>
+	  No comments yet
+	<% else %>
+	  <% @section.comments.filter { |c| c.comment == c }.each do |c| %>
+		<% show(c, 0) %><br/>
+	  <% end %>
+	  	<ul id="pn">
+	<% end %>
+</ul>	
+</div>
+
 
 <% if current_account %>
-  <h2>Add Comment</h2>
+<div align="center">
 
-  <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section) do |f| %>
-    <p>
-      <%= f.label :content %>
-      <%= f.text_area :content %>
+  <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>
+    <p style="margin: 15px">
+      <%= f.text_area :content, :size=>"50*5" %>
     </p>
     <%= f.hidden_field :account_id, :value => current_account.id %>
     <%= f.hidden_field :section_id, :value => @section.id %>
 
-    <%= f.submit %>
+	<%= f.submit '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
+
   <% end %>
+</div>
 <% end %>

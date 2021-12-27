@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function() {
+let f = function() {
     $('.toastButton').on('click', function () {
         $('.toastButton').hide();
         $('.toast').fadeIn();
@@ -24,4 +24,7 @@ $(document).ready(function() {
             $('.toast').fadeOut();
         }, 0);
     });
-})
+}
+
+// rails i hate u
+$(document).on('turbolinks:load', f)

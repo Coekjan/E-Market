@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :set_complaint, only: %i[ show edit update destroy ]
+  before_action :set_complaint, only: %i[ show edit update destroy authenticate_handle ]
   before_action :set_handle_complaint, only: %i[ handle do_handle ]
   before_action :authenticate_create, only: [:new, :edit, :create, :update]
   before_action :authenticate_show, only: [:show, :edit, :update]
@@ -19,6 +19,8 @@ class ComplaintsController < ApplicationController
 
   def authenticate_handle
     redirect_to login_accounts_url, alert: "Must login as ADMIN" unless current_admin?
+    index
+    redirect_to :index, status: :not_acceptable if @complaint.is_handled?
   end
 
   def handle
@@ -28,7 +30,6 @@ class ComplaintsController < ApplicationController
     respond_to do |format|
       if @complaint.update(complaint_handle_params)
         format.html { redirect_to complaints_url, notice: "成功更新投诉！" }
-        format.json { render :index, status: :ok, location: @complaint }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @complaint.errors, status: :unprocessable_entity }

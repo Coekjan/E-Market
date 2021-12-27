@@ -1,3 +1,5 @@
+<body class="loginSurface">
+
 <% if notice %>
   <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
     <div class="toast-header">
@@ -15,9 +17,9 @@
 <% end %>
 
 
-<h1>所有账户</h1>
+<h1 class="text-center">所有账户</h1>
 
-<div class="card" style="">
+<div class="card text-center" style="">
 <div class="card-body">
 
   <table class="table table-bordered table-hover table-striped">
@@ -32,7 +34,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody style="">
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.id %></td>
@@ -49,8 +51,10 @@
 
 </table>
 
-  <%= link_to '新建用户', new_account_path, class: "btn btn-primary", style: "color: gainsboro"%>
+  <%= link_to '新建用户', new_account_path, class: "btn btn-primary", style: "color: gainsboro; width: 10%;"%>
 </div>
 </div>
 
 <br>
+
+</body>

@@ -42,7 +42,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to @seller, notice: "成功创建店铺！" }
         format.json { render :show, status: :created, location: @shop }
       else
-        format.html { render "sellers/show", status: :unprocessable_entity }
+        format.html { render "shops/new", status: :unprocessable_entity }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +56,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to @seller, notice: "成功更新店铺！" }
         format.json { render :show, status: :ok, location: @shop }
       else
-        format.html { render "sellers/show", status: :unprocessable_entity }
+        format.html { render "shops/edit", status: :unprocessable_entity }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end

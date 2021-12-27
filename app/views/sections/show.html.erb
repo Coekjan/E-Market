@@ -27,9 +27,9 @@
 	  <% if depth == 0 %>
 	  	<HR align=center width=700 color=#987cb9 SIZE=1>
 	  <% end %>
-	  
 
-	  
+
+
 	<li class="list1" >
         <div class="contentCommodityShow">
             <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span>
@@ -63,17 +63,29 @@
 
 
 <% if current_account %>
-<div align="center">
+  <% temp = flash[:section_errors] %>
+  <% if temp %>
+    <% flash.delete(:section_errors) %>
+    <div id="error_explanation">
+      <h2><%= pluralize(temp.count, "error") %> prohibited this comment from being saved:</h2>
 
-  <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>
-    <p style="margin: 15px">
-      <%= f.text_area :content, :size=>"50*5" %>
-    </p>
-    <%= f.hidden_field :account_id, :value => current_account.id %>
-    <%= f.hidden_field :section_id, :value => @section.id %>
-
-	<%= f.submit '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
-
+      <ul>
+        <% temp.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</div>
+  <h2>Add Comment</h2>
+  <div align="center">
+
+    <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>
+      <p style="margin: 15px">
+        <%= f.text_area :content, :size=>"50*5" %>
+      </p>
+      <%= f.hidden_field :account_id, :value => current_account.id %>
+      <%= f.hidden_field :section_id, :value => @section.id %>
+    <%= f.submit '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
+    <% end %>
+  </div>
 <% end %>

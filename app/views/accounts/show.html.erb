@@ -1,3 +1,5 @@
+<body class="loginSurface">
+
 <% if notice %>
   <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
     <div class="toast-header">
@@ -14,7 +16,7 @@
   </div>
 <% end %>
 
-<div class="card">
+<div class="card" style="width: 25%; margin:1% auto;">
   <div class="card-header">个人信息</div>
   <div class="card-body">
     <p>
@@ -22,21 +24,25 @@
       <%= @account.name %>
     </p>
 
-    <p>
+    <p style="margin: 6%auto">
       <strong>密码：</strong>
       <%= @account.password %>
     </p>
 
-    <p>
+    <p style="margin: 6%auto">
       <strong>角色：</strong>
       <%= @account.role %>
     </p>
 
-    <p>
+    <p style="margin: 6%auto">
       <strong>余额：</strong>
       <%= @account.balance %>
     </p>
+
+    <%= link_to '修改信息', edit_account_path(@account), class: "btn btn-primary", style: "color: gainsboro; width: 40%; margin-right: 19%"%> <%= link_to '返回', accounts_path, class: "btn btn-primary", style: "color: gainsboro; width: 40%;" %>
+
   </div>
 </div>
 
-<%= link_to '修改信息', edit_account_path(@account), class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;"%> <%= link_to '返回', accounts_path, class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;" %>
+
+</body>

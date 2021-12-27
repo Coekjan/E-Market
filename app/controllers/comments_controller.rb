@@ -56,8 +56,9 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment.section.commodity, notice: "评论被成功创建！" }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render @comment.section.record, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        flash[:section_errors] = @comment.errors.full_messages
+        format.html { redirect_to commodity_section_url(@comment.section.record.order.commodity, @comment.section) }
+        format.json { render json: flash[:section_errors], status: :unprocessable_entity }
       end
     end
   end

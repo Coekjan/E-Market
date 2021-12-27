@@ -3,14 +3,14 @@ class ComplaintsController < ApplicationController
   before_action :set_handle_complaint, only: %i[ handle do_handle ]
   before_action :authenticate_create, only: [:new, :create]
   before_action :authenticate_show, only: [:show, :edit]
-  before_action :authenticate_handle, only: [:index, :do_handle, :handle]
+  before_action :authenticate_handle, only: [:do_handle, :handle]
 
   def authenticate_create
     redirect_to login_accounts_url, alert: "Must login as customer" unless current_customer?
   end
 
   def authenticate_show
-    redirect_to login_accounts_url, alert: "You have no permission to visit this page" unless (
+    redirect_to login_accounts_url, alert: "You have no permission to visit this page" unless current_admin? || (
       current_customer? && current_account.customer == @complaint.customer
     ) || (
       current_seller? && current_account.seller == @complaint.seller
@@ -38,7 +38,13 @@ class ComplaintsController < ApplicationController
 
   # GET /complaints or /complaints.json
   def index
-    @complaints = Complaint.all
+    if current_admin?
+      @complaints = Complaint.all
+    elsif current_seller?
+      @complaints = Complaint.all.filter { |c| c.seller == current_account.seller }
+    elsif current_customer?
+      @complaints = Complaint.all.filter { |c| c.customer == current_account.customer }
+    end
   end
 
   # GET /complaints/1 or /complaints/1.json

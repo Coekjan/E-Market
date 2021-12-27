@@ -122,7 +122,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
+      format.html { redirect_to accounts_url, notice: "用户账户成功删除！" }
       format.json { head :no_content }
     end
   end

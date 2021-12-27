@@ -14,20 +14,20 @@
   <div class="text-dark">当前账户： <%= current_account.name %></div>
   <li class="dropdown-divider "></li>
 
-  <div class="field" style="margin: 1%auto">
+  <div class="field" style="margin: 7%auto">
     <div class="text-dark">账户名： <%= form.text_field :name, required:"" %></div>
   </div>
 
-  <div class="field" style="margin: 1%auto">
+  <div class="field" style="margin: 7%auto">
     <div class="text-dark">密码： <%= form.password_field :password, required:"" %></div>
   </div>
 
-  <div class="field" style="margin: 1%auto">
+  <div class="field" style="margin: 7%auto">
     <div class="text-dark">身份： <%= form.collection_select(:role, all_roles, :to_s, :to_s) %></div>
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "创建用户", data: { disable_with: "正在创建用户" }%>
-    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro"%>
+    <%= form.submit class: "btn btn-primary", style: "color: gainsboro; width: 40%; margin-right: 15%", value: "创建用户", data: { disable_with: "正在创建用户" }%>
+    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro; width: 40%;"%>
   </div>
 <% end %>

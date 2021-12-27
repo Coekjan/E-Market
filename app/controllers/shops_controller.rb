@@ -1,16 +1,10 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[ show edit update destroy ]
   before_action :authenticate, only: [:update, :destroy]
-  before_action :show_authenticate, only: [:show]
 
   def authenticate
     redirect_to login_accounts_url, alert: "Must be seller | admin!" unless current_admin? ||
       (current_seller? && current_account.seller.shops.exists? { |s| s == @shop })
-  end
-
-  def show_authenticate
-    redirect_to login_accounts_url, alert: "Must be this shop's owner" unless current_seller? &&
-      current_account.seller.shops.exists? { |s| s == @shop }
   end
 
   # GET /shops or /shops.json
@@ -42,7 +36,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to @seller, notice: "成功创建店铺！" }
         format.json { render :show, status: :created, location: @shop }
       else
-        format.html { render "sellers/show", status: :unprocessable_entity }
+        format.html { render "shops/new", status: :unprocessable_entity }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +50,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to @seller, notice: "成功更新店铺！" }
         format.json { render :show, status: :ok, location: @shop }
       else
-        format.html { render "sellers/show", status: :unprocessable_entity }
+        format.html { render "shops/edit", status: :unprocessable_entity }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end

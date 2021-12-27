@@ -26,13 +26,16 @@
 }
 
 .loginSurface {
-  background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F80%2F8b%2F4f%2F808b4f44d2fba5e066020485a24e333c.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643104570&t=6d4d00b55dc10209dec82de112e28e9a");
-  background-repeat: no-repeat;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F80%2F8b%2F4f%2F808b4f44d2fba5e066020485a24e333c.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643104570&t=6d4d00b55dc10209dec82de112e28e9a")
+              no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: left top;
-  background-attachment: scroll;
-  width: 100%;height: 100%;
-  overflow: auto;
 }
 
 .tableItem {

@@ -14,18 +14,21 @@
   </div>
 <% end %>
 
-<h1>Complaints</h1>
+<h1>所有投诉</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Seller</th>
-      <th>Content</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card" style="">
+  <div class="card-body">
+
+    <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>买家</th>
+        <th>卖家</th>
+        <th>内容</th>
+        <th>处理人</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
   <tbody>
     <% @complaints.each do |complaint| %>
@@ -38,9 +41,9 @@
         <% else %>
           <td>-</td>
         <% end %>
-        <td><%= link_to 'Show', complaint %></td>
-        <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
-        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '查看详情', complaint %></td>
+        <td><%= link_to '编辑', edit_complaint_path(complaint) %></td>
+        <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -48,4 +51,9 @@
 
 <br>
 
-<%= link_to 'New Complaint', new_complaint_path %>
+  <%= link_to '新建投诉', new_complaint_path, class: "btn btn-primary", style: "color: gainsboro" %>
+
+  </div>
+</div>
+
+<br>

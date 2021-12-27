@@ -31,7 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "更新信息"%>
+    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "更新信息", data: { disable_with: "正在更新信息" } %>
     <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro"%>
   </div>
 <% end %>

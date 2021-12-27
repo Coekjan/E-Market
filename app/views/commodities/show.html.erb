@@ -49,27 +49,6 @@
             <div>
             	<%= link_to '查看评论组', commodity_section_url(@commodity, s) %>
             </div>
-<!--            <div class="good"><span class="date">02-14 23:01</span><a class="dzan">赞</a></div>
-            <div class="comment-list">
-                <div class="comment" user="self">
-                    <div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
-                    <div class="comment-right">
-                        <div class="comment-text"><span class="user">Coekjan：</span>我</div>
-                        <div class="comment-date">02-14 22:00 <a class="comment-zan" href="javascript:;" total="23" my="1">1 取消赞</a> <a class="comment-dele" href="javascript:;">回复</a> </div>
-                    </div>
-                </div>
-                <div class="comment" user="self">
-                    <div class="comment-left"><img src="http://www.sucainiu.com/themes/images/demo/500x300-2.png" alt=""></div>
-                    <div class="comment-right">
-                        <div class="comment-text"><span class="user">Coekjan：</span>看哭了留卡号吧</div>
-                        <div class="comment-date">02-14 24:00 <a class="comment-zan" href="javascript:;" total="0" my="0">赞</a> <a class="comment-dele" href="javascript:;">删除</a> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hf">
-                <textarea type="text" class="hf-text" autocomplete="off" maxlength="100">评论…</textarea>
-                <button class="hf-btn">回复</button>
-                <span class="hf-nub">0/100</span> </div> -->
         </div>
     </li>
     <% end %>
@@ -107,4 +86,6 @@
 
 <%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity' %> 
 
-<%= link_to '去店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop), class:'btn btn-primary btnCommodity' %>
+<div class="btn btnCommodity">
+	<%= link_to '访问该商品的店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
+</div>

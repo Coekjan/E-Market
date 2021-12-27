@@ -3,4 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :section
   belongs_to :comment
   has_many :comments, dependent: :destroy
+  validates :content, presence: true
 end

@@ -36,7 +36,7 @@ class CommoditiesController < ApplicationController
         format.html { redirect_to @commodity, notice: "成功创建商品！" }
         format.json { render :show, status: :created, location: @commodity }
       else
-        format.html { render @commodity, status: :unprocessable_entity }
+        format.html { render "commodities/new", status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end
@@ -49,7 +49,7 @@ class CommoditiesController < ApplicationController
         format.html { redirect_to @commodity, notice: "成功更新商品！" }
         format.json { render :show, status: :ok, location: @commodity }
       else
-        format.html { render @commodity, status: :unprocessable_entity }
+        format.html { render "commodities/edit", status: :unprocessable_entity }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end

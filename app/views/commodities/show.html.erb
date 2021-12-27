@@ -19,14 +19,22 @@
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
   </div>
 <% end %>
-
-<div align = "center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_origin_min_pic%2F19%2F10%2F22%2Fa8e3ff878cb8b2156f0fee5691cb6951.jpg%21%2Ffw%2F750%2Fquality%2F99%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641694198&t=f0de01aa6da293f70dcd607d6f42e4c1" width=60% height=10% ></div>
-<div>
-	<h5 align="center" font-weight = "bold"><%= @commodity.name %></h5>
-    <p align="center"><%= @commodity.introduction %></p>
-    <p align="center"><%= @commodity.price %> RMB</p>
-    <p align="center"><%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+<div class="proIntroMargin">
+	<div class="proSingleImg">
+		<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_origin_min_pic%2F19%2F10%2F22%2Fa8e3ff878cb8b2156f0fee5691cb6951.jpg%21%2Ffw%2F750%2Fquality%2F99%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641694198&t=f0de01aa6da293f70dcd607d6f42e4c1" width=485px height=685px>
+	</div>
+	<div class="proSingleIntro">
+		<div class="proText">
+		  <h5 class="h5Commodity"><%= @commodity.name %></h5>
+		  <p class = "proIntro"><%= @commodity.introduction %></p>
+		  <p class = "proPrice"><%= @commodity.price %> RMB</p>
+		  <p class = "proSingleFrom"><%= @commodity.shop.name %></p>
+		  <p class = "proCatagory"><%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+		</div>
+	</div>
 </div>
+
+
 
 <!--评论模块-->
 <body class="bodyCommodityShow">
@@ -35,7 +43,7 @@
 	<% @commodity.sections.reject { |s| s.comments.empty?  }.each do |s| %>
     <li class="list0" >
         <div class="contentCommodityShow">
-        	<!-- TODO: 缺少评论者的名字和评论时间,有可能的话也可以存一个头像 -->
+        	<!-- TODO: 缺少评论	者的名字和评论时间,有可能的话也可以存一个头像 -->
         	<br>
             <p class="text"><span class="name">Coekjan：</span><%= s.comments.first.content %></p>
             <div>
@@ -97,10 +105,6 @@
   <% end %>
 <% end %>
 
-<div class="btn btnCommodity">
-	<%= link_to '返回', commodities_path %> 
-</div>
+<%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity' %> 
 
-<div class="btn btnCommodity">
-	<%= link_to '去我的店', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
-</div>
+<%= link_to '去店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop), class:'btn btn-primary btnCommodity' %>

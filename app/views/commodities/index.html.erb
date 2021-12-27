@@ -46,24 +46,21 @@
               </div>
               <a href="#">
                   <div class="proBtn">
-                      <div class="btn btnCommodity">
-                        <%= link_to 'Show', commodity %>
-                      </div>
+                  	  <%= link_to 'Show', commodity, class:'btn btn-primary btnCommodity'%>
                       <% if current_account && current_account.id == commodity.shop.seller.account.id %>
-                        <div class="btn btnCommodity">
-                          <%= link_to 'Edit', edit_commodity_path(commodity) %>
-                        </div>
-                        <div class="btn btnCommodity">
-                          <%= link_to 'Destroy', commodity, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </div>
+                        <%= link_to 'Edit', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity'%>
+                        <%= link_to 'Destroy', commodity, class:'btn btn-primary btnCommodity',  method: :delete, data: { confirm: 'Are you sure?' } %>
                       <% else %>
                       <% end %>
                   </div>
               </a>
+              
           </div>
         <% end %>
     </div>
 </div>
+
+
 
 <% if current_account && current_account.role == "Seller" %>
   <%= link_to 'My Shop', seller_url(current_account.seller) %>

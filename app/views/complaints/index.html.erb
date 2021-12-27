@@ -42,7 +42,13 @@
           <td>-</td>
         <% end %>
         <td><%= link_to '查看详情', complaint %></td>
-        <td><%= link_to '编辑', edit_complaint_path(complaint) %></td>
+        <% if current_customer? %>
+          <td><%= link_to '编辑', edit_complaint_path(complaint) %></td>
+        <% elsif current_admin? && !complaint.is_handled? %>
+          <td><%= link_to '处理', complaint_handle_path(complaint) %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
         <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

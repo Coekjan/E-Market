@@ -35,7 +35,7 @@
   <div>
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
       <%= b.label(:"data-value" => b.value) {
-        b.check_box(checked: @temp_categories.nil? ? false : @temp_categories.include?(b.value)) + b.text
+        b.check_box(checked: @temp_categories.nil? ? true : @temp_categories.include?(b.value)) + b.text
       } %>
     <% end %>
   </div>

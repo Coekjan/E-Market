@@ -18,6 +18,12 @@ body {
     position: relative;
 }
 
+.proBigSingle {
+	width: 585px;
+    margin: 15px 30%;
+    position: relative;
+}
+
 .proIntro {
 	font-weight: bold;
 }
@@ -30,16 +36,31 @@ body {
 .pro {
     border: 1px solid #ccc;
     height: 360px;
+    background-color: #fff;
+}
+
+.proSingle {
+    border: 1px solid #ccc;
+    height: 360px;
+    background-color: #fff;
 }
 
 .proImg {
-    width: 235px;
-    height: 196px;
     text-align: center;
 }
 
 .proImg img {
     height: 196px;
+}
+
+.proSingleIntro {
+	width: 175px;
+	height: 321px;
+	background-color: #fff;
+	margin: 1px;
+	position: absolute;
+	left: 59.5%;
+	top: 13%;
 }
 
 .singleProImg {
@@ -73,6 +94,11 @@ body {
     margin: 3px auto;
 }
 
+.proSingleImg {
+	position: relative;
+	left: 400px;
+}
+
 .proPrice span {
     font-size: 1.2rem;
     font-weight: initial;
@@ -83,6 +109,16 @@ body {
     text-align: right;
     margin-right: 10px;
     font-weight: bold;
+}
+
+.proSingleFrom {
+    text-align: left;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.proIntroMargin {
+	margin: 10px;
 }
 
 .proBtn {
@@ -105,7 +141,6 @@ body {
     width: 167px;
     height: 50px;
     margin: 10px auto;
-    background-color: #FCDD00;
     display: flex;
     justify-content: center;
     align-items: center;

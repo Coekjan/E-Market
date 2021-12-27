@@ -27,7 +27,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "创建用户"%>
+    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "创建用户", data: { disable_with: "正在创建用户" }%>
     <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro"%>
   </div>
 <% end %>

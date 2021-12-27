@@ -28,8 +28,6 @@
 	  	<HR align=center width=700 color=#987cb9 SIZE=1>
 	  <% end %>
 
-
-
 	<li class="list1" >
         <div class="contentCommodityShow">
             <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span>
@@ -76,7 +74,6 @@
       </ul>
     </div>
   <% end %>
-  <h2>Add Comment</h2>
   <div align="center">
 
     <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>

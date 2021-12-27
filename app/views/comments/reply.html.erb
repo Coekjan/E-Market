@@ -14,7 +14,11 @@
   </div>
 <% end %>
 
-<h2><%= alert %></h2>
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
+<% end %>
 
 <div class="commentBody">
 	<% def show(comment, depth) %>

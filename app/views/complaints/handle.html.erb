@@ -1,3 +1,5 @@
+<body class="loginSurface">
+
 <% if alert %>
   <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
@@ -20,16 +22,16 @@
   </div>
 <% end %>
 
-<div class="card">
+<div class="card" style="width: 30%; margin:1% auto;">
   <div class="card-header">诉求信息</div>
   <div class="card-body">
     <p>
-      <strong>买家:</strong>
+      <strong>&emsp;&ensp;&ensp;买家:</strong>
       <%= @complaint.customer.account.name %>
     </p>
 
     <p>
-      <strong>卖家:</strong>
+      <strong>&emsp;&ensp;&ensp;卖家:</strong>
       <%= @complaint.seller.account.name %>
     </p>
 
@@ -38,16 +40,16 @@
       <%= @complaint.content %>
     </p>
 
-    <p>
-      <strong>处理人:</strong>
-      <%= @complaint.admin.account.name if @complaint.admin %>
-    </p>
+
+    <%= form_with url: complaint_do_handle_url(@complaint) do %>
+      <%= fields_for :complaint do |c| %>
+        <%= c.hidden_field :admin_id, :value => current_account.admin.id %>
+      <% end %>
+      <%= submit_tag 'Do it' , style: "color: gainsboro; width: 40%; margin-right: 19%", class: "btn btn-primary", value: "处理诉求", data: { disable_with: "正在处理诉求" }%>
+      <%= link_to '返回', complaints_path, class: "btn btn-primary", style: "color: gainsboro; width: 40%;" %>
+    <% end %>
+
   </div>
 </div>
 
-<%= form_with url: complaint_do_handle_url(@complaint) do %>
-  <%= fields_for :complaint do |c| %>
-    <%= c.hidden_field :admin_id, :value => current_account.admin.id %>
-  <% end %>
-  <%= submit_tag 'Do it' , style: "margin: 1% auto; color: gainsboro;", class: "btn btn-primary", value: "处理诉求", data: { disable_with: "正在处理诉求" }%>
-<% end %>
+</body>

@@ -1,3 +1,5 @@
+<body class="loginSurface">
+
 <% if notice %>
   <div id="toast1" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
     <div class="toast-header">
@@ -14,9 +16,9 @@
   </div>
 <% end %>
 
-<h1>所有投诉</h1>
+<h1 class="text-center">所有投诉</h1>
 
-<div class="card" style="">
+<div class="card text-center" style="">
   <div class="card-body">
 
     <table class="table table-bordered table-hover table-striped">
@@ -41,15 +43,15 @@
         <% else %>
           <td>-</td>
         <% end %>
-        <td><%= link_to '查看详情', complaint %></td>
+        <td><%= link_to '查看详情', complaint, style: "color: #1b1e21; background-color: transparent;"%></td>
         <% if current_customer? %>
-          <td><%= link_to '编辑', edit_complaint_path(complaint) %></td>
+          <td><%= link_to '编辑', edit_complaint_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
         <% elsif current_admin? && !complaint.is_handled? %>
-          <td><%= link_to '处理', complaint_handle_path(complaint) %></td>
+          <td><%= link_to '处理', complaint_handle_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
         <% else %>
           <td>-</td>
         <% end %>
-        <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' }, style: "color: #1b1e21; background-color: transparent;" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,9 +59,11 @@
 
 <br>
 
-  <%= link_to '新建投诉', new_complaint_path, class: "btn btn-primary", style: "color: gainsboro" %>
+  <%= link_to '新建投诉', new_complaint_path, class: "btn btn-primary", style: "color: gainsboro; width: 10%;" %>
 
   </div>
 </div>
 
 <br>
+
+</body>

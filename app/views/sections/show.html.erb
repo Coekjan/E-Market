@@ -21,20 +21,24 @@
 
 <h2>所有评论</h2>
 
-<% def show(comment, depth) %>
-  <%= '>' * depth %><%= comment.account.name %>: <%= comment.content %> |
-  <%= link_to 'Reply', commodity_section_comment_reply_path(comment.section.commodity, comment.section, comment) %><br/>
-  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
-    <% show(c, depth + 1) %>
-  <% end %>
-<% end %>
-<% if @section.comments.empty? %>
-  No comments yet
-<% else %>
-  <% @section.comments.filter { |c| c.comment == c }.each do |c| %>
-    <% show(c, 0) %><br/>
-  <% end %>
-<% end %>
+
+<div class="commentBody">
+	<% def show(comment, depth) %>
+	  <%= '>' * depth %><%= comment.account.name %>: <%= comment.content %> |
+	  <%= link_to 'Reply', commodity_section_comment_reply_path(comment.section.commodity, comment.section, comment) %><br/>
+	  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
+		<% show(c, depth + 1) %>
+	  <% end %>
+	<% end %>
+	<% if @section.comments.empty? %>
+	  No comments yet
+	<% else %>
+	  <% @section.comments.filter { |c| c.comment == c }.each do |c| %>
+		<% show(c, 0) %><br/>
+	  <% end %>
+	<% end %>	
+<div>
+
 
 <% if current_account %>
   <h2>Add Comment</h2>

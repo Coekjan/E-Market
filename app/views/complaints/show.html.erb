@@ -14,25 +14,29 @@
   </div>
 <% end %>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @complaint.customer.account.name %>
-</p>
+<div class="card">
+  <div class="card-header">诉求信息</div>
+  <div class="card-body">
+    <p>
+      <strong>买家:</strong>
+      <%= @complaint.customer.account.name %>
+    </p>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @complaint.seller.account.name %>
-</p>
+    <p>
+      <strong>卖家:</strong>
+      <%= @complaint.seller.account.name %>
+    </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @complaint.content %>
-</p>
+    <p>
+      <strong>投诉内容:</strong>
+      <%= @complaint.content %>
+    </p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @complaint.admin.account.name if @complaint.admin %>
-</p>
+    <p>
+      <strong>处理人:</strong>
+      <%= @complaint.admin.account.name if @complaint.admin %>
+    </p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
-<%= link_to 'Back', complaints_path %>
+<%= link_to '修改信息', edit_complaint_path(@complaint), class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;"%> <%= link_to '返回', complaints_path, class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;" %>

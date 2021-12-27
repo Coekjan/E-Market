@@ -1,0 +1,33 @@
+<%= form_with(model: account, local: true) do |form| %>
+  <% if account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+        <% account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="text-dark">当前账户： <%= current_account.name %></div>
+  <li class="dropdown-divider "></li>
+
+  <div class="field" style="margin: 1%auto">
+    <div class="text-dark">账户名： <%= form.text_field :name, require:"" %></div>
+  </div>
+
+  <div class="field" style="margin: 1%auto">
+    <div class="text-dark">密码： <%= form.password_field :password, required:"" %></div>
+  </div>
+
+  <div class="field" style="margin: 1%auto">
+    <div class="text-dark">身份： <%= form.collection_select(:role, all_roles, :to_s, :to_s) %></div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary", style: "color: gainsboro", value: "创建用户"%>
+    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro"%>
+  </div>
+<% end %>

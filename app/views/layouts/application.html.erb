@@ -41,12 +41,22 @@
               <li class="nav-item active">
                 <%= link_to '购物记录', customer_records_url(current_account.customer), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
+              <li class="nav-item active">
+                <%= link_to '我的诉求', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+              </li>
+            <% elsif current_account.role == "Seller" %>
+              <li class="nav-item active">
+                <%= link_to '我的诉求', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+              </li>
             <% elsif current_account.role == "Admin" %>
               <li class="nav-item active">
                 <%= link_to '所有账户', accounts_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
               <li class="nav-item active">
                 <%= link_to '所有分类', categories_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+              </li>
+              <li class="nav-item active">
+                <%= link_to '所有投诉', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
               </li>
             <% end %>
           </ul>

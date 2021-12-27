@@ -1,8 +1,8 @@
 class ComplaintsController < ApplicationController
   before_action :set_complaint, only: %i[ show edit update destroy ]
   before_action :set_handle_complaint, only: %i[ handle do_handle ]
-  before_action :authenticate_create, only: [:new, :create]
-  before_action :authenticate_show, only: [:show, :edit]
+  before_action :authenticate_create, only: [:new, :edit, :create, :update]
+  before_action :authenticate_show, only: [:show, :edit, :update]
   before_action :authenticate_handle, only: [:do_handle, :handle]
 
   def authenticate_create

@@ -16,6 +16,9 @@ Rails.application.routes.draw do
         post 'do_reply'
       end
     end
+    collection do
+      post 'do_filter'
+    end
   end
 
   resources :categories

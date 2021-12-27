@@ -1,6 +1,6 @@
 class CommoditiesController < ApplicationController
   before_action :set_commodity, only: %i[ show edit update destroy ]
-  before_action :authenticate, except: [:index, :show]
+  before_action :authenticate, except: [:do_filter, :index, :show]
 
   def authenticate
     redirect_to login_accounts_url, alert: 'Must Login as this commodity\'s owner!' unless current_account &&
@@ -9,9 +9,27 @@ class CommoditiesController < ApplicationController
                                @commodity.shop.seller.account.id)
   end
 
+  def do_filter
+    @commodities = Commodity.all
+    @commodities = @commodities.filter_by_categories(params[:category_ids]) if params[:category_ids].present?
+    flash[:commodity_filter] = @commodities
+    flash[:filter_categories] = params[:category_ids].reject(&:blank?).map(&:to_i)
+    redirect_to commodities_url
+  end
+
   # GET /commodities or /commodities.json
   def index
-    @commodities = Commodity.all
+    @temp_filter = flash[:commodity_filter]
+    @temp_categories = flash[:filter_categories]
+    flash.delete(:commodity_filter)
+    flash.delete(:filter_categories)
+    if @temp_filter
+      print @temp_filter
+      @commodities = @temp_filter.map { |c| Commodity.all.filter { |cc| cc.id == c["id"] }.first }
+      print @commodities
+    else
+      @commodities = Commodity.all
+    end
   end
 
   # GET /commodities/1 or /commodities/1.json

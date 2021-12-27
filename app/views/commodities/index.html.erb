@@ -30,6 +30,20 @@
   </div>
 <% end %>
 
+<h4>Filter</h4>
+<%= form_with url: do_filter_commodities_url do |f| %>
+  <div>
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+      <%= b.label(:"data-value" => b.value) {
+        b.check_box(checked: @temp_categories.nil? ? false : @temp_categories.include?(b.value)) + b.text
+      } %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'filter' %>
+  </div>
+<% end %>
+
 <div class="content">  
   <div class="proRow">
       <% @commodities.each do |commodity| %>

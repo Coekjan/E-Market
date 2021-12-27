@@ -32,7 +32,6 @@ body {
 	font-weight: bold;
 }
 
-
 .pro {
     border: 1px solid #ccc;
     height: 360px;
@@ -54,12 +53,12 @@ body {
 }
 
 .proSingleIntro {
-	width: 175px;
-	height: 321px;
+	width: 12%;
+	height: 40%;
 	background-color: #fff;
 	margin: 1px;
 	position: absolute;
-	left: 59.5%;
+	right: 28.5%;
 	top: 13%;
 }
 
@@ -96,7 +95,9 @@ body {
 
 .proSingleImg {
 	position: relative;
-	left: 400px;
+	left: 27.8%;
+	top: 13%;
+	width: 35%;
 }
 
 .proPrice span {
@@ -165,10 +166,11 @@ body {
 .list0 {
 	padding:20px 0;
 	position:relative;
+	background-color: #fff;
 	border-top:1px solid #eee;
 	list-style-type:none;
 }
-
+	
 .list1 {
 	padding:20px 0;
 	position:relative;

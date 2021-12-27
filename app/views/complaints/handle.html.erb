@@ -20,9 +20,34 @@
   </div>
 <% end %>
 
+<div class="card">
+  <div class="card-header">诉求信息</div>
+  <div class="card-body">
+    <p>
+      <strong>买家:</strong>
+      <%= @complaint.customer.account.name %>
+    </p>
+
+    <p>
+      <strong>卖家:</strong>
+      <%= @complaint.seller.account.name %>
+    </p>
+
+    <p>
+      <strong>投诉内容:</strong>
+      <%= @complaint.content %>
+    </p>
+
+    <p>
+      <strong>处理人:</strong>
+      <%= @complaint.admin.account.name if @complaint.admin %>
+    </p>
+  </div>
+</div>
+
 <%= form_with url: complaint_do_handle_url(@complaint) do %>
   <%= fields_for :complaint do |c| %>
     <%= c.hidden_field :admin_id, :value => current_account.admin.id %>
   <% end %>
-  <%= submit_tag 'Do it' %>
+  <%= submit_tag 'Do it' , style: "margin: 1% auto; color: gainsboro;", class: "btn btn-primary", value: "处理诉求", data: { disable_with: "正在处理诉求" }%>
 <% end %>

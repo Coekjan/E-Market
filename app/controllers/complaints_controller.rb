@@ -29,7 +29,7 @@ class ComplaintsController < ApplicationController
   def do_handle
     respond_to do |format|
       if @complaint.update(complaint_handle_params)
-        format.html { redirect_to complaints_url, notice: "成功更新投诉！" }
+        format.html { redirect_to complaints_url, notice: "成功处理投诉！" }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @complaint.errors, status: :unprocessable_entity }

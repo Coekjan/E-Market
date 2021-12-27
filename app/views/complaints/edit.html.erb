@@ -1,6 +1,9 @@
-<h1>Editing Complaint</h1>
+<h1>编辑诉求</h1>
 
-<%= render 'edit_form', complaint: @complaint %>
+<div class="card" style="">
+  <div class="card-body">
+    <%= render 'edit_form', complaint: @complaint %>
+  </div>
+</div>
 
-<%= link_to 'Show', @complaint %> |
-<%= link_to 'Back', complaints_path %>
+<%= link_to '查看诉求', @complaint, class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;"%> <%= link_to '返回', complaints_path, class: "btn btn-primary", style: "color: gainsboro; margin: 1%auto;" %>

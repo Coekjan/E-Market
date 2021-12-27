@@ -1,5 +1,24 @@
-<h2><%= notice %></h2>
-<h2><%= alert %></h2>
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
+<% end %>
+
+<% if notice %>
+  <div role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+    <div class="toast-header">
+      <strong class="mr-auto">提醒</strong>
+      <small>
+        <button type="button" class="ml-2 mb-1 toastButton" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </small>
+    </div>
+    <div class="toast-body">
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
 
 <%= form_with url: complaint_do_handle_url(@complaint) do %>
   <%= fields_for :complaint do |c| %>

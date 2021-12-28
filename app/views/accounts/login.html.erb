@@ -2,6 +2,7 @@
 
 <body class="text-center loginSurface" style="margin: 0">
 
+<div class="text-center">
 <% if alert %>
   <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
@@ -23,4 +24,7 @@
   <%= link_to '注册', register_accounts_url, class:'btn btn-primary loginBox', style: "color: gainsboro"%>
   </div>
 <% end %>
+
+</div>
+
 </body>

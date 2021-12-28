@@ -30,15 +30,17 @@
   </div>
 <% end %>
 
-<h1>开始充值</h1>
-<div class="card">
+<h1 class="text-center">开始充值</h1>
+<div class="card accountCard">
   <div class="card-header">充值信息</div>
   <div class="card-body">
+    <div class="text-dark">当前余额：<%= @account.balance %></div>
+    <li class="dropdown-divider "></li>
     <%= form_with url: account_do_top_up_path(@account) do %>
-      <p>
-        充值金额: <%= number_field_tag :balance_add, min: 0.1, step: 0.1, required:"" %>
-      </p>
-      <%= submit_tag '确认'%>
+        <div class="text-dark labelLine">充值金额<br></div>
+        <div class="labelLine"><%= number_field_tag :balance_add, min: 0.1, step: 0.1, required:"", class:"textBoxLine", value:"0"%></div>
+        <%= submit_tag '确认充值', class:"leftButton btn btn-primary", style:"color: gainsboro"%>
+        <%= link_to '返回主页', root_url, class: "btn btn-primary rightButton", style: "color: gainsboro" %>
     <% end %>
   </div>
 </div>

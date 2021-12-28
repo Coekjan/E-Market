@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<body class="text-center loginSurface" style="margin: 0">
-
 <div class="text-center">
 <% if alert %>
   <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
@@ -11,7 +9,7 @@
 
 <%= form_with url: do_login_accounts_path do %>
   <div class="center-in-center">
-  <img class="mb-4" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fresource.v123.cn%2Fv%2FData%2Fupload%2Fcloud%2F201510%2F955695448%2Fimage%2F201605%2F572961b28c273.png&refer=http%3A%2F%2Fresource.v123.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643104227&t=30fad27e8d214eefc8dc2fc103a21b73" alt="" width="80" height="80">
+  <%= image_tag("brand.jpeg", class:"mb-4 brandPhoto") %>
   <h1 class="h3 mb-3 font-weight-normal">欢迎来到天上优购</h1>
   <label for="inputAccount" class="sr-only">Account ID</label>
   <label for="id"></label>
@@ -27,4 +25,4 @@
 
 </div>
 
-</body>
+</div>

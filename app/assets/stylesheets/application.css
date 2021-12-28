@@ -37,3 +37,16 @@
     border: 1px solid #ccc;
     border-radius: 16px;
 }
+
+.leftButton {
+    color: gainsboro;
+    width: 40%;
+    margin-right: 10%;
+    float: left;
+}
+
+.rightButton {
+    color: gainsboro;
+    width: 40%;
+    float: right;
+}

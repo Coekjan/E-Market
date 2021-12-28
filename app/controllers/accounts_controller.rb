@@ -1,8 +1,9 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
   before_action :set_account_for_top_up, only: [:top_up, :do_top_up]
-  before_action :authenticate, except: [:login, :do_login, :logout, :register, :do_register, :top_up, :do_top_up]
+  before_action :authenticate, except: [:statistic, :login, :do_login, :logout, :register, :do_register, :top_up, :do_top_up]
   before_action :authenticate_top_up, only: [:top_up, :do_top_up]
+  before_action :authenticate_statistic, only: [:statistic]
 
   def authenticate
     redirect_to login_accounts_url, alert: "Must Be ADMIN && Login!" unless current_admin?
@@ -11,6 +12,13 @@ class AccountsController < ApplicationController
   def authenticate_top_up
     redirect_to root_url, alert: "Illegal Behavior!" unless current_account &&
       current_account.id == params[:account_id].to_i
+  end
+
+  def authenticate_statistic
+    redirect_to root_url, alert: "Illegal Behavior!" unless current_admin? || current_seller?
+  end
+
+  def statistic
   end
 
   def login

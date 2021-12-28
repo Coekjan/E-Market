@@ -11,4 +11,8 @@ class Commodity < ApplicationRecord
   def sections
     Section.all.filter { |s| s.commodity == self }
   end
+
+  def sales_volume
+    Order.all.filter { |o| o.commodity == self && o.done }.map { |o| o.count }.reduce { |x, y| x + y } || 0
+  end
 end

@@ -1,0 +1,17 @@
+<h1>Sales Volume Statistic</h1>
+
+<% if current_seller? %>
+  <% current_account.seller.shops.each do |shop| %>
+    <h3><%= shop.name %></h3>
+    <% shop.commodities.each do |commodity| %>
+      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
+    <% end %>
+  <% end %>
+<% elsif current_admin? %>
+  <% Shop.all.each do |shop| %>
+    <h3><%= shop.name %> - (<%= shop.seller.account.name %>)</h3>
+    <% shop.commodities.each do |commodity| %>
+      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
+    <% end %>
+  <% end %>
+<% end %>

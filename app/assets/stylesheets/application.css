@@ -32,3 +32,8 @@
     margin: 0 0 0 0;
     width: 100%;
 }
+
+.filterBlock {
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}

@@ -13,48 +13,77 @@
     </div>
   </div>
 <% end %>
+<div>
+	<div>
+	  <div class="card" style="width:400px">
+	  	<div class="card-header" style="font-weight: bold"> 个人信息 </div>
+		<div class="card-body">
+		  <p class="card-title">用户名：<%= @seller.account.name %></p>
+		  <p class="card-title">账户ID：<%= @seller.account.id %></p>
+		</div>
+	  </div>
+	  <br>
+	</div>
 
-<p class="label" style="text-align: right">
-  <strong>账户ID：</strong>
-  <%= @seller.account.id %>
-</p>
-<div class="card">
-  <div class="card-header">个人信息</div>
-  <div class="card-body">
-    <p>
-      <strong>Name</strong>
-      <%= @seller.account.name %>
-    </p>
-  </div>
+	<!-- TODO: show this seller's shops -->
+	<% if current_account && current_account.admin %>
+		<%= link_to '编辑', edit_seller_path(@seller), class: 'btn btn-primary', style: "color: gainsboro" %> 
+	<% end %>
+	<%= link_to '返回', sellers_path, class: 'btn btn-primary', style: "color: gainsboro" %>
+	<br/>
+	<br/>
+	<h2>我的商店</h2>
+	
+	
+	<div class="card" style="">
+		<div class="card-body">
+
+		  <table class="table table-bordered table-hover table-striped">
+			  <thead>
+				<tr>
+				  <th>姓名</th>
+				  <th>商店简介</th>
+				  <th>商店链接</th>
+				</tr>
+			  </thead>
+
+			  <tbody>
+				<% @seller.shops.each do |shop| %>
+				  <tr>
+					<td><%= shop.name %></td>
+					<td><%= shop.introduction %></td>
+					<td>TODO:商店链接 </td>
+				  </tr>
+				<% end %>
+			  </tbody>
+		  </table>
+		</div>
+	</div>
+	
+	<!-- 
+		<div id="shops">
+		  <%= render :partial => @seller.shops %>
+		</div>
+	-->
+
+	<!-- TODO: if current-user is this seller show "create shop" -->
+	<% if current_account && current_account == @seller.account %>
+		<br/>
+		<h2>新建商店</h2>
+		<br/>
+		<%= form_for [@seller, Shop.new] do |f| %>
+			<%= f.label :name, "商店名称" , class: "h5", style: "font-weight: bold"%>
+			<%= f.text_field :name, :row => 5 %> 
+			<%= f.label :introduction, "商店简介", class: "h5", style: "font-weight: bold" %>
+			<%= f.text_area :introduction, :row => 5 %>
+
+		  <div class="field">
+			<!-- TODO: Backend verification -->
+			<%= f.hidden_field :seller_id, :value => @seller.id %>
+		  </div>
+		  <p>
+			<%= f.submit "创建商店", class: "btn btn-primary", style: "color: gainsboro" %>
+		  </p>
+		<% end %>
+	<% end %>
 </div>
-
-
-<!-- TODO: show this seller's shops -->
-
-<%= link_to 'Edit', edit_seller_path(@seller) %> |
-<%= link_to 'Back', sellers_path %>
-
-<h2>Shops</h2>
-<div id="shops">
-  <%= render :partial => @seller.shops %>
-</div>
-
-<!-- TODO: if current-user is this seller show "create shop" -->
-<h2>Create Shop</h2>
-<%= form_for [@seller, Shop.new] do |f| %>
-  <p>
-    <%= f.label :name, "Name" %><br/>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :introduction, "Introduction" %>
-    <%= f.text_area :introduction, :row => 5 %>
-  </p>
-  <div class="field">
-    <!-- TODO: Backend verification -->
-    <%= f.hidden_field :seller_id, :value => @seller.id %>
-  </div>
-  <p>
-    <%= f.submit "Create My Shop" %>
-  </p>
-<% end %>

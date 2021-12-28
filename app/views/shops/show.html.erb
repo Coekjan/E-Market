@@ -14,27 +14,51 @@
   </div>
 <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shop.name %>
-</p>
+<div>
+  <div class="card" style="width:400px">
+    <div class="card-body">
+      <h4 class="card-title"><%= @shop.name %></h4>
+      <p class="card-text">简介：<%= @shop.introduction %></p>
+      <p class="card-text">店主：<%= @shop.seller.account.name %></p>
+      <p class="card-text">ID：<%= @shop.seller.account.id %></p>
+      <% if current_account && current_account.id == @shop.seller.account.id %>
+        <%= link_to '编辑', edit_seller_shop_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro" %>
+      <% end %>
+	  <%= link_to '返回', seller_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro" %>
+    </div>
+  </div>
+  <br>
+</div>
 
-<p>
-  <strong>Introduction:</strong>
-  <%= @shop.introduction %>
-</p>
 
-<p>
-  <strong>Seller:</strong>
-  <%= @shop.seller.account.name %> | ID: <%= @shop.seller.account.id %>
-</p>
-
-<%= link_to 'Edit', edit_seller_shop_path(@shop.seller) %> |
-<%= link_to 'Back', seller_path(@shop.seller) %>
-
-<h2>Commodities</h2>
-<div id="commodities">
-  <%= render :partial => @shop.commodities %>
+<div class="content">  
+  <div class="proRow">
+      <% @shop.commodities.each do |commodity| %>
+          <div class="proBig">
+              <div class="pro">
+                  <div class="proImg"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_origin_min_pic%2F19%2F10%2F22%2Fa8e3ff878cb8b2156f0fee5691cb6951.jpg%21%2Ffw%2F750%2Fquality%2F99%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641694198&t=f0de01aa6da293f70dcd607d6f42e4c1" width="235"></div>
+                  <div class="proText">
+                      <h5 class="h5Commodity"><%= commodity.name %></h5>
+                      <p class = "proIntro"><%= commodity.introduction %></p>
+                      <p class = "proPrice"><%= commodity.price %> RMB</p>
+                      <p class = "proFrom"><%= commodity.shop.name %></p>
+                      <p class = "proCatagory"><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+                  </div>
+              </div>
+              <a href="#">
+                  <div class="proBtn">
+                  	  <%= link_to 'Show', commodity, class:'btn btn-primary btnCommodity'%>
+                      <% if current_account && current_account.id == commodity.shop.seller.account.id %>
+                        <%= link_to 'Edit', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity'%>
+                        <%= link_to 'Destroy', commodity, class:'btn btn-primary btnCommodity',  method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <% else %>
+                      <% end %>
+                  </div>
+              </a>
+              
+          </div>
+        <% end %>
+    </div>
 </div>
 
 <% if current_account && current_account.id == @shop.seller.account.id %>

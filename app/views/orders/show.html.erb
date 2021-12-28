@@ -16,36 +16,42 @@
 
 <p id="alert"><%= alert %></p>
 
-<p>
-  <strong>Count:</strong>
-  <%= @order.count %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @order.price %>
-</p>
+<div class="card" style="width: 25%; margin:1% auto;">
+  <div class="card-header">个人信息</div>
+  <div class="card-body">
+    <p>
+      <strong>数量：</strong>
+      <%= @order.count %>
+    </p>
 
-<p>
-  <strong>Done:</strong>
-  <%= @order.done %>
-</p>
+    <p style="margin: 6%auto">
+      <strong>总价：</strong>
+      <%= @order.price %>
+    </p>
 
-<p>
-  <strong>Commodity:</strong>
-  <%= @order.commodity.name %>
-</p>
+    <p style="margin: 6%auto">
+      <strong>商品名称：</strong>
+      <%= @order.commodity.name %>
+    </p>
 
-<% unless @order.done %>
-  <h2>Purchase Now!</h2>
-  <%= form_with url: customer_order_purchase_url(@order.customer, @order) do %>
-    <%= submit_tag 'PURCHASE!' %>
-  <% end %>
-<% end %>
+    <p style="margin: 6%auto">
+      <strong>是否完成：</strong>
+      <% if @order.done == true  %>
+      	已完成
+      <% else %>
+      	未完成
+      <% end %>
+    </p>
+  </div>
+</div>
 
-<br/>
-
-<% unless @order.done %>
-  <%= link_to 'Edit', edit_customer_order_path(@order.customer, @order) %> |
-<% end %>
-<%= link_to 'Back', customer_orders_path(@order) %>
+<div align="center">
+	<% unless @order.done %>
+	  <%= form_with url: customer_order_purchase_url(@order.customer, @order) do %>
+		<%= submit_tag '现在支付', class: "btn btn-primary", style: "color: gainsboro" %>
+	  	<%= link_to '编辑订单', edit_customer_order_path(@order.customer, @order), class: "btn btn-primary", style: "color: gainsboro"%> 
+		<%= link_to '返回', customer_orders_path(@order), class: "btn btn-primary", style: "color: gainsboro" %>
+	  <% end %>
+	<% end %>
+</div>

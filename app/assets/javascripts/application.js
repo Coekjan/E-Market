@@ -28,3 +28,4 @@ let f = function() {
 
 // rails i hate u
 $(document).on('turbolinks:load', f)
+

@@ -4,6 +4,8 @@ class ComplaintsController < ApplicationController
   before_action :authenticate_create, only: [:new, :edit, :create, :update]
   before_action :authenticate_show, only: [:show, :edit, :update]
   before_action :authenticate_handle, only: [:do_handle, :handle]
+  before_action :authenticate_check_not_handled, only: [:handle, :do_handle, :edit, :destroy, :update]
+  before_action :authenticate_destroy, only: [:destroy]
 
   def authenticate_create
     redirect_to login_accounts_url, alert: "Must login as customer" unless current_customer?
@@ -20,7 +22,16 @@ class ComplaintsController < ApplicationController
   def authenticate_handle
     redirect_to login_accounts_url, alert: "Must login as ADMIN" unless current_admin?
     index
-    redirect_to :index, status: :not_acceptable if @complaint.is_handled?
+  end
+
+  def authenticate_check_not_handled
+    redirect_to complaints_url, status: :not_acceptable if @complaint.is_handled?
+  end
+
+  def authenticate_destroy
+    redirect_to complaints_url, status: :not_acceptable unless current_admin? || (
+      current_customer? && current_account.customer == @complaint.customer
+    )
   end
 
   def handle

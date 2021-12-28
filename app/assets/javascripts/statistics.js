@@ -1,43 +1,4 @@
-<h1>Sales Volume Statistic</h1>
 
-<% if current_seller? %>
-  <% current_account.seller.shops.each do |shop| %>
-    <h3><%= shop.name %></h3>
-    <% shop.commodities.each do |commodity| %>
-      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
-    <% end %>
-  <% end %>
-<% elsif current_admin? %>
-  <% Shop.all.each do |shop| %>
-    <h3><%= shop.name %> - (<%= shop.seller.account.name %>)</h3>
-    <% shop.commodities.each do |commodity| %>
-      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
-    <% end %>
-  <% end %>
-<% end %>
-
-<svg id="app"></svg>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://d3js.org/d3.v5.min.js"></script>  <!-- 引入D3 -->
-  <style>
-    #app {    <!--画布大小，背景颜色-->
-      margin: 0 auto;
-      width: 500px;
-      height: 400px;
-      background: #efefef;
-    }
- 
-    .bar {    <!--柱体 -->
-      fill: green;
-    }
-  </style>
-</head>
-
-<script>
-  
 function show_data(datalist, ticks) {
 	const SVG_HEIGHT = 400;    //常量
 	const SVG_WIDTH = 500;     //常量
@@ -140,7 +101,3 @@ function show_data(datalist, ticks) {
 		return yScale(d) + MARGIN.TOP - 10;
 	  })
 }
-show_data([<%= Commodity.all.map { |c| c.sales_volume.to_s }.reduce { |x, y| x + ', ' + y } %>],[<%= Commodity.all.map { |c| "\"" + c.name + "\"" }.reduce { |x, y| x + ', ' + y } %>])
-</script>
-
-

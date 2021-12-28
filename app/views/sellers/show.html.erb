@@ -52,7 +52,7 @@
 				  <tr>
 					<td><%= shop.name %></td>
 					<td><%= shop.introduction %></td>
-					<td>TODO:商店链接 </td>
+					<td><%= link_to 'details', seller_shop_url(shop.seller, shop) %> </td>
 				  </tr>
 				<% end %>
 			  </tbody>
@@ -74,6 +74,7 @@
 		<%= form_for [@seller, Shop.new] do |f| %>
 			<%= f.label :name, "商店名称" , class: "h5", style: "font-weight: bold"%>
 			<%= f.text_field :name, :row => 5 %> 
+			<br/><br/>
 			<%= f.label :introduction, "商店简介", class: "h5", style: "font-weight: bold" %>
 			<%= f.text_area :introduction, :row => 5 %>
 

@@ -14,16 +14,19 @@
   </div>
 <% end %>
 
-<h1>My Orders</h1>
+<h1>购物车</h1>
 
-<table>
+<div class="card text-center" style="">
+<div class="card-body">
+
+  <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th>Count</th>
-      <th>Price</th>
-      <th>Commodity</th>
-      <th>Created At</th>
-      <th colspan="3"></th>
+      <th>数量</th>
+      <th>价格</th>
+      <th>商品名称</th>
+      <th>创建时间</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -34,14 +37,18 @@
         <td><%= order.price %></td>
         <td><%= order.commodity.name %></td>
         <td><%= order.created_at %></td>
-        <td><%= link_to 'Show', customer_order_url(order.customer, order) %></td>
+        <td><%= link_to '查看订单', customer_order_url(order.customer, order) %></td>
         <% if order.done %>
           <td>---</td>
         <% else %>
-          <td><%= link_to 'Edit', edit_customer_order_path(order.customer, order) %></td>
+          <td><%= link_to '编辑', edit_customer_order_path(order.customer, order) %></td>
         <% end %>
-        <td><%= link_to 'Destroy', customer_order_url(order.customer, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '删除', customer_order_url(order.customer, order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+
 </table>
+</div>
+</div>
+

@@ -30,6 +30,7 @@
   </div>
 <% end %>
 
+<!-- 分类筛选功能 -->
 <h4>Filter</h4>
 <%= form_with url: do_filter_commodities_url do |f| %>
   <div>
@@ -60,10 +61,10 @@
               </div>
               <a href="#">
                   <div class="proBtn">
-                  	  <%= link_to 'Show', commodity, class:'btn btn-primary btnCommodity'%>
+                  	  <%= link_to '查看', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
                       <% if current_account && current_account.id == commodity.shop.seller.account.id %>
-                        <%= link_to 'Edit', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity'%>
-                        <%= link_to 'Destroy', commodity, class:'btn btn-primary btnCommodity',  method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <%= link_to '编辑', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
+                        <%= link_to '删除', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro",  method: :delete, data: { confirm: 'Are you sure?' } %>
                       <% else %>
                       <% end %>
                   </div>
@@ -74,9 +75,7 @@
     </div>
 </div>
 
-
-
 <% if current_account && current_account.role == "Seller" %>
-  <%= link_to 'My Shop', seller_url(current_account.seller) %>
+  <%= link_to '我的商店', seller_url(current_account.seller), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>
 <% end %>
 

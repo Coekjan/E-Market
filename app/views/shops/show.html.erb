@@ -14,7 +14,7 @@
   </div>
 <% end %>
 
-<div>
+<div style="margin: 10px">
   <div class="card" style="width:400px">
     <div class="card-body">
       <h4 class="card-title"><%= @shop.name %></h4>
@@ -47,10 +47,10 @@
               </div>
               <a href="#">
                   <div class="proBtn">
-                  	  <%= link_to 'Show', commodity, class:'btn btn-primary btnCommodity'%>
+                  	  <%= link_to '查看', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
                       <% if current_account && current_account.id == commodity.shop.seller.account.id %>
-                        <%= link_to 'Edit', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity'%>
-                        <%= link_to 'Destroy', commodity, class:'btn btn-primary btnCommodity',  method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <%= link_to '编辑', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
+                        <%= link_to '删除', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro",  method: :delete, data: { confirm: 'Are you sure?' } %>
                       <% else %>
                       <% end %>
                   </div>
@@ -62,25 +62,25 @@
 </div>
 
 <% if current_account && current_account.id == @shop.seller.account.id %>
-  <h2>Add Commodities</h2>
+  <h2>新增商品</h2>
   <%= form_for Commodity.new, url: commodities_url do |f| %>
     <p>
-      <%= f.label :name, "Name" %>
+      <%= f.label :name, "商品名称", style: "font-weight: bold" %>
       <%= f.text_field :name %>
     </p>
     <p>
-      <%= f.label :introduction, "Introduction" %>
+      <%= f.label :introduction, "商品简介", style: "font-weight: bold" %>
       <%= f.text_area :introduction %>
     </p>
     <p>
-      <%= f.label :price, "Price" %>
+      <%= f.label :price, "价格", style: "font-weight: bold" %>
       <%= f.number_field :price, in: 0.1..10000000000.0, step: 0.1 %>
     </p>
     <div>
       <%= f.hidden_field :shop_id, :value => @shop.id %>
     </div>
     <p>
-      <%= f.submit "Add new commodities" %>
+      <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
     </p>
   <% end %>
 <% end %>

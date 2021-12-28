@@ -14,19 +14,48 @@
   </div>
 <% end %>
 
-<h2><%= alert %></h2>
-
-<% def show(comment, depth) %>
-  <%= '>' * depth %><%= comment.account.name %>: <%= comment.content %><br/>
-  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
-    <% show(c, depth + 1) %>
-  <% end %>
+<% if alert %>
+  <div class="<%= alert["type"]%>" role="<%= alert["role"] %>" style="left: auto">
+    <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
+  </div>
 <% end %>
 
-<% show(@comment, 0) %>
+<div class="commentBody">
+	<% def show(comment, depth) %>
+	  <% if depth == 0 %>
+	  	<HR align=center width=700 color=#987cb9 SIZE=1>
+	  <% end %>
+	  
+	  <li class="list0" >
+		  <div class="contentCommodityShow">
+			  <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span> 
+		  		  <div style="font-weight: bold">
+			  		  <%= comment.content %>
+			      </div>
+			  </p>
+		  </div>
+	  </li>
+	  
+	  <% if depth == 0 %>
+  	    <HR align=center width=700 color=#987cb9 SIZE=5>
+      <% end %>
+      
+	  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
+		<% show(c, depth + 1) %>
+	  <% end %>
+	<% end %>
+</div>
+<div class="commentBody">
+	<% show(@comment, 0) %>
+</div>
 
-<h3>Add Comment Here!</h3>
-<%= form_with url: commodity_section_comment_do_reply_url(@commodity, @section, @comment) do %>
-  <%= text_area_tag :content %>
-  <%= submit_tag 'Submit' %>
-<% end %>
+<br/>
+<div align="center">
+	<%= form_with url: commodity_section_comment_do_reply_url(@commodity, @section, @comment) do %>
+	  <%= text_area_tag :content %>
+	  <br/>
+	  <br/>
+	  <%= submit_tag '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
+	<% end %>
+</div>
+

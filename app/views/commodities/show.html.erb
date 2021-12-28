@@ -84,8 +84,7 @@
   <% end %>
 <% end %>
 
-<%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity' %> 
+<%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
 
-<div class="btn btnCommodity">
-	<%= link_to '访问该商品的店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop) %>
-</div>
+<%= link_to '访问该商品的店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop), class: 'btn btn-primary btnCommodity', style: "color: gainsboro" %>
+

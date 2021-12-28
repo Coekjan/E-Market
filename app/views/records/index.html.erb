@@ -14,16 +14,19 @@
   </div>
 <% end %>
 
-<h1>My Records</h1>
+<h1>我的购物记录</h1>
 
-<table>
+<div class="card text-center" style="">
+<div class="card-body">
+
+  <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th>Count</th>
-      <th>Price</th>
-      <th>Commodity</th>
-      <th>Created At</th>
-      <th colspan="1"></th>
+      <th>数量</th>
+      <th>价格</th>
+      <th>商品名称</th>
+      <th>创建时间</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -34,8 +37,12 @@
         <td><%= record.order.price %></td>
         <td><%= record.order.commodity.name %></td>
         <td><%= record.order.created_at %></td>
-        <td><%= link_to 'Show', customer_record_url(record.order.customer, record) %></td>
+        <td><%= link_to '查看订单', customer_record_url(record.order.customer, record) %></td>
       </tr>
     <% end %>
   </tbody>
+
 </table>
+</div>
+</div>
+

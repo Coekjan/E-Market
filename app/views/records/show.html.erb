@@ -16,34 +16,41 @@
 
 <p id="alert"><%= alert %></p>
 
-<p>
-  <strong>Count:</strong>
-  <%= @record.order.count %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @record.order.price %>
-</p>
 
-<p>
-  <strong>Commodity:</strong>
-  <%= @record.order.commodity.name %>
-</p>
+<div class="card" style="width: 25%; margin:1% auto;">
+  <div class="card-header">购物记录信息</div>
+  <div class="card-body">
+    <p>
+      <strong>数量：</strong>
+      <%= @record.order.count %>
+    </p>
 
-<% if @record.section %>
-  <%= link_to 'Comment!', commodity_section_url(@record.order.commodity, @record.section) %>
-<% else %>
-  <%= form_for Section.new, url: commodity_sections_url(@record.order.commodity) do |f| %>
-    <%= f.label :grade %>
-    <%= f.number_field :grade, in: 1..5, step: 1 %>
+    <p style="margin: 6%auto">
+      <strong>总价：</strong>
+      <%= @record.order.price %>
+    </p>
 
-    <%= f.hidden_field :record_id, :value => @record.id %>
+    <p style="margin: 6%auto">
+      <strong>商品名称：</strong>
+      <%= @record.order.commodity.name %>
+    </p>
+  </div>
+</div>
 
-    <%= f.submit %>
-  <% end %>
-<% end %>
+<div align="center">
+	<% if @record.section %>
+	  <%= link_to '查看评论', commodity_section_url(@record.order.commodity, @record.section), class: "btn btn-primary", style: "color: gainsboro" %>
+	  <%= link_to '返回', customer_records_path(@record.order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
+	<% else %>
+	  <%= form_for Section.new, url: commodity_sections_url(@record.order.commodity) do |f| %>
+		<%= f.label :grade %>
+		<%= f.number_field :grade, in: 1..5, step: 1 %>
 
-<br/>
+		<%= f.hidden_field :record_id, :value => @record.id %>
 
-<%= link_to 'Back', customer_records_path(@record.order.customer) %>
+		<%= f.submit %>
+	  <% end %>
+	  <%= link_to '返回', customer_records_path(@record.order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
+	<% end %>
+</div>

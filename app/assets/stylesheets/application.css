@@ -23,3 +23,12 @@
 .tableItem {
     color: #1b1e21;
 }
+
+.globalSurface {
+    margin: 1% 10% 10% 10%;
+}
+
+.navSurface {
+    margin: 0 0 0 0;
+    width: 100%;
+}

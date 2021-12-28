@@ -8,11 +8,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <div>
+  <div class="test">
     <!--change HOME to an image-->
 <!--    <%#= link_to 'HOME', root_url %><br/>-->
     <% if current_account %>
-      <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-lg navSurface" style="background-color: #e3f2fd;">
         <span class="navbar-brand mb-0 h1">Flying YouGou</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -68,10 +68,9 @@
           </ul>
         </div>
       </nav>
-      <li class="dropdown-divider "></li>
 
   <% elsif request.original_url != login_accounts_url %>
-      <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-lg navSurface" style="background-color: #e3f2fd;">
         <span class="navbar-brand mb-0 h1">Flying YouGou</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -87,13 +86,14 @@
           </ul>
         </div>
       </nav>
-      <li class="dropdown-divider "></li>
     <% end %>
 
   </div>
 
-  <body>
+  <body class="navSurface">
+    <div class="globalSurface">
     <%= yield %>
+    </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
   </body>
 </html>

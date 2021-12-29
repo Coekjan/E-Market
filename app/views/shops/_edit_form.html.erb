@@ -1,0 +1,35 @@
+<%= form_with(model: shop, url: url, local: true) do |form| %>
+  <% if shop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+
+      <ul>
+        <% shop.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="text-dark">当前用户： <%= current_account.name %></div>
+  <li class="dropdown-divider "></li>
+
+  <div class="center" style="width: 50%; margin: auto;">
+    <div class="field">
+      <div class="text-dark labelLine">商店名称<br>
+        <%= form.text_field :name, required:"",style:"width: 100%" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="text-dark labelLine">商店介绍<br>
+        <%= form.text_area :introduction ,style:"width: 100%" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary leftButton", value: "编辑商店", data: { disable_with: "正在编辑商店" } %>
+      <%= link_to '返回', seller_shop_path(@shop.seller), class: "btn btn-primary rightButton", style: "color: gainsboro" %>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,8 @@
-<h1>Editing Shop</h1>
+<h1 class="text-center">编辑商店</h1>
 
-<%= render 'form', shop: @shop, url: seller_shop_url(@shop.seller) %>
-
-<%= link_to 'Back', seller_shop_path(@shop.seller) %>
+<div class="card orderCard">
+  <div class="card-header">商店信息</div>
+  <div class="card-body">
+    <%= render 'edit_form', shop: @shop, url: seller_shop_url(@shop.seller) %>
+  </div>
+</div>

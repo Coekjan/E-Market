@@ -5,11 +5,19 @@
 
 ### 数据库系统与前后端框架
 
-* 数据库：SQLite3
+#### 本地开发
+
+* 数据库：SQLite3（关系数据库）
 * 前后端框架：Ruby On Rails - Rails 5.2.6
 * 主要相关依赖版本：
   * Ruby - Ruby 2.7.4
   * Bootstrap - Bootstrap 4.0.0.alpha6
+
+#### 远程部署
+
+远程部署于 Heroku 平台，远端数据库为 PostGreSQL（对象 - 关系数据库）。
+
+由于该远程服务器的文件系统是 [短寿](https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted) 的，因此上传的图片很可能在一段时间后失效。
 
 ### 本地构建
 

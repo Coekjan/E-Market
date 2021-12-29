@@ -1,6 +1,8 @@
-<h1>Editing Order</h1>
+<h1 class="text-center">编辑订单</h1>
 
-<%= render 'form', order: @order, url: customer_order_path(@order.customer, @order) %>
-
-<%= link_to 'Show', customer_order_url(@order.customer, @order) %> |
-<%= link_to 'Back', customer_orders_path(@order.customer) %>
+<div class="card orderCard">
+  <div class="card-header">订单信息</div>
+  <div class="card-body">
+    <%= render 'edit_form', order: @order, url: customer_order_path(@order.customer, @order) %>
+  </div>
+</div>

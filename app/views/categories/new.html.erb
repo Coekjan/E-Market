@@ -1,5 +1,9 @@
-<h1>新增类别</h1>
-
-<%= render 'form', category: @category %>
-
+<h1 class="text-center">新类别</h1>
+<div class="card accountCard">
+  <div class="card-header">类别信息</div>
+  <div class="card-body">
+    <%= render 'form', category: @category %>
+  </div>
+  </div>
+</div>
 <%= link_to '返回', categories_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>

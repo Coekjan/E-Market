@@ -12,37 +12,33 @@
 		</div>
 	  <% end %>
 
-	  <div class="field">
-		<%= form.label :商品名称, class: "labelName" %>
-		<%= form.text_field :name, class: "formTextArea" %>
-	  </div>
 
-	  <div class="field">
-		<%= form.label :商品介绍, class: "labelName" %>
-		<%= form.text_area :introduction, class: "formTextArea" %>
-	  </div>
 
-	  <div class="field">
-		<%= form.label :商品单价, class: "labelName" %>
-		<%= form.number_field :price, class: "formTextArea" %>
-	  </div>
 
-	  <div class="field">
-		<%= form.label :上传图片, class: "labelName" %>
-		<%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
-	  </div>
 
-	  <p class="labelName">
-	  	选择类别
-	  </p>
-	  <div class="labelName">
-		<%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
-		  <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
-		<% end %>
-	  </div>
 
-	  <div class="actions">
-		<%= form.submit :更新商品信息, class: "btn btn-primary btnCommodity", style: "color: gainsboro" %>
+
+	  <div class="center" style="width: 50%; margin: auto;">
+		  <div class="field">
+		    <div class="text-dark labelLine">商品名称<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "新名称" %></div>
+		  </div>
+		  
+		  <div class="field">
+		    <div class="text-dark labelLine">商品介绍<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "介绍" %></div>
+		  </div>
+		  
+		  <div class="field">
+		    <div class="text-dark labelLine">商品单价<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "" %></div>
+		  </div>
+
+			<div class="field">
+			  <%= form.label :上传图片, class: "labelName" %>
+			  <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+			</div>
+
+			<div class="actions">
+			  <%= form.submit :更新商品信息, class: "btn btn-primary btnCommodity", style: "color: gainsboro" %>
+			</div>
 	  </div>
 	<% end %>
 </div>

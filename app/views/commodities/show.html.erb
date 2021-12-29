@@ -65,7 +65,7 @@
 
 <!-- 编辑商品 -->
 <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
-  <%= link_to 'Edit', edit_commodity_url(@commodity) %> 
+  <%= link_to '编辑', edit_commodity_url(@commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
 <% elsif current_customer? %>
   <!-- 客户加入购物车 -->
   	<div style="text-align: center">

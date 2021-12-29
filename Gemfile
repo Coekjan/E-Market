@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'high_voltage'
 gem 'jquery-rails'
+
+# active storage
+gem 'active_storage_validations'

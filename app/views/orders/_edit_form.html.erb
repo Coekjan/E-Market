@@ -1,0 +1,29 @@
+<%= form_with(model: order, url: url, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="text-dark">当前用户： <%= current_account.name %></div>
+  <li class="dropdown-divider "></li>
+
+  <div class="center" style="width: 50%; margin: auto;">
+    <div class="field">
+      <div class="text-dark labelLine">订单数量<br>
+        <%= form.number_field :count, in: 1..10000000000, step: 1, require: "", class:"numberLine" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary leftButton", value: "编辑订单", data: { disable_with: "正在编辑订单" } %>
+      <%= link_to '返回', customer_orders_path(@order.customer), class: "btn btn-primary rightButton", style: "color: gainsboro" %>
+    </div>
+  </div>
+<% end %>

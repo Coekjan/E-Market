@@ -16,19 +16,27 @@
 
   <div class="center" style="width: 50%; margin: auto;">
     <div class="field">
-      <div class="text-dark labelLine">用户名<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "您的用户名" %></div>
+      <div class="text-dark labelLine">用户名<br>
+        <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "您的用户名" %>
+      </div>
     </div>
 
     <div class="field">
-      <div class="text-dark labelLine">新密码<br> <%= form.password_field :password, required:"", class:"textBoxLine", placeholder: "您的密码" %></div>
+      <div class="text-dark labelLine">新密码<br>
+        <%= form.password_field :password, required:"", class:"textBoxLine", placeholder: "您的密码" %>
+      </div>
     </div>
 
     <div class="field">
-      <div class="text-dark labelLine">身份<br> <%= form.collection_select(:role, all_roles, :to_s, :to_s, {}, {:class => "downLine"}) %></div>
+      <div class="text-dark labelLine">身份<br>
+        <%= form.collection_select(:role, all_roles, :to_s, :to_s, {}, {:class => "downLine"}) %>
+      </div>
     </div>
 
     <div class="field">
-      <div class="text-dark labelLine">余额<br> <%= form.number_field :balance, class:"textBoxLine", value:"0" %></div>
+      <div class="text-dark labelLine">余额<br>
+        <%= form.number_field :balance, class:"textBoxLine", value:"0" %>
+      </div>
     </div>
 
     <div class="actions">

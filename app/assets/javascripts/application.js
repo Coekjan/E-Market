@@ -12,7 +12,9 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require popper
 //= require jquery3
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
 
@@ -24,6 +26,7 @@ let f = function() {
             $('.toast').fadeOut();
         }, 0);
     });
+    $(".dropdown-toggle").dropdown();
 }
 
 // rails i hate u

@@ -24,15 +24,21 @@
 		  </div>
 		  
 		  <div class="field">
-		    <div class="text-dark labelLine">商品介绍<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "介绍" %></div>
+		    <div class="text-dark labelLine">商品介绍<br> <%= form.text_area :introduction, require:"", class:"textBoxLine", placeholder: "介绍" %></div>
 		  </div>
 		  
 		  <div class="field">
-		    <div class="text-dark labelLine">商品单价<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "" %></div>
+		    <div class="text-dark labelLine">商品单价<br> <%= form.number_field :price, in: 0.1..10000000000.0, step: 0.1, require:"", class:"textBoxLine", placeholder: "" %></div>
 		  </div>
 
+      <% if commodity.image.attached? %>
+        <div>
+          <image src="<%= url_for commodity.image %>"></image>
+        </div>
+      <% end %>
+
 			<div class="field">
-			  <%= form.label :上传图片, class: "labelName" %>
+			  <%= form.label :upload, "更新图片", class: "labelName" %>
 			  <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
 			</div>
 

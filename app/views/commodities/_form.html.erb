@@ -26,6 +26,11 @@
     <%= form.number_field :price %>
   </div>
 
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
   <h4>Choose Categories</h4>
   <div>
     <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>

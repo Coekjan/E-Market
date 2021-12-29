@@ -1,9 +1,14 @@
 class SellersController < ApplicationController
   before_action :set_seller, only: %i[ show edit update destroy ]
   before_action :authenticate, except: [:show]
+  before_action :ban, only: [:edit]
 
   def authenticate
     redirect_to login_accounts_url, alert: "Must Be ADMIN & Login" unless current_admin?
+  end
+
+  def ban
+    redirect_to root_url, alert: "Illegal Behaviors"
   end
 
   # GET /sellers or /sellers.json

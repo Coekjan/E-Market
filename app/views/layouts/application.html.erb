@@ -12,59 +12,81 @@
     <!--change HOME to an image-->
 <!--    <%#= link_to 'HOME', root_url %><br/>-->
     <% if current_account %>
-      <nav class="navbar navbar-expand-lg navSurface" style="background-color: #e3f2fd;">
-        <span class="navbar-brand mb-0 h1">Flying YouGou</span>
+      <nav class="navbar navbar-expand-lg navSurface" style="background-color: #e3f2fd; height: 5%">
+        <span class="navbar-brand navPhoto">
+          <%= image_tag("brand.jpeg") %>
+        </span>
+        <span class="navbar-brand mb-0 h1">天上优购</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>x`
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
+            <% if current_account.role == "Customer" %>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= link_to '购物车', customer_orders_url(current_account.customer), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '购物记录', customer_records_url(current_account.customer), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '我的诉求', complaints_url, class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '充值', account_top_up_url(current_account), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                </div>
+              </div>
+            <% elsif current_account.role == "Seller" %>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= link_to '所有投诉', complaints_url, class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '统计', account_statistic_url(current_account), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '充值', account_top_up_url(current_account), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                </div>
+              </div>
+            <% elsif current_account.role == "Admin" %>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= link_to '所有账户', accounts_url, class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '所有分类', categories_url, class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '所有投诉', complaints_url, class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '统计', account_statistic_url(current_account), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                  <li class="dropdown-divider"></li>
+                  <%= link_to '充值', account_top_up_url(current_account), class: "dropdown-item", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
+                </div>
+              </div>
+            <% end %>
             <li class="nav-item active">
               <%= link_to '主页', root_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;"%><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">欢迎：<%= current_account.name %></a>
+              <a class="nav-link disabled">当前余额：<%= current_account.balance %>￥</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">余额：<%= current_account.balance %>￥</a>
-            </li>
-            <li class="nav-item active">
-              <%= link_to '充值', account_top_up_url(current_account), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-            </li>
+            <% if current_account.role == "Customer" %>
+              <li class="nav-item">
+                <a class="nav-link disabled">欢迎顾客：<div style="display:inline; font-weight: bold;"><%= current_account.name %></div></a>
+              </li>
+            <% elsif current_account.role == "Seller" %>
+              <li class="nav-item">
+                <a class="nav-link disabled">欢迎商家：<div style="display:inline; font-weight: bold;"><%= current_account.name %></div></a>
+              </li>
+            <% elsif current_account.role == "Admin" %>
+              <li class="nav-item">
+                <a class="nav-link disabled">欢迎管理员：<div style="display:inline; font-weight: bold;"><%= current_account.name %></div></a>
+              </li>
+            <% end %>
             <li class="nav-item active">
               <%= link_to '登出', logout_accounts_path, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
             </li>
-            <% if current_account.role == "Customer" %>
-              <li class="nav-item active">
-                <%= link_to '购物车', customer_orders_url(current_account.customer), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '购物记录', customer_records_url(current_account.customer), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '我的诉求', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-            <% elsif current_account.role == "Seller" %>
-              <li class="nav-item active">
-                <%= link_to '我的诉求', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '统计', account_statistic_url(current_account), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-            <% elsif current_account.role == "Admin" %>
-              <li class="nav-item active">
-                <%= link_to '所有账户', accounts_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '所有分类', categories_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '所有投诉', complaints_url, class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item active">
-                <%= link_to '统计', account_statistic_url(current_account), class: "nav-link", style: "color: #1b1e21; background-color: transparent;" %><span class="sr-only">(current)</span>
-              </li>
-            <% end %>
           </ul>
         </div>
       </nav>

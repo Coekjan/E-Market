@@ -6,7 +6,7 @@ class SectionsController < ApplicationController
   def create_authenticate
     redirect_to commodity_url(Commodity.find(params[:commodity_id])), alert: "Buy it first" unless current_customer? &&
       current_account.customer.orders.filter { |o| o.done }
-                     .exists? { |o| o.commodity == Commodity.find(params[:commodity_id]) }
+                     .any? { |o| o.commodity == Commodity.find(params[:commodity_id]) }
   end
 
   def ban

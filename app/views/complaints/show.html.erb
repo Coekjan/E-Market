@@ -16,28 +16,34 @@
   </div>
 <% end %>
 
-<div class="card" style="width: 25%; margin:1% auto;">
-  <div class="card-header">诉求信息</div>
+<div class="card complaintCard">
+  <div class="card-header">投诉信息</div>
   <div class="card-body">
     <p>
-      <strong>&emsp;&ensp;&ensp;买家:</strong>
+      <strong>买家:</strong>
       <%= @complaint.customer.account.name %>
     </p>
 
-    <p style="margin: 6%auto">
-      <strong>&emsp;&ensp;&ensp;卖家:</strong>
+    <p style="margin: 5%auto">
+      <strong>卖家:</strong>
       <%= @complaint.seller.account.name %>
     </p>
 
-    <p style="margin: 6%auto">
+    <p style="margin: 5%auto">
       <strong>投诉内容:</strong>
       <%= @complaint.content %>
     </p>
 
-    <p style="margin: 6%auto">
-      <strong>&ensp;&ensp;处理人:</strong>
+    <p style="margin: 5%auto">
+      <strong>处理人:</strong>
       <%= @complaint.admin.account.name if @complaint.admin %>
     </p>
-    <%= link_to '修改信息', edit_complaint_path(@complaint), class: "btn btn-primary", style: "color: gainsboro; width: 40%; margin-right: 19%"%> <%= link_to '返回', complaints_path, class: "btn btn-primary", style: "color: gainsboro; width: 40%;" %>
+
+    <% if @complaint.is_handled? %>
+      <div class="leftButton"></div>
+    <% else %>
+      <%= link_to '修改信息', edit_complaint_path(@complaint), class: "leftButton btn btn-primary", style: "color: gainsboro;"%>
+    <% end %>
+    <%= link_to '返回', complaints_path, class: "rightButton btn btn-primary", style: "color: gainsboro; width: 40%;" %>
   </div>
 </div>

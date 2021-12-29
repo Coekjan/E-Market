@@ -48,9 +48,9 @@ class CommoditiesController < ApplicationController
   # POST /commodities or /commodities.json
   def create
     @commodity = Commodity.new(commodity_params)
-
     respond_to do |format|
       if @commodity.save
+        @commodity.image.attach(params[:commodity][:image])
         format.html { redirect_to @commodity, notice: "成功创建商品！" }
         format.json { render :show, status: :created, location: @commodity }
       else
@@ -64,6 +64,7 @@ class CommoditiesController < ApplicationController
   def update
     respond_to do |format|
       if @commodity.update(commodity_params)
+        @commodity.image.attach(params[:commodity][:image])
         format.html { redirect_to @commodity, notice: "成功更新商品！" }
         format.json { render :show, status: :ok, location: @commodity }
       else
@@ -90,6 +91,6 @@ class CommoditiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commodity_params
-      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, category_ids: [])
+      params.require(:commodity).permit(:name, :introduction, :price, :shop_id, :image, category_ids: [])
     end
 end

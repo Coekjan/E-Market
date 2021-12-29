@@ -1,6 +1,7 @@
 class Commodity < ApplicationRecord
   belongs_to :shop
   has_and_belongs_to_many :categories, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
   validates :name, :price, :introduction, presence: true
   scope :filter_by_categories, -> (cset) {
     reject { |c|

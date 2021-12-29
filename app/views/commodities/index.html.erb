@@ -32,19 +32,19 @@
 
 <!-- 分类筛选功能 -->
 <div class="filterBlock">
-<h4 style="margin-left: 1%; margin-top: 1%">类别筛选</h4>
-<%= form_with url: do_filter_commodities_url do |f| %>
-  <div>
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
-      <%= b.label(:"data-value" => b.value, style:"display: inline") {
-        b.check_box(checked: @temp_categories.nil? ? true : @temp_categories.include?(b.value)) + b.text
-      }%>
-    <% end %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'filter' %>
-  </div>
-<% end %>
+  <h4 style="margin-left: 1%; margin-top: 1%">条件筛选</h4>
+  <%= form_with url: do_filter_commodities_url do |f| %>
+    <div style="margin-left: 1%">
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+        <%= b.label(:"data-value" => b.value, style:"display: inline; font-size: 17px;") {
+          b.check_box(checked: @temp_categories.nil? ? true : @temp_categories.include?(b.value), class: "check_box") + b.text
+        }%>
+      <% end %>
+    </div>
+    <div class="actions" style="text-align:right; margin-right: 1%;">
+      <%= f.submit '筛选', class:"btn btn-primary", style:"width: 60px; height: 40px;"%>
+    </div>
+  <% end %>
 </div>
 
 <div class="content">  

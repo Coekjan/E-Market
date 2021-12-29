@@ -14,7 +14,7 @@
   </div>
 <% end %>
 
-<div style="margin: 10px">
+<div style="margin: 15px">
   <div class="card" style="width:400px">
     <div class="card-body">
       <h4 class="card-title"><%= @shop.name %></h4>
@@ -65,30 +65,32 @@
     </div>
 </div>
 
-<% if current_account && current_account.id == @shop.seller.account.id %>
-  <h2>新增商品</h2>
-  <%= form_for Commodity.new, url: commodities_url do |f| %>
-    <p>
-      <%= f.label :name, "商品名称", style: "font-weight: bold" %>
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :introduction, "商品简介", style: "font-weight: bold" %>
-      <%= f.text_area :introduction %>
-    </p>
-    <p>
-      <%= f.label :image, "商品示意图" %>
-      <%= f.file_field :photo, accept: 'image/png,image/jpeg' %>
-    </p>
-    <p>
-      <%= f.label :price, "价格", style: "font-weight: bold" %>
-      <%= f.number_field :price, in: 0.1..10000000000.0, step: 0.1 %>
-    </p>
-    <div>
-      <%= f.hidden_field :shop_id, :value => @shop.id %>
-    </div>
-    <p>
-      <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
-    </p>
-  <% end %>
-<% end %>
+<div style="margin: 15px">
+	<% if current_account && current_account.id == @shop.seller.account.id %>
+	  <h2>新增商品</h2>
+	  <%= form_for Commodity.new, url: commodities_url do |f| %>
+		<p>
+		  <%= f.label :name, "商品名称", class: "labelName" %>
+		  <%= f.text_field :name, class: "formTextArea" %>
+		</p>
+		<p>
+		  <%= f.label :introduction, "商品简介", class: "labelName" %>
+		  <%= f.text_area :introduction, class: "formTextArea" %>
+		</p>
+		<p>
+		  <%= f.label :image, "商品示意图", class: "labelName" %>
+		  <%= f.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+		</p>
+		<p>
+		  <%= f.label :price, "价格", class: "labelName" %>
+		  <%= f.number_field :price, in: 0.1..10000000000.0, step: 0.1, class: "formTextArea" %>
+		</p>
+		<div>
+		  <%= f.hidden_field :shop_id, :value => @shop.id, class: "formTextArea" %>
+		</div>
+		<p>
+		  <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
+		</p>
+	  <% end %>
+	<% end %>
+</div>

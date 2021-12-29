@@ -51,7 +51,7 @@
         <div class="contentCommodityShow">
         	<!-- TODO: 缺少评论	者的名字和评论时间,有可能的话也可以存一个头像 -->
         	<br>
-            <p class="text"><span class="name">Coekjan：</span><%= s.comments.first.content %></p>
+            <p class="text"><span class="name"><%= s.comments.first.account.name %>：</span><%= s.comments.first.content %></p>
             <div>
             	<%= link_to '查看评论组', commodity_section_url(@commodity, s) %>
             </div>
@@ -65,7 +65,7 @@
 
 <!-- 编辑商品 -->
 <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
-  <%= link_to 'Edit', edit_commodity_url(@commodity) %> 
+  <%= link_to '编辑', edit_commodity_url(@commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
 <% elsif current_customer? %>
   <!-- 客户加入购物车 -->
   	<div style="text-align: center">

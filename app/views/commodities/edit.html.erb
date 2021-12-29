@@ -1,5 +1,9 @@
-<h1>Editing Commodity</h1>
-
-<%= render 'form', commodity: @commodity %>
-
-<%= link_to 'Back', commodities_path %>
+<h1 class="text-center">编辑商品信息</h1>
+<div class="card accountCard">
+  <div class="card-header">商品信息</div>
+  <div class="card-body">
+    <%= render 'form', commodity: @commodity %>
+  </div>
+  </div>
+</div>
+<%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>

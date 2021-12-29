@@ -11,21 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :seller_id %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, -> (s) { s.account.name }) %>
-  </div>
+  <div class="text-dark">当前用户： <%= current_account.name %></div>
+  <li class="dropdown-divider "></li>
 
-  <div class="field">
-    <%= form.hidden_field :customer_id, :value => complaint.customer.id %>
-  </div>
+  <div class="center" style="width: 50%; margin: auto;">
+    <div class="field">
+      <div class="text-dark labelLine">买家<br> <%= form.collection_select(:seller_id, Seller.all, :id, -> (s) { s.account.name }, {}, {:class => "downLine"}) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <div class="field">
+      <div class="text-dark labelLine">投诉内容<br> <%= form.text_area :content, class:"complaintText"%>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <% if complaint.is_handled? %>
+        <div class="leftButton"></div>
+      <% else %>
+        <%= form.submit class: "btn btn-primary leftButton", value: "编辑信息", data: { disable_with: "正在编辑信息" }%>
+      <% end %>
+      <%= link_to '返回', complaints_path, class: "btn btn-primary rightButton", style: "color: gainsboro; width: 40%;" %>
+    </div>
   </div>
 <% end %>

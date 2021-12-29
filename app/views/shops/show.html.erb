@@ -88,6 +88,17 @@
       <div>
         <%= f.hidden_field :shop_id, :value => @shop.id, class: "formTextArea" %>
       </div>
+
+      <p class="labelName">
+        选择类别
+      </p>
+
+      <div class="labelName">
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+          <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
+        <% end %>
+      </div>
+
       <p>
         <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
       </p>

@@ -17,7 +17,7 @@
   <div class="center" style="width: 50%; margin: auto;">
     <div class="field">
       <div class="text-dark labelLine">投诉对象<br>
-        <%= form.collection_select(:seller_id, Seller.all, :id, -> (s) { s.account.name }, {}, {:class => "downLine"}) %>
+        <%= form.collection_select(:seller_id, Seller.all, :id, -> (s) { s.account.name }, {}, {:class => "downLine"}) %></div>
     </div>
 
     <div class="field">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="field">
-      <div class="text-dark labelLine">投诉内容<br> <%= form.text_area :content, class:"complaintText"%>
+      <div class="text-dark labelLine">投诉内容<br> <%= form.text_area :content, class:"complaintText"%></div>
     </div>
 
     <div class="actions">

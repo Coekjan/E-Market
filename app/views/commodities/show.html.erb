@@ -19,19 +19,23 @@
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
   </div>
 <% end %>
-<div class="proIntroMargin">
-	<div class="proSingleImg">
-    <% if @commodity.image.attached? %>
-      <image src="<%= url_for @commodity.image %>"></image>
-    <% end %>
-  </div>
-	<div class="proSingleIntro">
-		<div class="proText">
-		  <h5 class="h5Commodity"><%= @commodity.name %></h5>
-		  <p class = "proIntro"><%= @commodity.introduction %></p>
-		  <p class = "proPrice"><%= @commodity.price %> RMB</p>
-		  <p class = "proSingleFrom"><%= @commodity.shop.name %></p>
-		  <p class = "proCatagory"><%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+<div>
+	<div class="proIntroMargin">
+		<div style="text-align: center">
+			<% if @commodity.image.attached? %>
+			  <image src="<%= url_for @commodity.image %>" style="width: 485px"></image>
+			<% end %>
+		</div>
+		
+		<div class="card" style="width: 485px; margin:1% auto;">
+		  <div class="card-header" style="font-weight: bold">商品信息</div>
+		  <div class="card-body" style="font-weight: bold">
+			  <p>商品名称：<%= @commodity.name %></p>
+			  <p>商品介绍：<%= @commodity.introduction %></p>
+			  <p>商品价格：<%= @commodity.price %> RMB</p>
+			  <p>所属商店：<%= @commodity.shop.name %></p>
+			  <p>商品类别：<%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+		  </div>
 		</div>
 	</div>
 </div>
@@ -39,7 +43,7 @@
 
 
 <!--评论模块-->
-<body class="bodyCommodityShow">
+<div class="bodyCommodityShow">
 <% unless @commodity.sections.empty? %>
 <ul id="pn">
 	<% @commodity.sections.reject { |s| s.comments.empty?  }.each do |s| %>
@@ -56,19 +60,20 @@
     <% end %>
 </ul>
 <% end %>
-</body>
+</div>
 
 
 <!-- 编辑商品 -->
 <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
-  <%= link_to 'Edit', edit_commodity_url(@commodity) %> |
+  <%= link_to 'Edit', edit_commodity_url(@commodity) %> 
 <% elsif current_customer? %>
   <!-- 客户加入购物车 -->
   	<div style="text-align: center">
 		<%= form_for Order.new, url: customer_orders_url(current_account.customer) do |f| %>
 		<div class="field">
-		  <%= f.label :商品数量 %>
-		  <%= f.number_field :count, in: 1..10000000000, step: 1 %>
+		
+		  <%= f.label :商品数量, class: "countFont", style: "display: inline" %>
+		  <%= f.number_field :count, in: 1..10000000000, step: 1, class: "numberTextArea" %>
 		</div>
 		<div class="field">
 		  <%= f.hidden_field :done, :value => false %>
@@ -80,7 +85,7 @@
 		  <%= f.hidden_field :customer_id, :value => current_account.customer.id %>
 		</div>
 		<div class="actions">
-		  <%= f.submit %>
+		  <%= f.submit "加入购物车", class: "btn btn-primary btnCommodity" %>
 		</div>
 	</div>
   <% end %>

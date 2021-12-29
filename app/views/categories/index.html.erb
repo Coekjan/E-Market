@@ -32,16 +32,10 @@
               </div>
               <a href="#">
                   <div class="proBtn">
-                      <div class="btn btnCategory">
-                        <%= link_to 'Show', category %>
-                      </div>
+                      <%= link_to '查看', category, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>
                       <% if current_admin? %>
-                        <div class="btn btnCategory">
-                          <%= link_to 'Edit', edit_category_path(category) %>
-                        </div>
-                        <div class="btn btnCategory">
-                          <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </div>
+                          <%= link_to '编辑', edit_category_path(category), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>
+                          <%= link_to '删除', category, class:'btn btn-primary btnCommodity', style: "color: gainsboro", method: :delete, data: { confirm: 'Are you sure?' } %>
                       <% else %>
                       <% end %>
                   </div>
@@ -53,6 +47,4 @@
 
 <br>
 
-<div class="btn btnCategory">
-	<%= link_to '新增类别', new_category_path %>
-</div>
+<%= link_to '新增类别', new_category_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>

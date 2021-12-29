@@ -1,0 +1,11 @@
+#app {
+  margin: 0 auto;
+  width: 500px;
+  height: 400px;
+  position: relative;
+  left: 25%;
+  background: #efefef;
+}
+.bar {
+  fill: green;
+}

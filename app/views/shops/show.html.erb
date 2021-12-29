@@ -78,7 +78,7 @@
     </p>
     <p>
       <%= f.label :image, "商品示意图" %>
-      <%= f.file_field :image %>
+      <%= f.file_field :photo, accept: 'image/png,image/jpeg' %>
     </p>
     <p>
       <%= f.label :price, "价格", style: "font-weight: bold" %>

@@ -1,5 +1,5 @@
-<h1>Sales Volume Statistic</h1>
-
+<h1 style="text-align: center">销售数据统计</h1>
+<!--
 <% if current_seller? %>
   <% current_account.seller.shops.each do |shop| %>
     <h3><%= shop.name %></h3>
@@ -14,4 +14,15 @@
       <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
     <% end %>
   <% end %>
+<% end %>
+-->
+<% if current_seller? %>
+	<svg id="app"></svg>
+
+	<%= javascript_include_tag 'statistics', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
+
+	<%= javascript_tag do %>
+	show_data([<%= Commodity.all.map { |c| c.sales_volume.to_s }.reduce { |x, y| x + ', ' + y } %>],
+	  <%= raw Commodity.all.map { |c| c.name }.as_json %>)
+	<% end %>
 <% end %>

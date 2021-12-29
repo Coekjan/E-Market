@@ -15,16 +15,44 @@
 <% end %>
 
 <p>
-  <strong>Name:</strong>
-  <%= @category.name %>
+  <h1>所有<%= @category.name %></h1>
 </p>
 
-<strong>Commodities of the categories:</strong><br/>
-<% @category.commodities.each do |c| %>
-  <div>
-    <%= link_to c.name, commodity_url(c) %>
-  </div>
-<% end %>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+
+<div class="content">  
+  <div class="proRow">
+      <% @category.commodities.each do |commodity| %>
+          <div class="proBig">
+              <div class="pro">
+                  <div class="proImg">
+                    <% if commodity.image.attached? %>
+                      <image src="<%= url_for commodity.image %>"></image>
+                    <% end %>
+                  </div>
+                  <div class="proText">
+                      <h5 class="h5Commodity"><%= commodity.name %></h5>
+                      <p class = "proIntro"><%= commodity.introduction %></p>
+                      <p class = "proPrice"><%= commodity.price %> RMB</p>
+                      <p class = "proFrom"><%= commodity.shop.name %></p>
+                      <p class = "proCatagory"><%= commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
+                  </div>
+              </div>
+              <a href="#">
+                  <div class="proBtn">
+                  	  <%= link_to '查看', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
+                      <% if current_account && current_account.id == commodity.shop.seller.account.id %>
+                        <%= link_to '编辑', edit_commodity_path(commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro"%>
+                        <%= link_to '删除', commodity, class:'btn btn-primary btnCommodity', style: "color: gainsboro",  method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <% else %>
+                      <% end %>
+                  </div>
+              </a>
+              
+          </div>
+        <% end %>
+    </div>
+</div>
+
+<%= link_to '编辑', edit_category_path(@category), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
+<%= link_to '返回', categories_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>

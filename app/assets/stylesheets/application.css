@@ -40,13 +40,13 @@
 
 .leftButton {
     color: gainsboro;
-    width: 40%;
-    margin-right: 10%;
+    width: 45%;
+    margin-right: 5%;
     float: left;
 }
 
 .rightButton {
     color: gainsboro;
-    width: 40%;
+    width: 45%;
     float: right;
 }

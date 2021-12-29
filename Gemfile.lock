@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_storage_validations (0.9.6)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (5.2.6)
       activesupport (= 5.2.6)
       globalid (>= 0.3.6)
@@ -177,6 +182,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_storage_validations
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0.0.alpha6)
   byebug

@@ -22,49 +22,49 @@
   <div class="card-body">
 
     <table class="table table-bordered table-hover table-striped">
-    <thead>
-      <tr>
-        <th>买家</th>
-        <th>卖家</th>
-        <th>内容</th>
-        <th>处理人</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-  <tbody>
-    <% @complaints.each do |complaint| %>
-      <tr>
-        <td><%= complaint.customer.account.name %></td>
-        <td><%= complaint.seller.account.name %></td>
-        <td><%= complaint.content %></td>
-        <% if complaint.admin %>
-          <td><%= complaint.admin.account.name %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <td><%= link_to '查看详情', complaint, style: "color: #1b1e21; background-color: transparent;"%></td>
-        <% if current_customer? && complaint.customer == current_account.customer && !complaint.is_handled? %>
-          <td><%= link_to '编辑', edit_complaint_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
-        <% elsif current_admin? && !complaint.is_handled? %>
-          <td><%= link_to '处理', complaint_handle_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if !complaint.is_handled? && (current_customer? || current_admin?) %>
-          <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' }, style: "color: #1b1e21; background-color: transparent;" %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
+      <thead>
+        <tr>
+          <th>买家</th>
+          <th>卖家</th>
+          <th>内容</th>
+          <th>处理人</th>
+          <th colspan="3"></th>
         </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+        <% @complaints.each do |complaint| %>
+          <tr>
+            <td><%= complaint.customer.account.name %></td>
+            <td><%= complaint.seller.account.name %></td>
+            <td><%= complaint.content %></td>
+            <% if complaint.admin %>
+              <td><%= complaint.admin.account.name %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <td><%= link_to '查看详情', complaint, style: "color: #1b1e21; background-color: transparent;"%></td>
+            <% if current_customer? && complaint.customer == current_account.customer && !complaint.is_handled? %>
+              <td><%= link_to '编辑', edit_complaint_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
+            <% elsif current_admin? && !complaint.is_handled? %>
+              <td><%= link_to '处理', complaint_handle_path(complaint), style: "color: #1b1e21; background-color: transparent;" %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if !complaint.is_handled? && (current_customer? || current_admin?) %>
+              <td><%= link_to '删除', complaint, method: :delete, data: { confirm: 'Are you sure?' }, style: "color: #1b1e21; background-color: transparent;" %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 <br>
-
-  <%= link_to '新建投诉', new_complaint_path, class: "btn btn-primary", style: "color: gainsboro; width: 10%;" %>
-
+  <% if current_customer? %>
+    <%= link_to '新建投诉', new_complaint_path, class: "btn btn-primary", style: "color: gainsboro; width: 10%;" %>
+  <% end %>
   </div>
 </div>
 

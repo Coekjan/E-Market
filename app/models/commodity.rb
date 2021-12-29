@@ -3,6 +3,7 @@ class Commodity < ApplicationRecord
   has_and_belongs_to_many :categories, dependent: :destroy
   has_one_attached :image, dependent: :destroy
   validates :name, :price, :introduction, presence: true
+  validates :image, attached: true, content_type: [:jpg, :png, :jpeg], size: { less_than: 5.megabytes }
   scope :filter_by_categories, -> (cset) {
     reject { |c|
       (c.category_ids.map(&:to_i) & cset.reject(&:blank?).map(&:to_i)).empty?

@@ -54,7 +54,7 @@ class CommoditiesController < ApplicationController
         format.html { redirect_to @commodity, notice: "成功创建商品！" }
         format.json { render :show, status: :created, location: @commodity }
       else
-        format.html { render "commodities/new", status: :unprocessable_entity }
+        format.html { redirect_to seller_shop_url(@commodity.shop.seller, @commodity.shop), notice: "信息填写不完善！" }
         format.json { render json: @commodity.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +64,9 @@ class CommoditiesController < ApplicationController
   def update
     respond_to do |format|
       if @commodity.update(commodity_params)
-        @commodity.image.attach(params[:commodity][:image])
+        if params[:commodity][:image]
+          @commodity.image.attach(params[:commodity][:image])
+        end
         format.html { redirect_to @commodity, notice: "成功更新商品！" }
         format.json { render :show, status: :ok, location: @commodity }
       else

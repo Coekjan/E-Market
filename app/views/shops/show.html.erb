@@ -22,7 +22,7 @@
       <p class="card-text">店主：<%= @shop.seller.account.name %></p>
       <p class="card-text">ID：<%= @shop.seller.account.id %></p>
       <% if current_account && current_account.id == @shop.seller.account.id %>
-        <%= link_to '编辑', edit_seller_shop_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro" %>
+        <%= link_to '编辑', edit_seller_shop_path(@shop.seller, @shop), class: 'btn btn-primary', style: "color: gainsboro" %>
       <% end %>
 	  <%= link_to '返回', seller_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro" %>
     </div>
@@ -69,28 +69,28 @@
 	<% if current_account && current_account.id == @shop.seller.account.id %>
 	  <h2>新增商品</h2>
 	  <%= form_for Commodity.new, url: commodities_url do |f| %>
-		<p>
-		  <%= f.label :name, "商品名称", class: "labelName" %>
-		  <%= f.text_field :name, class: "formTextArea" %>
-		</p>
-		<p>
-		  <%= f.label :introduction, "商品简介", class: "labelName" %>
-		  <%= f.text_area :introduction, class: "formTextArea" %>
-		</p>
-		<p>
-		  <%= f.label :image, "商品示意图", class: "labelName" %>
-		  <%= f.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
-		</p>
-		<p>
-		  <%= f.label :price, "价格", class: "labelName" %>
-		  <%= f.number_field :price, in: 0.1..10000000000.0, step: 0.1, class: "formTextArea" %>
-		</p>
-		<div>
-		  <%= f.hidden_field :shop_id, :value => @shop.id, class: "formTextArea" %>
-		</div>
-		<p>
-		  <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
-		</p>
+      <p>
+        <%= f.label :name, "商品名称", class: "labelName" %>
+        <%= f.text_field :name, class: "formTextArea" %>
+      </p>
+      <p>
+        <%= f.label :introduction, "商品简介", class: "labelName" %>
+        <%= f.text_area :introduction, class: "formTextArea" %>
+      </p>
+      <p>
+        <%= f.label :image, "商品示意图", class: "labelName" %>
+        <%= f.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+      </p>
+      <p>
+        <%= f.label :price, "价格", class: "labelName" %>
+        <%= f.number_field :price, in: 0.1..10000000000.0, step: 0.1, class: "formTextArea" %>
+      </p>
+      <div>
+        <%= f.hidden_field :shop_id, :value => @shop.id, class: "formTextArea" %>
+      </div>
+      <p>
+        <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
+      </p>
 	  <% end %>
 	<% end %>
 </div>

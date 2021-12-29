@@ -43,7 +43,9 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        @category.image.attach(params[:category][:image])
+        if params[:category][:image]
+          @category.image.attach(params[:category][:image])
+        end
         format.html { redirect_to @category, notice: "类别被成功更新！" }
         format.json { render :show, status: :ok, location: @category }
       else

@@ -1,3 +1,4 @@
+
 <%= form_with(model: category, local: true) do |form| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
@@ -12,16 +13,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :类别名称, class: "labelName" %>
+    <%= form.text_field :name, class: "formTextArea" %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+    <%= form.label :上传图片, class: "labelName" %>
+    <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :更新类别信息, class: "btn btn-primary btnCommodity", style: "color: gainsboro" %>
   </div>
 <% end %>

@@ -51,7 +51,7 @@
 	  <%= form_with url: customer_order_purchase_url(@order.customer, @order) do %>
 		<%= submit_tag '现在支付', class: "btn btn-primary", style: "color: gainsboro" %>
 	  	<%= link_to '编辑订单', edit_customer_order_path(@order.customer, @order), class: "btn btn-primary", style: "color: gainsboro"%> 
-		<%= link_to '返回', customer_orders_path(@order), class: "btn btn-primary", style: "color: gainsboro" %>
+		<%= link_to '返回', customer_orders_path(@order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
 	  <% end %>
 	<% end %>
 </div>

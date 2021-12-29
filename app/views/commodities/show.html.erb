@@ -51,7 +51,7 @@
         <div class="contentCommodityShow">
         	<!-- TODO: 缺少评论	者的名字和评论时间,有可能的话也可以存一个头像 -->
         	<br>
-            <p class="text"><span class="name">Coekjan：</span><%= s.comments.first.content %></p>
+            <p class="text"><span class="name"><%= s.comments.first.account.name %>：</span><%= s.comments.first.content %></p>
             <div>
             	<%= link_to '查看评论组', commodity_section_url(@commodity, s) %>
             </div>

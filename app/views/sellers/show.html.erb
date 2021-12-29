@@ -73,10 +73,10 @@
 		<br/>
 		<%= form_for [@seller, Shop.new] do |f| %>
 			<%= f.label :name, "商店名称" , class: "h5", style: "font-weight: bold"%>
-			<%= f.text_field :name, :row => 5 %> 
+			<%= f.text_field :name, :row => 5, class: "formTextArea" %> 
 			<br/><br/>
 			<%= f.label :introduction, "商店简介", class: "h5", style: "font-weight: bold" %>
-			<%= f.text_area :introduction, :row => 5 %>
+			<%= f.text_area :introduction, :row => 5, class: "formTextArea" %>
 
 		  <div class="field">
 			<!-- TODO: Backend verification -->

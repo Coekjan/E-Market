@@ -27,18 +27,6 @@
       </div>
     </div>
 
-    <div class="field">
-      <div class="text-dark labelLine">身份<br>
-        <%= form.collection_select(:role, all_roles, :to_s, :to_s, {}, {:class => "downLine"}) %>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="text-dark labelLine">余额<br>
-        <%= form.number_field :balance, class:"textBoxLine", value:"0" %>
-      </div>
-    </div>
-
     <div class="actions">
       <%= form.submit class: "btn btn-primary leftButton", value: "更新信息", data: { disable_with: "正在更新信息" } %>
       <%= link_to '返回', accounts_path ,class: "btn btn-primary rightButton", style: "color: gainsboro"%>

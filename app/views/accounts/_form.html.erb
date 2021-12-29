@@ -4,34 +4,37 @@
       <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
 
       <ul>
-      <% account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="text-dark">当前账户： <%= current_account.name %></div>
+  <div class="text-dark">当前用户： <%= current_account.name %></div>
   <li class="dropdown-divider "></li>
 
-  <div class="field" style="margin: 6%auto">
-    <div class="text-dark">&ensp;&ensp;账户名： <%= form.text_field :name, require:"" %></div>
+  <div class="center" style="width: 50%; margin: auto;">
+    <div class="field">
+      <div class="text-dark labelLine">用户名<br> <%= form.text_field :name, require:"", class:"textBoxLine", placeholder: "您的用户名" %></div>
+    </div>
+
+    <div class="field">
+      <div class="text-dark labelLine">新密码<br> <%= form.password_field :password, required:"", class:"textBoxLine", placeholder: "您的密码" %></div>
+    </div>
+
+    <div class="field">
+      <div class="text-dark labelLine">身份<br> <%= form.collection_select(:role, all_roles, :to_s, :to_s, {}, {:class => "downLine"}) %></div>
+    </div>
+
+    <div class="field">
+      <div class="text-dark labelLine">余额<br> <%= form.number_field :balance, class:"textBoxLine", value:"0" %></div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary leftButton", value: "更新信息", data: { disable_with: "正在更新信息" } %>
+      <%= link_to '返回', accounts_path ,class: "btn btn-primary rightButton", style: "color: gainsboro"%>
+    </div>
   </div>
 
-  <div class="field" style="margin: 6%auto">
-    <div class="text-dark">&ensp;&ensp;新密码： <%= form.password_field :password, required:"" %></div>
-  </div>
-
-  <div class="field" style="margin: 6%auto">
-    <div class="text-dark">&emsp;&emsp;身份： <%= form.collection_select(:role, all_roles, :to_s, :to_s) %></div>
-  </div>
-
-  <div class="field" style="margin: 6%auto">
-    <div class="text-dark">&emsp;&emsp;余额： <%= form.number_field :balance %></div>
-  </div>
-
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "color: gainsboro; width: 40%; margin-right: 19%", value: "更新信息", data: { disable_with: "正在更新信息" } %>
-    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro; width: 40%;"%>
-  </div>
 <% end %>

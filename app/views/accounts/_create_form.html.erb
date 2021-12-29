@@ -11,23 +11,25 @@
     </div>
   <% end %>
 
-  <div class="text-dark">当前账户： <%= current_account.name %></div>
+  <div class="text-dark">当前用户： <%= current_account.name %></div>
   <li class="dropdown-divider "></li>
 
-  <div class="field" style="margin: 7%auto">
-    <div class="text-dark">&ensp;&ensp;账户名： <%= form.text_field :name, required:"" %></div>
-  </div>
+  <div class="center" style="width: 50%; margin: auto;">
+    <div class="field">
+      <div class="text-dark labelLine">用户名<br> <%= form.text_field :name, required:"", class:"textBoxLine", placeholder: "您的用户名" %></div>
+    </div>
 
-  <div class="field" style="margin: 7%auto">
-    <div class="text-dark" style="margin-right: 10%">&emsp;&emsp;密码： <%= form.password_field :password, required:"" %></div>
-  </div>
+    <div class="field">
+      <div class="text-dark labelLine">密码<br> <%= form.password_field :password, required:"", class:"textBoxLine", placeholder: "您的密码" %></div>
+    </div>
 
-  <div class="field" style="margin: 7%auto">
-    <div class="text-dark">&emsp;&emsp;身份： <%= form.collection_select(:role, all_roles, :to_s, :to_s) %></div>
-  </div>
+    <div class="field">
+      <div class="text-dark labelLine">身份<br> <%= form.collection_select(:role, all_roles, :to_s, :to_s, {}, {:class => "downLine"}) %></div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary", style: "color: gainsboro; width: 40%; margin-right: 19%", value: "创建用户", data: { disable_with: "正在创建用户" }%>
-    <%= link_to '返回', accounts_path ,class: "btn btn-primary", style: "color: gainsboro; width: 40%;"%>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary leftButton", value: "创建用户", data: { disable_with: "正在创建用户" }%>
+      <%= link_to '返回', accounts_path ,class: "btn btn-primary rightButton", style: "color: gainsboro"%>
+    </div>
   </div>
 <% end %>

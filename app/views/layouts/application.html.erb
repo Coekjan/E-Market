@@ -90,10 +90,15 @@
 
   </div>
 
-  <body class="navSurface">
-    <div class="globalSurface">
+  <% if request.original_url != login_accounts_url %>
+    <body class="navSurface">
+  <% else %>
+    <body class="loginSurface">
+  <% end %>
+
+  <div class="globalSurface">
     <%= yield %>
-    </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
+  </div>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
   </body>
 </html>

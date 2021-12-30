@@ -1,28 +1,16 @@
 <h1 style="text-align: center">销售数据统计</h1>
-<!--
+
+<%= javascript_include_tag 'statistics', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
+
 <% if current_seller? %>
-  <% current_account.seller.shops.each do |shop| %>
-    <h3><%= shop.name %></h3>
-    <% shop.commodities.each do |commodity| %>
-      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
-    <% end %>
-  <% end %>
-<% elsif current_admin? %>
-  <% Shop.all.each do |shop| %>
-    <h3><%= shop.name %> - (<%= shop.seller.account.name %>)</h3>
-    <% shop.commodities.each do |commodity| %>
-      <p><%= commodity.name %>: <%= commodity.sales_volume %></p>
-    <% end %>
-  <% end %>
+  <% commodities = Commodity.all.filter { |c| c.shop.seller.account == current_account } %>
+<% else %>
+  <% commodities = Commodity.all %>
 <% end %>
--->
-<% if current_seller? %>
-	<svg id="app"></svg>
 
-	<%= javascript_include_tag 'statistics', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
-
-	<%= javascript_tag do %>
-	show_data([<%= Commodity.all.map { |c| c.sales_volume.to_s }.reduce { |x, y| x + ', ' + y } %>],
-	  <%= raw Commodity.all.map { |c| c.name }.as_json %>)
-	<% end %>
+<div style="text-align: center">
+  <svg id="app"></svg>
+</div>
+<%= javascript_tag do %>
+  show_data(<%= raw commodities.map { |c| c.sales_volume }.as_json %>,<%= raw commodities.map { |c| c.name + "@" + c.shop.name }.as_json %>)
 <% end %>

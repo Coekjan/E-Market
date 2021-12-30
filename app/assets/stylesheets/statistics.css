@@ -1,9 +1,9 @@
 #app {
   margin: 0 auto;
-  width: 500px;
-  height: 400px;
+  width: 800px;
+  height: 600px;
   position: relative;
-  left: 25%;
+  text-align: center;
   background: #efefef;
 }
 .bar {

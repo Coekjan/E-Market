@@ -1,10 +1,15 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[ show edit update destroy ]
   before_action :authenticate, only: [:update, :destroy]
+  before_action :ban, only: [:index]
 
   def authenticate
-    redirect_to login_accounts_url, alert: "Must be seller | admin!" unless current_admin? ||
+    redirect_to login_accounts_url, alert: "您必须以管理员或商铺所有者身份登录！" unless current_admin? ||
       (current_seller? && current_account.seller.shops.exists? { |s| s == @shop })
+  end
+
+  def ban
+    redirect_to root_url, notice: "非法操作"
   end
 
   # GET /shops or /shops.json

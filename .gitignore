@@ -35,3 +35,12 @@
 # Ignore drawio
 
 /docs/*.drawio
+
+# Ignore PDF
+
+/*.pdf
+/docs/*.pdf
+
+# Ignore ZIP
+
+/*.zip

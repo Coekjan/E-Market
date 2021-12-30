@@ -40,7 +40,7 @@ pipeline {
             sshUserPrivateKey(credentialsId: "$PRIVATE_KEY",
             keyFileVariable: 'SSH_PRIVATE_KEY_PATH')]) {
               sh "cat $SSH_PRIVATE_KEY_PATH > ~/.ssh/key && chmod 600 ~/.ssh/key"
-              sh 'git push heroku HEAD:master'
+              sh 'git push heroku HEAD:master --force'
             }
 
           }

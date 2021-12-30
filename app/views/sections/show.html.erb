@@ -42,7 +42,6 @@
 	  <% end %>
 	<% end %>
 	<% if @section.comments.empty? %>
-	  No comments yet
 	<% else %>
 	  <% @section.comments.filter { |c| c.comment == c }.each do |c| %>
 		<% show(c, 0) %><br/>
@@ -67,9 +66,14 @@
       </ul>
     </div>
   <% end %>
-  <div align="center">
+  <div align="center" class="card accountCard">
 
+    <div class="card-header" style="text-align: left;">发表评论</div>
     <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>
+      <div class="field">
+        <div class="text-dark labelLine" style="text-align: left; margin-left: 15%">评论内容<br>
+        </div>
+
       <p style="margin: 15px">
         <%= f.text_area :content, :size=>"50*5" %>
       </p>

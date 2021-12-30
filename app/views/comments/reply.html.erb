@@ -53,12 +53,18 @@
 </div>
 
 <br/>
-<div align="center">
-	<%= form_with url: commodity_section_comment_do_reply_url(@commodity, @section, @comment) do %>
-	  <%= text_area_tag :content %>
+<div align="center" class="card accountCard">
+  <div class="card-header" style="text-align: left;">发表评论</div>
+  <div class="card-body">
+  <%= form_with url: commodity_section_comment_do_reply_url(@commodity, @section, @comment) do %>
+    <div class="field">
+      <div class="text-dark labelLine" style="text-align: left; margin-left: 15%">评论内容<br>
+      </div>
+	  <%= text_area_tag :content , "", style:"width: 70%"%>
 	  <br/>
 	  <br/>
 	  <%= submit_tag '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
-	<% end %>
+    </div>
+  <% end %>
+  </div>
 </div>
-

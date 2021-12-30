@@ -14,17 +14,17 @@
   </div>
 <% end %>
 
-<div style="margin: 15px">
-  <div class="card" style="width:400px">
+<div>
+  <div class="card" style="width:40%">
+    <div class="card-header" style="font-size: 100%">店铺信息</div>
     <div class="card-body">
-      <h4 class="card-title"><%= @shop.name %></h4>
+      <p class="card-text">店名：<%= @shop.name %></p>
       <p class="card-text">简介：<%= @shop.introduction %></p>
       <p class="card-text">店主：<%= @shop.seller.account.name %></p>
       <p class="card-text">ID：<%= @shop.seller.account.id %></p>
       <% if current_account && current_account.id == @shop.seller.account.id %>
-        <%= link_to '编辑', edit_seller_shop_path(@shop.seller, @shop), class: 'btn btn-primary', style: "color: gainsboro" %>
+        <%= link_to '编辑', edit_seller_shop_path(@shop.seller, @shop), class: 'btn btn-primary', style: "color: gainsboro; width: 20%" %>
       <% end %>
-	  <%= link_to '返回', seller_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro" %>
     </div>
   </div>
   <br>
@@ -65,10 +65,11 @@
     </div>
 </div>
 
-<div style="margin: 15px">
-	<% if current_account && current_account.id == @shop.seller.account.id %>
-	  <h2>新增商品</h2>
-	  <%= form_for Commodity.new, url: commodities_url do |f| %>
+<% if current_account && current_account.id == @shop.seller.account.id %>
+  <div class="card">
+  <div class="card-header">新增商品</div>
+  <div class="card-body">
+    <%= form_for Commodity.new, url: commodities_url do |f| %>
       <p>
         <%= f.label :name, "商品名称", class: "labelName" %>
         <%= f.text_field :name, class: "formTextArea" %>
@@ -88,20 +89,22 @@
       <div>
         <%= f.hidden_field :shop_id, :value => @shop.id, class: "formTextArea" %>
       </div>
-
       <p class="labelName">
         选择类别
       </p>
-
-      <div class="labelName">
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
-          <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
-        <% end %>
-      </div>
+        <div>
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+            <%= b.label(:"data-value" => b.value, style:"display: inline; font-size: 17px;") {
+              b.check_box(class: "check_box") + b.text } %>
+          <% end %>
+        </div>
 
       <p>
-        <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro" %>
+        <%= f.submit "新增商品", class: "btn btn-primary", style: "color: gainsboro; margin-top: 1%" %>
       </p>
-	  <% end %>
-	<% end %>
+    <% end %>
+  </div>
+<% end %>
 </div>
+
+<%= link_to '返回', seller_path(@shop.seller), class: 'btn btn-primary', style: "color: gainsboro; width: 10%; margin-top: 1%" %>

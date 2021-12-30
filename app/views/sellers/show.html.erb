@@ -15,8 +15,8 @@
 <% end %>
 <div>
 	<div>
-	  <div class="card" style="width:400px">
-	  	<div class="card-header" style="font-weight: bold"> 个人信息 </div>
+	  <div class="card sellerCard">
+	  	<div class="card-header" style="font-weight: bold"> 卖家信息 </div>
 		<div class="card-body">
 		  <p class="card-title">用户名：<%= @seller.account.name %></p>
 		  <p class="card-title">账户ID：<%= @seller.account.id %></p>
@@ -26,9 +26,6 @@
 	</div>
 
 	<!-- TODO: show this seller's shops -->
-	<%= link_to '返回', root_url, class: 'btn btn-primary', style: "color: gainsboro" %>
-	<br/>
-	<br/>
 	<h2>我的商店</h2>
 	
 	
@@ -65,22 +62,28 @@
 
 	<% if current_account && current_account == @seller.account %>
 		<br/>
-		<h2>新建商店</h2>
-		<br/>
-		<%= form_for [@seller, Shop.new] do |f| %>
-			<%= f.label :name, "商店名称" , class: "h5", style: "font-weight: bold"%>
-			<%= f.text_field :name, :row => 5, class: "formTextArea" %> 
-			<br/><br/>
-			<%= f.label :introduction, "商店简介", class: "h5", style: "font-weight: bold" %>
-			<%= f.text_area :introduction, :row => 5, class: "formTextArea" %>
+    <div class="card" style="">
+      <div class="card-header" style="font-weight: bold">新建商店</div>
+      <div class="card-body">
+        <%= form_for [@seller, Shop.new] do |f| %>
+          <%= f.label :name, "商店名称" , class: "h5", style: "font-weight: bold"%>
+          <%= f.text_field :name, :row => 5, class: "formTextArea" %>
+          <br/><br/>
+          <%= f.label :introduction, "商店简介", class: "h5", style: "font-weight: bold" %>
+          <%= f.text_area :introduction, :row => 5, class: "formTextArea" %>
 
-		  <div class="field">
-			<!-- TODO: Backend verification -->
-			<%= f.hidden_field :seller_id, :value => @seller.id %>
-		  </div>
-		  <p>
-			<%= f.submit "创建商店", class: "btn btn-primary", style: "color: gainsboro" %>
-		  </p>
-		<% end %>
+          <div class="field">
+          <!-- TODO: Backend verification -->
+          <%= f.hidden_field :seller_id, :value => @seller.id %>
+          </div>
+          <p>
+          <%= f.submit "创建商店", class: "btn btn-primary", style: "color: gainsboro; width: 10%" %>
+            <%= link_to '返回', root_url, class: 'btn btn-primary', style: "color: gainsboro; width: 10%" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <%= link_to '返回', root_url, class: 'btn btn-primary', style: "color: gainsboro; width: 10%" %>
 	<% end %>
 </div>

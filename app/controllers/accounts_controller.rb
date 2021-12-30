@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
     account = Account.where(id: params[:id], password: params[:password]).first
     if account
       session[:current_account_id] = account.id
-      redirect_to commodities_url, alert: {id: "用户登陆成功！", type: "alert alert-success", role: 'alert'}
+      redirect_to commodities_url, alert: {id: "用户登录成功！", type: "alert alert-success", role: 'alert'}
     else
       redirect_to login_accounts_url, alert: {id: "账户错误或密码错误！", type: "alert alert-danger", role: 'alert'}
     end
@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
       t.account_id = @account.id
       @account.update_attribute(:balance, 0)
       t.save
-      redirect_to login_accounts_url, alert: {id: "用户注册成功！你的账户ID是" + @account.id.to_s + ".请记住您的ID用于登陆", type: "alert alert-success", role: 'alert'}
+      redirect_to login_accounts_url, alert: {id: "用户注册成功！你的账户ID是" + @account.id.to_s + ".请记住您的ID用于登录", type: "alert alert-success", role: 'alert'}
     else
       redirect_to register_accounts_url, {id: "创建用户失败！", type: "alert alert-danger", role: 'alert'}
     end

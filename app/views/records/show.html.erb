@@ -18,7 +18,7 @@
 
 
 
-<div class="card" style="width: 25%; margin:1% auto;">
+<div class="card" style="width: 25%; margin:1% auto; font-weight: bold">
   <div class="card-header">购物记录信息</div>
   <div class="card-body">
     <p>
@@ -35,22 +35,23 @@
       <strong>商品名称：</strong>
       <%= @record.order.commodity.name %>
     </p>
-  </div>
-</div>
-
-<div align="center">
-	<% if @record.section %>
+    
+    <% if @record.section %>
 	  <%= link_to '查看评论', commodity_section_url(@record.order.commodity, @record.section), class: "btn btn-primary", style: "color: gainsboro" %>
 	  <%= link_to '返回', customer_records_path(@record.order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
 	<% else %>
 	  <%= form_for Section.new, url: commodity_sections_url(@record.order.commodity) do |f| %>
 		<%= f.label :grade %>
 		<%= f.number_field :grade, in: 1..5, step: 1 %>
-
+		
+		<br/><br/>
+		
 		<%= f.hidden_field :record_id, :value => @record.id %>
 
-		<%= f.submit %>
+		<%= f.submit '创建评论', class: "btn btn-primary", style: "color: gainsboro" %>
+		<%= link_to '返回', customer_records_path(@record.order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
 	  <% end %>
-	  <%= link_to '返回', customer_records_path(@record.order.customer), class: "btn btn-primary", style: "color: gainsboro" %>
 	<% end %>
+    
+  </div>
 </div>

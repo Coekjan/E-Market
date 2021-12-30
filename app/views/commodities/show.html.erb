@@ -49,9 +49,13 @@
 	<% @commodity.sections.reject { |s| s.comments.empty?  }.each do |s| %>
     <li class="list0" >
         <div class="contentCommodityShow">
-        	<!-- TODO: 缺少评论	者的名字和评论时间,有可能的话也可以存一个头像 -->
         	<br>
-            <p class="text"><span class="name"><%= s.comments.first.account.name %>：</span><%= s.comments.first.content %></p>
+            <p class="text">
+              <span class="name">
+                <%= s.comments.first.account.name %><label style="display: inline; color: #4e555b;">(<%= s.comments.first.created_at %>)</label>：
+              </span>
+              <%= s.comments.first.content %>
+            </p>
             <div>
             	<%= link_to '查看评论组', commodity_section_url(@commodity, s) %>
             </div>

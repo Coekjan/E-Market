@@ -14,34 +14,28 @@
   </div>
 <% end %>
 
-<p>
-  <strong>Grade:</strong>
-  <%= @section.grade %>
-</p>
-
 <h2 class="headPosition">所有评论</h2>
+
+<div style="position: relative; left: 30%; font-weight: bold">
+	评分：<div style="color: #00FF00; font-size: 100%"><%= '★' *  @section.grade %></div>
+</div>
 
 <div class="commentBody">
 	<% def show(comment, depth) %>
-	  <% if depth == 0 %>
-	  	<HR align=center width=700 color=#987cb9 SIZE=1>
-	  <% end %>
 
 	<li class="list1" >
         <div class="contentCommodityShow">
-            <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span>
-		        <div style="font-weight: bold">
-		        	<%= comment.content %>
-		       	</div>
+          <p><span class="name" style="font-weight: bold"><%= comment.account.name %><label style="display: inline; color: #4e555b;">(<%= comment.created_at %>)</label>：</span>
+              <div style="font-weight: bold">
+                <% if comment.comment != comment %>
+                  <label style="display: inline; color: #007bff;">@</label><%= (comment.comment.account.name + " ") %>
+                <% end %>
+                <%= comment.content %>
+              </div>
             </p>
             <%= link_to '回复', commodity_section_comment_reply_path(comment.section.commodity, comment.section, comment), class: 'btn btn-primary btnReply', style: "color: gainsboro" %>
         </div>
     </li>
-	  
-	  
-	  <% if depth == 0 %>
-  	    <HR align=center width=700 color=#987cb9 SIZE=5>
-      <% end %>
       
 	  <% Comment.all.filter { |c| c != comment && c.comment == comment }.each do |c| %>
 		<% show(c, depth + 1) %>

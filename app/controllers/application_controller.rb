@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_account, :roles, :all_roles, :current_admin?, :current_seller?, :current_customer?
 
   def current_account
+    # session.delete :current_account_id
     @current_account ||= Account.find(session[:current_account_id]) if session[:current_account_id]
   end
 

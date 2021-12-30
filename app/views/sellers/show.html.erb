@@ -49,7 +49,7 @@
 				  <tr>
 					<td><%= shop.name %></td>
 					<td><%= shop.introduction %></td>
-					<td><%= link_to 'details', seller_shop_url(shop.seller, shop) %> </td>
+					<td><%= link_to '查看详情', seller_shop_url(shop.seller, shop) %> </td>
 				  </tr>
 				<% end %>
 			  </tbody>
@@ -63,7 +63,6 @@
 		</div>
 	-->
 
-	<!-- TODO: if current-user is this seller show "create shop" -->
 	<% if current_account && current_account == @seller.account %>
 		<br/>
 		<h2>新建商店</h2>

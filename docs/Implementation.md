@@ -35,7 +35,7 @@ $ rails db:migrate && rails s
 
 ## 系统功能结构图
 
-<!-- TODO -->
+![](Structure.svg)
 
 ## 基本表、主外码、索引
 
@@ -362,7 +362,7 @@ end
 
 ### 主要模块—— MVC 模式
 
-<!-- TODO: M-V-C -->
+![](MVC.svg)
 
 ## 系统功能的运行实例
 

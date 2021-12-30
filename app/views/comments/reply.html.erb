@@ -28,11 +28,14 @@
 	  
 	  <li class="list0" >
 		  <div class="contentCommodityShow">
-			  <p><span class="name" style="font-weight: bold"><%= comment.account.name %>：</span> 
-		  		  <div style="font-weight: bold">
-			  		  <%= comment.content %>
-			      </div>
-			  </p>
+        <p><span class="name" style="font-weight: bold"><label style="display: inline; color: #4e555b;"><%= comment.account.name %></label>(<%= comment.created_at %>)：</span>
+          <div style="font-weight: bold">
+            <% if comment.comment != comment %>
+              <label style="display: inline; color: #007bff;">@</label><%= comment.comment.account.name + " " %>
+            <% end %>
+            <%= comment.content %>
+          </div>
+        </p>
 		  </div>
 	  </li>
 	  

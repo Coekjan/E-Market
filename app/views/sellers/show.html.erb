@@ -37,7 +37,7 @@
 				<tr>
 				  <th>姓名</th>
 				  <th>商店简介</th>
-				  <th>商店链接</th>
+          <th colspan="2"></th>
 				</tr>
 			  </thead>
 
@@ -47,7 +47,12 @@
 					<td><%= shop.name %></td>
 					<td><%= shop.introduction %></td>
 					<td><%= link_to '查看详情', seller_shop_url(shop.seller, shop) %> </td>
-				  </tr>
+          <% if current_admin? || (current_seller? && current_account == @seller.account) %>
+            <td><%= link_to '删除店铺', seller_shop_url(shop.seller, shop), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          </tr>
 				<% end %>
 			  </tbody>
 		  </table>

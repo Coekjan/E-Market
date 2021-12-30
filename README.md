@@ -18,20 +18,20 @@
 
 其中前端页面构建的具体分工如下：
 
-| 模型  | 主要贡献者                                       |
-|------|--------------------------------------------|
-| accounts    | 陈纪源 |
-| categories  | 战晨曦 |
-| comments    | 战晨曦 |
-| commodities | 战晨曦 |
-| complaints  | 陈纪源 |
-| customers   | 战晨曦 |
-| layouts     | 陈纪源 |
-| orders      | 战晨曦 |
-| records     | 战晨曦 |
-| sections    | 战晨曦 |
-| sellers     | 战晨曦 |
-| shops       | 战晨曦 |
+| 模型          | 主要贡献者 |
+|-------------|-------|
+| accounts    | 陈纪源   |
+| categories  | 战晨曦   |
+| comments    | 战晨曦   |
+| commodities | 战晨曦   |
+| complaints  | 陈纪源   |
+| customers   | 战晨曦   |
+| layouts     | 陈纪源   |
+| orders      | 战晨曦   |
+| records     | 战晨曦   |
+| sections    | 战晨曦   |
+| sellers     | 战晨曦   |
+| shops       | 战晨曦   |
 由陈纪源负责所有的样式设计，并最终统一样式。
 
 ## 具体实现与功能设计

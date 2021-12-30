@@ -34,6 +34,8 @@
 | shops       | 战晨曦   |
 由陈纪源负责所有的样式设计，并最终统一样式。
 
+![](docs/work.png)
+
 ## 具体实现与功能设计
 
 详见 docs 文件夹下的 [实现文档](docs/Implementation.md)，

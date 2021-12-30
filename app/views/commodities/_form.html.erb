@@ -36,14 +36,14 @@
       </p>
       <div class="labelName">
         <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
-          <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
+          <%= b.label(:"data-value" => b.value, style:"display: inline; font-size: 17px;") { b.check_box + b.text } %>
         <% end %>
       </div>
 
       <% if commodity.image.attached? %>
-        <div>
+        <p>
           <image src="<%= url_for commodity.image %>"></image>
-        </div>
+        </p>
       <% end %>
 
 			<div class="field">

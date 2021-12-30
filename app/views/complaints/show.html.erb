@@ -39,7 +39,7 @@
       <%= @complaint.admin.account.name if @complaint.admin %>
     </p>
 
-    <% if @complaint.is_handled? %>
+    <% if @complaint.is_handled? || current_seller?%>
       <div class="leftButton"></div>
     <% else %>
       <%= link_to '修改信息', edit_complaint_path(@complaint), class: "leftButton btn btn-primary", style: "color: gainsboro;"%>

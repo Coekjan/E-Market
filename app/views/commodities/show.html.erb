@@ -19,6 +19,7 @@
     <h4 class="alert-heading" style="text-align: left"><%= alert["id"] %></h4>
   </div>
 <% end %>
+
 <div>
 	<div class="proIntroMargin">
 		<div style="text-align: center">
@@ -35,7 +36,10 @@
 			  <p>商品价格：<%= @commodity.price %> RMB</p>
 			  <p>所属商店：<%= @commodity.shop.name %></p>
 			  <p>商品类别：<%= @commodity.categories.collect { |c| c.name }.reduce { |x, y| x + ", " + y } %></p>
-		  </div>
+        <% if current_account && current_account.id == @commodity.shop.seller.account.id %>
+          <%= link_to '编辑', edit_commodity_url(@commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>
+        <% end %>
+        </div>
 		</div>
 	</div>
 </div>
@@ -66,13 +70,11 @@
 <% end %>
 </div>
 
-
-<!-- 编辑商品 -->
-<% if current_account && current_account.id == @commodity.shop.seller.account.id %>
-  <%= link_to '编辑', edit_commodity_url(@commodity), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
-<% elsif current_customer? %>
-  <!-- 客户加入购物车 -->
-  	<div style="text-align: center">
+<% if current_customer? %>
+  <div class="card accountCard" style="width: 485px">
+    <div class="card-header">购买商品</div>
+    <div class="card-body text-center">
+    <!-- 客户加入购物车 -->
 		<%= form_for Order.new, url: customer_orders_url(current_account.customer) do |f| %>
 		<div class="field">
 		
@@ -89,13 +91,14 @@
 		  <%= f.hidden_field :customer_id, :value => current_account.customer.id %>
 		</div>
 		<div class="actions">
-		  <%= f.submit "加入购物车", class: "btn btn-primary btnCommodity" %>
+		  <%= f.submit "加入购物车", class: "btn btn-primary", style:"margin-top: 1%" %>
 		</div>
-	</div>
+	  </div>
+  </div>
   <% end %>
 <% end %>
 
-<%= link_to '返回', commodities_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
-
-<%= link_to '访问该商品的店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop), class: 'btn btn-primary btnCommodity', style: "color: gainsboro" %>
-
+<div style="width: 485px; margin: auto">
+<%= link_to '访问该商品的店铺', seller_shop_path(@commodity.shop.seller, @commodity.shop), class: 'btn btn-primary leftButton', style: "color: gainsboro" %>
+<%= link_to '返回', commodities_path, class:'btn btn-primary rightButton', style: "color: gainsboro" %>
+</div>

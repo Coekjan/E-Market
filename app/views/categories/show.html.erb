@@ -14,13 +14,14 @@
   </div>
 <% end %>
 
+<div style="border: 1px solid #ccc; border-radius: 16px;">
 <p>
-  <h1>所有<%= @category.name %></h1>
+  <h1 style="margin-left: 1%">所有<%= @category.name %></h1>
 </p>
 
 
 
-<div class="content">  
+<div class="content">
   <div class="proRow">
       <% @category.commodities.each do |commodity| %>
           <div class="proBig">
@@ -54,5 +55,9 @@
     </div>
 </div>
 
-<%= link_to '编辑', edit_category_path(@category), class:'btn btn-primary btnCommodity', style: "color: gainsboro" %> 
-<%= link_to '返回', categories_path, class:'btn btn-primary btnCommodity', style: "color: gainsboro" %>
+<div style="text-align: right; margin-right: 1%; margin-bottom: 1%">
+  <%= link_to '编辑', edit_category_path(@category), class:'btn btn-primary', style: "color: gainsboro; width: 7%" %>
+  <%= link_to '返回', categories_path, class:'btn btn-primary', style: "color: gainsboro; width: 7%" %>
+</div>
+
+</div>

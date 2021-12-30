@@ -67,7 +67,6 @@
     </div>
   <% end %>
   <div align="center" class="card accountCard">
-
     <div class="card-header" style="text-align: left;">发表评论</div>
     <%= form_for Comment.new, url: commodity_section_comments_url(@section.commodity, @section), class: 'test' do |f| %>
       <div class="field">
@@ -80,6 +79,7 @@
       <%= f.hidden_field :account_id, :value => current_account.id %>
       <%= f.hidden_field :section_id, :value => @section.id %>
     <%= f.submit '发送', :class => 'btn btn-primary' , style: "color: gainsboro" %>
+      </div>
     <% end %>
   </div>
 <% end %>
